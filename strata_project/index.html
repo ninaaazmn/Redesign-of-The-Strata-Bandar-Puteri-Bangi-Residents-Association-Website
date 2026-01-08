@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Majlis - The Strata</title>
+    <!-- Google Fonts: Playfair Display for elegance, Poppins for modern UI -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container" style="text-align: right;">
+            <a href="mailto:pptsbpbangi@gmail.com" class="email-link">
+                <i class="fa-regular fa-envelope"></i> pptsbpbangi@gmail.com
+            </a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-seedling"></i></div>
+                <div class="logo-text">
+                    <h1>The Strata</h1>
+                    <span>Bandar Puteri Bangi</span>
+                </div>
+            </a>
+            <div class="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#">Utama</a></li>
+                <li><a href="#">Tentang Kami</a></li>
+                <li><a href="#" class="active">Panduan Penduduk</a></li>
+                <li><a href="#">Pengumuman</a></li>
+                <li><a href="#">Hubungi</a></li>
+                <li><a href="#">Log Masuk</a></li>
+                <li><button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-title-box">
+                <h1>Panduan Majlis</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Rules Section -->
+        <section class="rules-section">
+            <div class="container">
+                <h2 class="section-title">Tatacara & Peraturan</h2>
+
+                <div class="rule-grid">
+                    <div class="rule-item">
+                        <h3><i class="fa-regular fa-clipboard"></i> Peraturan Am</h3>
+                        <ul>
+                            <li>Tempahan wajib dibuat <strong>7 hari</strong> sebelum majlis.</li>
+                            <li>Waktu penggunaan maksimum <strong>6 jam</strong>.</li>
+                            <li>Deposit sekuriti <strong>RM200</strong> (dikembalikan).</li>
+                            <li>Kebersihan adalah tanggungjawab penganjur.</li>
+                        </ul>
+                    </div>
+
+                    <div class="rule-item">
+                        <h3><i class="fa-solid fa-car-side"></i> Parkir</h3>
+                        <ul>
+                            <li>Parkir hanya di petak pelawat yang dikhaskan.</li>
+                            <li>Dilarang menghalang laluan kecemasan bomba.</li>
+                            <li>Maksimum <strong>50 kenderaan</strong> luar dibenarkan.</li>
+                            <li>Sila maklumkan kepada pos kawalan.</li>
+                        </ul>
+                    </div>
+
+                    <div class="rule-item">
+                        <h3><i class="fa-solid fa-volume-high"></i> Etika Bunyi</h3>
+                        <ul>
+                            <li>Semua aktiviti bunyi tamat jam <strong>11:00 malam</strong>.</li>
+                            <li>Kekalkan tahap bunyi yang harmoni.</li>
+                            <li>Hormati privasi jiran tetangga.</li>
+                            <li>Tiada sebarang bunyi selepas jam 12 tengah malam.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="gdrive-link-container">
+                    <a href="#" class="btn-gdrive"><i class="fa-brands fa-google-drive"></i> Muat Turun Dokumen
+                        Lengkap</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Online Application Section -->
+        <section class="online-app-section">
+            <div class="container">
+                <h2 class="section-title">Permohonan Digital</h2>
+                <p class="intro-text">Imbas kod QR di bawah atau klik pautan untuk mengisi borang permohonan majlis
+                    secara dalam talian. Mudah dan pantas.</p>
+
+                <div class="flyer-card">
+                    <div class="flyer-header">
+                        <h3>PERMOHONAN MAJLIS</h3>
+                        <p>The Strata Bandar Puteri Bangi</p>
+                    </div>
+                    <div class="flyer-body">
+                        <div class="qr-placeholder">
+                            <span style="font-size: 0.9em; letter-spacing: 1px; color: #888;">IMBAS DI SINI</span>
+                            <div class="qr-code-mock">
+                                <i class="fa-solid fa-qrcode" style="font-size: 3em;"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flyer-footer">
+                        <a href="https://forms.gle/Example" target="_blank">Buka Google Form <i
+                                class="fa-solid fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Form Section -->
+        <section class="booking-section">
+            <div class="container">
+                <h2 class="section-title">Tempahan Ekspres</h2>
+
+                <!-- Stepper -->
+                <div class="stepper">
+                    <div class="stepper-container">
+                        <div class="stepper-progress"></div>
+                        <!-- Steps -->
+                        <div class="step active" data-step="1">
+                            <div class="circle">1</div>
+                            <span>Maklumat</span>
+                        </div>
+                        <div class="step" data-step="2">
+                            <div class="circle">2</div>
+                            <span>Pemohon</span>
+                        </div>
+                        <div class="step" data-step="3">
+                            <div class="circle">3</div>
+                            <span>Sah</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Container -->
+                <form id="bookingForm" class="booking-form">
+                    <!-- Step 1: Maklumat Majlis -->
+                    <div class="form-step active" id="step1">
+                        <h3 class="form-section-title">Butiran Majlis</h3>
+                        <div class="form-group">
+                            <label>Tajuk Majlis</label>
+                            <input type="text" placeholder="Contoh: Majlis Kesyukuran" id="eventName">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label>Tarikh</label>
+                                <input type="date" id="eventDate">
+                            </div>
+                            <div class="form-group half">
+                                <label>Masa Mula</label>
+                                <input type="time" id="eventTime">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Anggaran Tetamu</label>
+                            <input type="number" placeholder="Jumlah kehadiran" id="guestCount">
+                        </div>
+                        <div class="form-actions right">
+                            <button type="button" class="btn-next" onclick="nextStep(2)">Seterusnya <i
+                                    class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Maklumat Penduduk -->
+                    <div class="form-step" id="step2">
+                        <h3 class="form-section-title">Butiran Pemohon</h3>
+                        <div class="form-group">
+                            <label>Nama Penuh</label>
+                            <input type="text" placeholder="Seperti dalam IC" id="applicantName">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label>No. Unit</label>
+                                <input type="text" placeholder="Contoh: A-10-2" id="unitNo">
+                            </div>
+                            <div class="form-group half">
+                                <label>No. Telefon</label>
+                                <input type="tel" placeholder="01x-xxxxxxx" id="phoneNo">
+                            </div>
+                        </div>
+                        <div class="form-actions split">
+                            <button type="button" class="btn-prev" onclick="prevStep(1)">Kembali</button>
+                            <button type="button" class="btn-next" onclick="nextStep(3)">Semak <i
+                                    class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Semakan -->
+                    <div class="form-step" id="step3">
+                        <h3 class="form-section-title">Semakan Akhir</h3>
+                        <p style="text-align: center; color: #666; font-size: 0.9em; margin-bottom: 30px;">Sila pastikan
+                            semua maklumat adalah tepat.</p>
+
+                        <div class="review-box">
+                            <p><strong>Majlis</strong> <span id="reviewEvent">-</span></p>
+                            <p><strong>Tarikh & Masa</strong> <span id="reviewDate">-</span> @ <span
+                                    id="reviewTime">-</span></p>
+                            <p><strong>Jumlah Tetamu</strong> <span id="reviewGuests">-</span></p>
+                            <p><strong>Nama Pemohon</strong> <span id="reviewName">-</span></p>
+                            <p><strong>Unit Kediaman</strong> <span id="reviewUnit">-</span></p>
+                        </div>
+                        <div class="form-actions split">
+                            <button type="button" class="btn-prev" onclick="prevStep(2)">Kembali</button>
+                            <button type="submit" class="btn-submit">Hantar Permohonan</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-item">
+                <i class="icon fa-regular fa-envelope"></i>
+                <h3>HUBUNGI EMAIL</h3>
+                <p>pptsbpbangi@gmail.com</p>
+            </div>
+            <div class="footer-separator"></div>
+            <div class="footer-item">
+                <i class="icon fa-solid fa-phone-volume"></i>
+                <h3>TALIAN PEJABAT</h3>
+                <p>03 - 4567 8980</p>
+            </div>
+            <div class="footer-separator"></div>
+            <div class="footer-item">
+                <i class="icon fa-solid fa-globe"></i>
+                <h3>PORTAL RASMI</h3>
+                <p>www.thestrata.com.my</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 JMB The Strata Bandar Puteri Bangi. Hak Cipta Terpelihara.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="panduan_majlis.js"></script>
+</body>
+
+</html>
