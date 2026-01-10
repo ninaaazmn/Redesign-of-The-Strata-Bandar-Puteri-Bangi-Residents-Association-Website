@@ -7,6 +7,7 @@ const formData = {
     eventTime: '',
     guestCount: '',
     applicantName: '',
+    email: '',
     unitNo: '',
     phoneNo: ''
 };
@@ -76,6 +77,7 @@ function saveData(step) {
         formData.guestCount = document.getElementById('guestCount').value;
     } else if (step === 2) {
         formData.applicantName = document.getElementById('applicantName').value;
+        formData.email = document.getElementById('email').value;
         formData.unitNo = document.getElementById('unitNo').value;
         formData.phoneNo = document.getElementById('phoneNo').value;
     }
@@ -113,7 +115,9 @@ function populateReview() {
     document.getElementById('reviewTime').textContent = formData.eventTime || '-';
     document.getElementById('reviewGuests').textContent = formData.guestCount || '-';
     document.getElementById('reviewName').textContent = formData.applicantName || '-';
+    document.getElementById('reviewEmail').textContent = formData.email || '-';
     document.getElementById('reviewUnit').textContent = formData.unitNo || '-';
+    document.getElementById('reviewPhone').textContent = formData.phoneNo || '-';
 }
 
 // Handle Form Submission
@@ -157,7 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Close menu when clicking a link
         navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
+                // If this is the dropdown toggle, don't close the menu
+                if (link.parentElement.classList.contains('dropdown-item')) {
+                    return;
+                }
+
                 navLinks.classList.remove('active');
                 const icon = menuBtn.querySelector('i');
                 icon.classList.remove('fa-xmark');
