@@ -93,20 +93,7 @@ function updatePaymentTable(year, filter = 'semua') {
             { month: 'November', status: 'tertunggak', action: 'BAYAR' },
             { month: 'Disember', status: 'selesai', action: '–' }
         ],
-        2025: [
-            { month: 'Januari', status: 'tertunggak', action: 'BAYAR' },
-            { month: 'Februari', status: 'tertunggak', action: 'BAYAR' },
-            { month: 'Mac', status: 'tertunggak', action: 'BAYAR' },
-            { month: 'April', status: 'tertunggak', action: 'BAYAR' },
-            { month: 'Mei', status: 'tertunggak', action: 'BAYAR' },
-            { month: 'Jun', status: 'tertunggak', action: 'BAYAR' },
-            { month: 'Julai', status: 'tertunggak', action: 'BAYAR' },
-            { month: 'Agustus', status: 'tertunggak', action: 'BAYAR' },
-            { month: 'September', status: 'tertunggak', action: 'BAYAR' },
-            { month: 'Oktober', status: 'tertunggak', action: 'BAYAR' },
-            { month: 'November', status: 'tertunggak', action: 'BAYAR' },
-            { month: 'Disember', status: 'tertunggak', action: 'BAYAR' }
-        ]
+    
     };
 
     // Get current data
