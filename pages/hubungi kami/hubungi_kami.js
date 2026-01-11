@@ -4,6 +4,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     setupContactForm();
     setupFeedbackButton();
+    setupQRCodeLink();
 });
 
 // Setup contact form submission
@@ -122,6 +123,19 @@ function setupFeedbackButton() {
     
     if (feedbackBtn) {
         feedbackBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Open Google Form in new window
+            window.open('https://docs.google.com/forms/d/e/1FAIpQLSfc_rtuEJTd0DFIiznl8t66rn7fi3fw7jcx3qScs74mudDQBg/viewform?usp=send_form', '_blank');
+        });
+    }
+}
+
+// Setup QR code link
+function setupQRCodeLink() {
+    const qrLink = document.getElementById('qrLink');
+    
+    if (qrLink) {
+        qrLink.addEventListener('click', function(e) {
             e.preventDefault();
             // Open Google Form in new window
             window.open('https://docs.google.com/forms/d/e/1FAIpQLSfc_rtuEJTd0DFIiznl8t66rn7fi3fw7jcx3qScs74mudDQBg/viewform?usp=send_form', '_blank');

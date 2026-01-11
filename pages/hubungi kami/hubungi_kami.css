@@ -64,7 +64,7 @@ body {
 .hero-bg {
     position: absolute;
     inset: 0;
-    background: url("../../partial/hero-bg.png") center/cover no-repeat;
+    background: url("../../partial/background.png") center/cover no-repeat;
     filter: grayscale(40%);
     transform: scale(1.02);
 }
@@ -360,6 +360,17 @@ main {
     align-items: center;
     justify-content: center;
     min-height: 360px;
+}
+
+.qr-link {
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.qr-link:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
 }
 
 .qr-code {

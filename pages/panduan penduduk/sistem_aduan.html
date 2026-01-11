@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Aduan - The Strata</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Navbar & Footer CSS from partial -->
+    <link rel="stylesheet" href="../../partial/navbar-footer.css">
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section - Maroon Theme */
+        .hero-section {
+            position: relative;
+            height: 350px;
+            background: linear-gradient(rgba(139, 21, 56, 0.8), rgba(139, 21, 56, 0.8)),
+                url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 8px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            border: 3px solid #C9A227;
+            padding: 25px 60px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== SISTEM ADUAN SECTION - Maroon Background ===== */
+        .aduan-section {
+            background: linear-gradient(135deg, #8B1538 0%, #6a1029 100%);
+            padding: 80px 0 100px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #C9A227;
+        }
+
+        /* Categories Grid */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Category Card - Glass Effect */
+        .category-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 35px 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #C9A227, #D4AF37);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .category-card:hover {
+            background: rgba(255, 255, 255, 0.18);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-card:hover::before {
+            opacity: 1;
+        }
+
+        .category-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .category-card h3 .card-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #C9A227, #D4AF37);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .category-subtitle {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .category-card ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .category-card ul li {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .category-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .category-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: #C9A227;
+            border-radius: 50%;
+        }
+
+        /* Action Link */
+        .category-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #C9A227;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(201, 162, 39, 0.15);
+            border: 1px solid rgba(201, 162, 39, 0.3);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .category-action:hover {
+            background: #C9A227;
+            color: #8B1538;
+            transform: translateX(5px);
+        }
+
+        .category-action i {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .category-action:hover i {
+            transform: translateX(3px);
+        }
+
+        .action-label {
+            display: block;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 8px;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            background: #fff;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .cta-subtitle {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .cta-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            min-width: 320px;
+            justify-content: center;
+        }
+
+        .cta-link.primary {
+            background: linear-gradient(135deg, #8B1538, #6a1029);
+            color: #fff;
+            box-shadow: 0 8px 25px rgba(139, 21, 56, 0.3);
+        }
+
+        .cta-link.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(139, 21, 56, 0.4);
+        }
+
+        .cta-link.secondary {
+            background: transparent;
+            color: #8B1538;
+            border: 2px solid #8B1538;
+        }
+
+        .cta-link.secondary:hover {
+            background: #8B1538;
+            color: #fff;
+        }
+
+        .cta-link i {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.5rem;
+                letter-spacing: 5px;
+                padding: 20px 40px;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .hero-section {
+                height: 280px;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+                letter-spacing: 3px;
+                padding: 15px 25px;
+            }
+
+            .aduan-section {
+                padding: 60px 0 80px;
+            }
+
+            .cta-section {
+                padding: 60px 20px;
+            }
+
+            .cta-title {
+                font-size: 1.8rem;
+            }
+
+            .cta-link {
+                min-width: 100%;
+                max-width: 320px;
+                padding: 15px 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container" style="text-align: right;">
+            <a href="mailto:pptsbpbangi@gmail.com" class="email-link">
+                <i class="fa-regular fa-envelope"></i> pptsbpbangi@gmail.com
+            </a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <img src="../../partial/persatuan-penduduk-the-strata-bandar-puteri-bangi.png" alt="The Strata Logo"
+                    style="max-height: 60px; width: auto;">
+            </a>
+            <div class="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../../index.html">Utama</a></li>
+                <li><a href="#">Tentang Kami</a></li>
+                <li class="dropdown-item">
+                    <a href="#" class="active">Panduan Penduduk <i class="fa-solid fa-chevron-down"
+                            style="font-size: 0.7em;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="panduan_majlis.html">Panduan Majlis</a></li>
+                        <li><a href="permohonan_kad_akses & rfid.html">Permohonan Kad Akses & RFID</a></li>
+                        <li><a href="direktori_kecemasan.html">Direktori Kecemasan</a></li>
+                        <li><a href="sistem_aduan.html" style="font-weight: 700; color: #8B1538;">Sistem Aduan</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Pengumuman</a></li>
+                <li><a href="#">Hubungi Kami</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Log Masuk</a></li>
+                <li><button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- ==================== END NAVBAR ==================== -->
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title">SISTEM ADUAN</h1>
+    </section>
+
+    <!-- ===== SISTEM ADUAN CONTENT ===== -->
+    <section class="aduan-section">
+        <div class="container">
+            <h2 class="section-title">Sistem Aduan</h2>
+
+            <div class="categories-grid">
+
+                <!-- Harta Awam -->
+                <div class="category-card">
+                    <h3>
+                        <span class="card-icon"><i class="fa-solid fa-building"></i></span>
+                        Harta Awam
+                    </h3>
+                    <p class="category-subtitle">Kawasan dan kemudahan bersama</p>
+                    <ul>
+                        <li>Lif rosak</li>
+                        <li>Lampu koridor</li>
+                        <li>Masalah kebersihan</li>
+                    </ul>
+                    <a href="#" class="category-action">
+                        Tindakan <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <span class="action-label">Report Polis</span>
+                </div>
+
+                <!-- Kerosakan Kecil -->
+                <div class="category-card">
+                    <h3>
+                        <span class="card-icon"><i class="fa-solid fa-wrench"></i></span>
+                        Kerosakan Kecil
+                    </h3>
+                    <p class="category-subtitle">Pembaikan dan penyelenggaraan</p>
+                    <ul>
+                        <li>Lampu rosak</li>
+                        <li>Paip bocor</li>
+                        <li>Pintu/tingkap bermasalah</li>
+                    </ul>
+                    <a href="#" class="category-action">
+                        Tindakan <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <span class="action-label">Pemilik/Pemaju</span>
+                </div>
+
+                <!-- Gangguan Jiran -->
+                <div class="category-card">
+                    <h3>
+                        <span class="card-icon"><i class="fa-solid fa-volume-high"></i></span>
+                        Gangguan Jiran
+                    </h3>
+                    <p class="category-subtitle">Aduan bunyi bising dan gangguan</p>
+                    <ul>
+                        <li>Muzik kuat</li>
+                        <li>Gangguan haiwan peliharaan</li>
+                        <li>Masalah merokok</li>
+                    </ul>
+                    <a href="#" class="category-action">
+                        Tindakan <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <span class="action-label">Report Polis</span>
+                </div>
+
+                <!-- Struktur Utama -->
+                <div class="category-card">
+                    <h3>
+                        <span class="card-icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
+                        Struktur Utama
+                    </h3>
+                    <p class="category-subtitle">Masalah struktur yang serius</p>
+                    <ul>
+                        <li>Retak pada dinding</li>
+                        <li>Kebocoran air</li>
+                        <li>Bahaya keselamatan</li>
+                    </ul>
+                    <a href="#" class="category-action">
+                        Tindakan <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <span class="action-label">Pemilik/Pemaju</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">HANTAR ADUAN ANDA</h2>
+                <p class="cta-subtitle">Pilih cara yang paling mudah untuk anda</p>
+                <div class="cta-links">
+                    <a href="https://forms.google.com" target="_blank" class="cta-link primary">
+                        <i class="fa-solid fa-file-lines"></i>
+                        Isi borang online
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                    <a href="mailto:pptsbpbangi@gmail.com" class="cta-link secondary">
+                        <i class="fa-solid fa-envelope"></i>
+                        Hantar email rasmi
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-item">
+                <i class="icon fa-regular fa-envelope"></i>
+                <h3>EMAIL KAMI</h3>
+                <p>pptsbpbangi@gmail.com</p>
+            </div>
+            <div class="footer-separator"></div>
+            <div class="footer-item">
+                <i class="icon fa-solid fa-phone-volume"></i>
+                <h3>HUBUNGI KAMI</h3>
+                <p>03 - 4567 8980</p>
+            </div>
+            <div class="footer-separator"></div>
+            <div class="footer-item">
+                <i class="icon fa-solid fa-globe"></i>
+                <h3>LAMAN SESAWANG KAMI</h3>
+                <p>www.thestrata.com.my</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 JMB The Strata Bandar Puteri Bangi. Hak Cipta Terpelihara.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- ==================== END FOOTER ==================== -->
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function () {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('show');
+        });
+    </script>
+</body>
+
+</html>
