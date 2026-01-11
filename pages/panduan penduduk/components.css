@@ -1,0 +1,492 @@
+/**
+ * The Strata - Navbar & Footer Component Styles
+ * ==============================================
+ * CSS styles for the reusable navbar and footer components.
+ * Include this file in your HTML along with the main style.css
+ * 
+ * PENGGUNAAN / HOW TO USE:
+ * <link rel="stylesheet" href="components.css">
+ */
+
+/* =========================================
+   VARIABLES (if not already defined)
+   ========================================= */
+:root {
+    /* Maroon Palette */
+    --primary-color: #7D1C3A;
+    --primary-light: #9E2B4B;
+    --primary-dark: #561025;
+    --accent-color: #C5A028;
+    --accent-light: #E5C35D;
+
+    /* Neutrals */
+    --text-dark: #2D2426;
+    --text-grey: #665C5F;
+    --text-light: #998F92;
+    --white: #FFFFFF;
+    --off-white: #FAF9F7;
+    --bg-warm: #FDFBF8;
+
+    /* Effects */
+    --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    --gradient-gold: linear-gradient(135deg, #DFBD56 0%, #C5A028 100%);
+
+    --shadow-sm: 0 4px 6px rgba(125, 28, 58, 0.05);
+    --shadow-md: 0 12px 24px rgba(125, 28, 58, 0.08);
+
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Poppins', sans-serif;
+
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-full: 9999px;
+}
+
+/* =========================================
+   TOP BAR STYLES
+   ========================================= */
+.top-bar {
+    background: var(--primary-dark);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 8px 0;
+    font-size: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.email-link {
+    color: var(--accent-light);
+    text-decoration: none;
+    transition: all 0.3s;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.email-link:hover {
+    color: var(--white);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+/* =========================================
+   NAVBAR STYLES
+   ========================================= */
+.navbar {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.logo-icon {
+    font-size: 2.2em;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 6px rgba(125, 28, 58, 0.2));
+}
+
+.logo-text h1 {
+    font-family: var(--font-heading);
+    font-size: 1.6em;
+    color: var(--primary-color);
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.logo-text span {
+    font-size: 0.65em;
+    color: var(--text-grey);
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    display: block;
+    margin-top: 2px;
+    font-weight: 500;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 0.9em;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: var(--gradient-gold);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-links a.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.search-btn {
+    background: var(--bg-warm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    color: var(--primary-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-btn:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: rotate(15deg);
+    box-shadow: 0 4px 12px rgba(125, 28, 58, 0.25);
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    font-size: 1.5em;
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 10px;
+    border-radius: var(--radius-sm);
+    transition: background 0.3s;
+}
+
+.mobile-menu-btn:hover {
+    background: rgba(125, 28, 58, 0.05);
+}
+
+/* =========================================
+   DROPDOWN MENU STYLES
+   ========================================= */
+.nav-links .dropdown-item {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links .dropdown-item .fa-chevron-down {
+    transition: transform 0.3s ease;
+    margin-left: 6px;
+}
+
+.nav-links .dropdown-item:hover .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--white);
+    min-width: 280px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    border-radius: var(--radius-sm);
+    padding: 12px 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1100;
+    border-top: 4px solid var(--primary-color);
+    margin-top: 15px;
+    list-style: none;
+}
+
+/* Triangle connector */
+.dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid var(--primary-color);
+}
+
+/* Invisible bridge */
+.dropdown-menu::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: transparent;
+}
+
+.nav-links .dropdown-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-menu li {
+    display: block;
+    margin: 0;
+    width: 100%;
+}
+
+.dropdown-menu li a {
+    padding: 14px 25px;
+    display: block;
+    color: var(--text-dark);
+    font-size: 0.95em;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.2s;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.dropdown-menu li:last-child a {
+    border-bottom: none;
+}
+
+.dropdown-menu li a:hover {
+    background: var(--bg-warm);
+    color: var(--primary-color);
+    padding-left: 30px;
+}
+
+.dropdown-menu li a.active {
+    background: rgba(125, 28, 58, 0.05);
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* =========================================
+   FOOTER STYLES
+   ========================================= */
+.footer {
+    background-color: #121011;
+    color: var(--white);
+    padding-top: 100px;
+    position: relative;
+    clip-path: polygon(0 50px, 100% 0, 100% 100%, 0 100%);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr 1px 1fr;
+    gap: 40px;
+    align-items: start;
+    text-align: center;
+}
+
+.footer-item {
+    padding: 20px;
+}
+
+.footer-item .icon {
+    font-size: 2.5em;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.footer-item h3 {
+    font-family: var(--font-heading);
+    color: var(--white);
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.footer-item p {
+    color: #888;
+    font-size: 1em;
+    margin: 0;
+}
+
+.footer-separator {
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2), transparent);
+    height: 100px;
+    width: 1px;
+    margin: auto;
+}
+
+.footer-bottom {
+    background-color: #0A0809;
+    padding: 30px 0;
+    margin-top: 80px;
+    text-align: center;
+    color: #555;
+    font-size: 0.85em;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+/* =========================================
+   CONTAINER (if not defined elsewhere)
+   ========================================= */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* =========================================
+   RESPONSIVE STYLES
+   ========================================= */
+
+/* Tablet */
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1px 1fr;
+    }
+
+    .footer-item:last-child {
+        grid-column: span 3;
+        margin-top: 30px;
+    }
+
+    .footer-separator:last-of-type {
+        display: none;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        flex-direction: column;
+        padding: 20px 0;
+        gap: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        display: none;
+    }
+
+    .nav-links.show,
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        font-size: 1.1em;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    /* Dropdown on mobile */
+    .dropdown-menu {
+        position: static;
+        transform: none;
+        box-shadow: none;
+        border-top: none;
+        background: rgba(0, 0, 0, 0.02);
+        margin-top: 0;
+        opacity: 1;
+        visibility: visible;
+        min-width: 100%;
+    }
+
+    .dropdown-menu::before,
+    .dropdown-menu::after {
+        display: none;
+    }
+
+    .dropdown-menu li a {
+        padding: 12px 20px;
+        text-align: center;
+    }
+
+    /* Footer Mobile */
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-separator {
+        display: none;
+    }
+
+    .footer-item:last-child {
+        grid-column: auto;
+    }
+
+    .footer {
+        clip-path: none;
+        padding-top: 60px;
+    }
+}
+
+/* Animation for dropdown */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
