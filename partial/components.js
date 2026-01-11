@@ -104,6 +104,22 @@ function initMobileMenu() {
     }
 }
 
+function initDropdownToggle() {
+    const dropdownItem = document.querySelector('.dropdown-item');
+    const dropdownLink = dropdownItem ? dropdownItem.querySelector('.nav-panduan') : null;
+
+    if (!dropdownItem || !dropdownLink) {
+        return;
+    }
+
+    dropdownLink.addEventListener('click', function (event) {
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            event.preventDefault();
+            dropdownItem.classList.toggle('open');
+        }
+    });
+}
+
 // Main initialization function
 async function initComponents() {
     // Load navbar
@@ -116,6 +132,7 @@ async function initComponents() {
     if (navbarLoaded) {
         setActiveNavItem();
         initMobileMenu();
+        initDropdownToggle();
     }
 
     console.log('✅ Components loaded successfully from:', PARTIAL_PATH);

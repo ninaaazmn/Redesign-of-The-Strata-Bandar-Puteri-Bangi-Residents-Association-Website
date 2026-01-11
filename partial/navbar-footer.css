@@ -68,6 +68,10 @@ body {
     padding: 8px 0;
     font-size: 0.8rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1001;
+    transition: transform 0.3s ease;
 }
 
 .email-link {
@@ -94,7 +98,7 @@ body {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     padding: 15px 0;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
@@ -283,6 +287,12 @@ body {
 }
 
 .nav-links .dropdown-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.nav-links .dropdown-item.open .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);

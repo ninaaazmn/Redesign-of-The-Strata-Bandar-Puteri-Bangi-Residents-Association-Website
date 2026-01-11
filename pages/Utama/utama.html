@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Strata - Persatuan Penduduk</title>
+    
+    <!-- Link to shared navbar/footer CSS -->
+    <link rel="stylesheet" href="../../partial/navbar-footer.css">
+    
+    <!-- Font Awesome and Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('./images/strata1.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h2 {
+            font-size: 42px;
+            line-height: 1.4;
+            max-width: 600px;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: white;
+        }
+
+        /* Info Section */
+        .info-section {
+            background: #8b2e4e;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .info-section h3 {
+            font-size: 16px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .info-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .info-section p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .info-btn {
+            background: white;
+            color: #8b2e4e;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-btn:hover {
+            background: #f5f5f5;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Announcements */
+        .announcements {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .announcements h2 {
+            text-align: center;
+            color: #8b2e4e;
+            font-size: 28px;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .announcement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .announcement-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .announcement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background: #ddd;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .card-content p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-btn {
+            background: #8b2e4e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-btn:hover {
+            background: #a04060;
+            transform: translateX(5px);
+        }
+
+        /* Gallery - FIXED */
+        .gallery {
+            background: #f5f5f5;
+            padding: 60px 20px;
+        }
+
+        .gallery h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 40px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .gallery-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-image {
+            width: 100%;
+            padding-bottom: 100%; /* Makes it a perfect square */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover .gallery-image img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(139, 46, 78, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            color: white;
+            font-size: 18px;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* QR Section */
+        .qr-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .qr-card {
+            background: white;
+            border: 3px solid #666;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .qr-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .qr-card h3 {
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .qr-image {
+            width: 100%;
+            height: 300px;
+            background: #ddd;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 20px;
+        }
+
+        .qr-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Responsive: 2 columns on tablets, 1 on mobile */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .qr-section {
+                grid-template-columns: 1fr;
+            }
+
+            .announcement-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar will load here automatically -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Selamat Datang Ke<br>Laman Web Rasmi<br>Persatuan Penduduk<br>The Strata Bandar<br>Puteri Bangi</h2>
+        <div class="carousel-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+        <h3>JAGA APP 2.0 KINI DI THE STRATA!</h3>
+        <h2>APLIKASI PENGURUSAN PELAWAT DAN SEKURITI</h2>
+        <p>Selaras dengan usaha berterusan kami untuk meningkatkan komuniti kami, kami dengan sukacitanya mengumumkan bahawa kami melaksanakan JaGaApp 2.0 yang bertujuan untuk meningkatkan keselamatan, komunikasi, dan kemudahan dalam komuniti.</p>
+        <button class="info-btn">KETAHUI LEBIH LANJUT</button>
+    </section>
+
+    <!-- Announcements -->
+    <section class="announcements">
+        <h2>PENGUMUMAN TERKINI</h2>
+        <div class="announcement-grid">
+            <div class="announcement-card">
+                <img src="./images/pt1.png" alt="Strata Family Day" width="100%">
+                <div class="card-content">
+                    <h3>Strata Family Day 2025</h3>
+                    <p>Strata Family Day ini diadakan sebagai ikatan asli untuk mengeratkan lagi silaturahim antara penduduk setempat.</p>
+                    <button class="card-btn">BACA LEBIH LANJUT ➜</button>
+                </div>
+            </div>
+            <div class="announcement-card">
+                <img src="./images/pt2.png" alt="Strata Family Day" width="100%">
+                <div class="card-content">
+                    <h3>Dah Bayar Ke?</h3>
+                    <p>Penduduk Strata perlu membuat bayaran di JagaApp 2.0 untuk keselamatan and kesejahteraan persekitaran</p>
+                    <button class="card-btn">BACA LEBIH LANJUT ➜</button>
+                </div>
+            </div>
+            <div class="announcement-card">
+                <img src="./images/pt3.png" alt="Strata Family Day" width="100%">
+                <div class="card-content">
+                    <h3>Strata AGM 2025</h3>
+                    <p>Mesyuarat Agung Tahunan penduduk The Strata Bandar Puteri Bangi akan dilaksanakan pada 31 Disember 2025</p>
+                    <button class="card-btn">BACA LEBIH LANJUT ➜</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery">
+        <h2>GALERI AKTIVITI THE STRATA BANGI</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    <img src="./images/gallery1.jpg" alt="Aktiviti The Strata Bangi 1">
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    <img src="./images/gallery2.webp" alt="Aktiviti The Strata Bangi 2">
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    <img src="./images/gallery3.jpg" alt="Aktiviti The Strata Bangi 3">
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    <img src="./images/gallery4.jpg" alt="Aktiviti The Strata Bangi 4">
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    <img src="./images/gallery5.webp" alt="Aktiviti The Strata Bangi 5">
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    <img src="./images/gallery6.webp" alt="Aktiviti The Strata Bangi 6">
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    <img src="./images/gallery7.jpg" alt="Aktiviti The Strata Bangi 7">
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    <img src="./images/gallery8.jpeg" alt="Aktiviti The Strata Bangi 8">
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    <img src="./images/gallery9.jpg" alt="Aktiviti The Strata Bangi 9">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QR Section -->
+    <section class="qr-section">
+        <div class="qr-card">
+            <h3>TATACARA DAN SENARAI SEMAK PENGENDALIAN MAJLIS<br>THE STRATA BANDAR PUTERI BANGI</h3>
+            <img src="./images/qr1.png" alt="Strata Family Day" width="100%">
+            <p>SCAN UNTUK MAKLUMAT LANJUT</p>
+        </div>
+        <div class="qr-card">
+            <h3>BORANG ADUAN / CADANGAN / PENGHARGAAN<br>THE STRATA BANDAR PUTERI BANGI</h3>
+            <img src="./images/qr2.png" alt="Strata Family Day" width="100%">
+            <p>SCAN UNTUK MAKLUMAT LANJUT</p>
+        </div>
+    </section>
+
+    <!-- Footer will load here automatically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Load components from partial folder -->
+    <script src="../../partial/components.js"></script>
+    
+    <script>
+        // Carousel functionality
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+
+        function changeSlide() {
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentSlide].classList.add('active');
+            currentSlide = (currentSlide + 1) % dots.length;
+        }
+
+        setInterval(changeSlide, 3000);
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                dots.forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+            });
+        });
+
+        // Smooth scroll for navigation (works after navbar loads)
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('nav a[href^="#"]')) {
+                e.preventDefault();
+                const href = e.target.getAttribute('href');
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
