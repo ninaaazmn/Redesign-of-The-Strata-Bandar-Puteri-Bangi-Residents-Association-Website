@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman - The Strata Bandar Puteri Bangi</title>
+    
+    <!-- Link to shared navbar/footer CSS -->
+    <link rel="stylesheet" href="../../partial/navbar-footer.css">
+    
+    <!-- Font Awesome and Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('./images/bg.png');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            border: 3px solid white;
+            padding: 30px 80px;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        /* Announcement Card */
+        .announcement-card {
+            background-color: white;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .announcement-card:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .announcement-header {
+            display: flex;
+            align-items: center;
+            padding: 25px;
+            gap: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .announcement-header:hover {
+            background-color: #f8f8f8;
+        }
+
+        .announcement-header.expanded {
+            background-color: #8b2e4e;
+            color: white;
+        }
+
+        .announcement-header.expanded:hover {
+            background-color: #a04060;
+        }
+
+        .announcement-img {
+            width: 120px;
+            height: 80px;
+            background-color: #e0e0e0;
+            flex-shrink: 0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .announcement-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .announcement-title {
+            flex-grow: 1;
+        }
+
+        .announcement-title h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .announcement-title p {
+            font-size: 14px;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .announcement-header.expanded .announcement-title p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .arrow {
+            font-size: 24px;
+            transition: transform 0.3s ease;
+            color: #8b2e4e;
+            transform: rotate(180deg);
+        }
+
+        .announcement-header.expanded .arrow {
+            color: white;
+            transform: rotate(0deg);
+        }
+
+        .announcement-body {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background-color: #f9f9f9;
+        }
+
+        .announcement-body.show {
+            max-height: 2000px;
+            padding: 30px;
+        }
+
+        .announcement-body-content {
+            line-height: 1.8;
+        }
+
+        .announcement-body-content p {
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .announcement-body-content strong {
+            color: #8b2e4e;
+            font-weight: 600;
+        }
+
+        .announcement-body-content ol {
+            margin: 20px 0 20px 25px;
+        }
+
+        .announcement-body-content li {
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .btn-download {
+            background-color: #8b2e4e;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-download:hover {
+            background-color: #a04060;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(139, 46, 78, 0.3);
+        }
+
+        .btn-download i {
+            font-size: 16px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+                letter-spacing: 4px;
+                padding: 20px 40px;
+            }
+
+            .announcement-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .announcement-img {
+                width: 100%;
+                height: 150px;
+            }
+
+            .arrow {
+                position: absolute;
+                right: 25px;
+                top: 25px;
+            }
+
+            .announcement-title h3 {
+                font-size: 16px;
+            }
+
+            .announcement-body.show {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+                padding: 15px 30px;
+            }
+
+            .main-content {
+                padding: 0 15px;
+            }
+
+            .announcement-header {
+                padding: 20px;
+            }
+
+            .announcement-body-content {
+                font-size: 14px;
+            }
+
+            .announcement-body-content ol {
+                margin-left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar will load here automatically -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>PENGUMUMAN</h1>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Announcement 1 -->
+        <div class="announcement-card">
+            <div class="announcement-header" onclick="toggleAnnouncement(this)">
+                <div class="announcement-img">
+                    <img src="./images/pengumuman1.webp" alt="Mesyuarat Agung">
+                </div>
+                <div class="announcement-title">
+                    <h3>Mesyuarat Agung Tahunan Kali Ke-3</h3>
+                    <p>10 Januari 2026</p>
+                </div>
+                <span class="arrow">▲</span>
+            </div>
+            <div class="announcement-body">
+                <div class="announcement-body-content">
+                    <p><strong>Kepada semua penduduk The Strata Bandar Puteri Bangi,</strong></p>
+                    <p>Dengan sukacitanya kami ingin memaklumkan bahawa Mesyuarat Agung Tahunan Kali Ke-3 akan diadakan pada:</p>
+                    <p><strong>Tarikh:</strong> 15 Februari 2026<br>
+                    <strong>Masa:</strong> 10:00 Pagi<br>
+                    <strong>Tempat:</strong> Dewan Komuniti The Strata</p>
+                    <p>Agenda mesyuarat termasuk:</p>
+                    <ol>
+                        <li>Laporan Tahunan Persatuan Penduduk</li>
+                        <li>Penyata Kewangan 2025</li>
+                        <li>Pemilihan Ahli Jawatankuasa Baharu</li>
+                        <li>Cadangan Aktiviti 2026</li>
+                    </ol>
+                    <p>Kehadiran anda amat dialu-alukan dan dihargai. Untuk maklumat lanjut, sila hubungi kami.</p>
+                    <p><strong>Terima kasih,</strong><br>
+                    Persatuan Penduduk The Strata Bandar Puteri Bangi</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Announcement 2 (Expanded by default) -->
+        <div class="announcement-card">
+            <div class="announcement-header expanded" onclick="toggleAnnouncement(this)">
+                <div class="announcement-img">
+                    <img src="./images/pengumuman2.png" alt="Bayaran Sekuriti">
+                </div>
+                <div class="announcement-title">
+                    <h3>Siaran Media PPTSBPB - Semakan Status Bayaran Sekuriti</h3>
+                    <p>21 Disember 2024</p>
+                </div>
+                <span class="arrow">▲</span>
+            </div>
+            <div class="announcement-body show">
+                <div class="announcement-body-content">
+                    <p><strong>Kepada semua penduduk The Strata Bandar Puteri Bangi,</strong></p>
+                    <p>Untuk memastikan kaedah bayaran sekuriti sentiasa dikemas kini, anda diminta membuat semakan status bayaran bulanan sekuriti anda di dokumen lampiran dibawah.</p>
+                    <p><strong>Langkah-langkah berikut boleh diikuti:</strong></p>
+                    <ol>
+                        <li>Sila rujuk kepada senarai terkini bagi Aug 2022 - December 2024 bertarikh 26 Jan 2025 (pembayaran dari link ToyotRaya).</li>
+                        <li>Jika data bayaran anda tiada tepat, sila emailkan kepada <strong>mistutulupayment@gmail.com</strong> dan screenshot untuk kami buat penalian lanjut.</li>
+                        <li>Penduduk yang bayaran telah dijelaskan mengikut tempoh yang ditetapkan.</li>
+                        <li>Bagi bayaran sekuriti Januari 2025 keatas, sila semak pada aplikasi JagaApp 2.0 anda.</li>
+                    </ol>
+                    <p>Sekiranya anda mendapati terdapat sebarang kesalahan (Nama atau Kesihatan-maklumat bayaran) atau memerlukan semakan lanjut, sila hubungi Persatuan Penduduk dengan menghantar e-mel ke alamat berikut:</p>
+                    <p><strong>Email: mistutulupayment@gmail.com</strong></p>
+                    <p>Kerjasama anda amat dihargai bagi memastikan penyelarasan keelaman kita kekal selamat dan terurus.</p>
+                    <p><strong>Terima kasih,</strong><br>
+                    Persatuan Penduduk 'The Strata Bandar Puteri Bangi'</p>
+                    <button class="btn-download">
+                        <i class="fas fa-download"></i>
+                        Muat Turun Lampiran
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Announcement 3 -->
+        <div class="announcement-card">
+            <div class="announcement-header" onclick="toggleAnnouncement(this)">
+                <div class="announcement-img">
+                    <img src="./images/pengumuman3.jpg" alt="Status Bayaran">
+                </div>
+                <div class="announcement-title">
+                    <h3>Semakan Status Bayaran Sekuriti Aug 2022 - Dec 2024</h3>
+                    <p>26 November 2025</p>
+                </div>
+                <span class="arrow">▲</span>
+            </div>
+            <div class="announcement-body">
+                <div class="announcement-body-content">
+                    <p><strong>Kepada semua penduduk The Strata Bandar Puteri Bangi,</strong></p>
+                    <p>Sila semak status bayaran sekuriti anda untuk tempoh <strong>Ogos 2022 hingga Disember 2024</strong>.</p>
+                    <p>Dokumen senarai bayaran telah dikemas kini dan boleh dimuat turun melalui pautan di bawah. Pastikan maklumat anda adalah tepat dan lengkap.</p>
+                    <p><strong>Langkah-langkah semakan:</strong></p>
+                    <ol>
+                        <li>Muat turun dokumen senarai bayaran</li>
+                        <li>Cari nama dan unit anda dalam senarai</li>
+                        <li>Semak status bayaran untuk setiap bulan</li>
+                        <li>Jika terdapat percanggahan, hubungi kami segera</li>
+                    </ol>
+                    <p>Jika terdapat sebarang pertanyaan atau maklumat yang tidak tepat, sila hubungi kami di <strong>mistutulupayment@gmail.com</strong> atau hubungi pejabat kami.</p>
+                    <p><strong>Terima kasih atas kerjasama anda.</strong></p>
+                    <button class="btn-download">
+                        <i class="fas fa-download"></i>
+                        Muat Turun Senarai Bayaran
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Announcement 4 -->
+        <div class="announcement-card">
+            <div class="announcement-header" onclick="toggleAnnouncement(this)">
+                <div class="announcement-img">
+                    <img src="./images/pengumuman4.png" alt="JagaApp 2.0">
+                </div>
+                <div class="announcement-title">
+                    <h3>Panduan Penggunaan JagaApp 2.0</h3>
+                    <p>10 Oktober 2025</p>
+                </div>
+                <span class="arrow">▲</span>
+            </div>
+            <div class="announcement-body">
+                <div class="announcement-body-content">
+                    <p><strong>Panduan Lengkap Penggunaan JagaApp 2.0</strong></p>
+                    <p>JagaApp 2.0 adalah aplikasi pengurusan pelawat dan sekuriti untuk kemudahan penduduk The Strata. Aplikasi ini membolehkan anda:</p>
+                    <ol>
+                        <li>Mendaftarkan pelawat dengan mudah</li>
+                        <li>Membuat bayaran yuran sekuriti secara dalam talian</li>
+                        <li>Melihat sejarah bayaran anda</li>
+                        <li>Membuat aduan atau cadangan kepada pengurusan</li>
+                        <li>Menerima notifikasi penting dari persatuan</li>
+                    </ol>
+                    <p><strong>Cara memuat turun:</strong></p>
+                    <p>• <strong>Android:</strong> Cari "JagaApp 2.0" di Google Play Store<br>
+                    • <strong>iOS:</strong> Cari "JagaApp 2.0" di Apple App Store</p>
+                    <p>Untuk panduan lengkap dan tutorial video, sila muat turun buku panduan di bawah.</p>
+                    <button class="btn-download">
+                        <i class="fas fa-book"></i>
+                        Muat Turun Buku Panduan
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Announcement 5 -->
+        <div class="announcement-card">
+            <div class="announcement-header" onclick="toggleAnnouncement(this)">
+                <div class="announcement-img">
+                    <img src="./images/pengumuman5.png" alt="Family Day">
+                </div>
+                <div class="announcement-title">
+                    <h3>The Strata Family Day 2025</h3>
+                    <p>5 September 2025</p>
+                </div>
+                <span class="arrow">▲</span>
+            </div>
+            <div class="announcement-body">
+                <div class="announcement-body-content">
+                    <p><strong>Jemputan Ke The Strata Family Day 2025</strong></p>
+                    <p>Persatuan Penduduk The Strata dengan sukacitanya menjemput semua penduduk ke Family Day 2025!</p>
+                    <p><strong>Tarikh:</strong> Sabtu, 5 Mac 2025<br>
+                    <strong>Masa:</strong> 8:00 Pagi - 2:00 Petang<br>
+                    <strong>Tempat:</strong> Padang Permainan The Strata</p>
+                    <p><strong>Aktiviti yang disediakan:</strong></p>
+                    <ol>
+                        <li>Pertandingan Sukan & Permainan untuk kanak-kanak dan dewasa</li>
+                        <li>Gerai Jualan & Makanan</li>
+                        <li>Cabutan Bertuah</li>
+                        <li>Persembahan & Hiburan</li>
+                        <li>Majlis Makan Beramai-ramai</li>
+                    </ol>
+                    <p>Acara ini diadakan PERCUMA untuk semua penduduk. Sila daftar kehadiran anda sebelum 28 Februari 2025.</p>
+                    <p>Untuk pendaftaran dan maklumat lanjut, sila hubungi Cik Siti di 012-345-6789.</p>
+                    <button class="btn-download">
+                        <i class="fas fa-clipboard-check"></i>
+                        Borang Pendaftaran
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will load here automatically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Load components from partial folder -->
+    <script src="../../partial/components.js"></script>
+    
+    <script>
+        function toggleAnnouncement(header) {
+            const card = header.parentElement;
+            const body = card.querySelector('.announcement-body');
+            
+            // Check if this card is currently expanded
+            const isExpanded = header.classList.contains('expanded');
+            
+            // Close all announcements
+            document.querySelectorAll('.announcement-card').forEach(c => {
+                c.querySelector('.announcement-header').classList.remove('expanded');
+                c.querySelector('.announcement-body').classList.remove('show');
+            });
+            
+            // If it wasn't expanded, expand it
+            if (!isExpanded) {
+                header.classList.add('expanded');
+                body.classList.add('show');
+            }
+        }
+
+        // Smooth scroll for navigation
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('nav a[href^="#"]')) {
+                e.preventDefault();
+                const href = e.target.getAttribute('href');
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

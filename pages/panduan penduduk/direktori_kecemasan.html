@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direktori Kecemasan - The Strata</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Navbar & Footer CSS from partial -->
+    <link rel="stylesheet" href="../../partial/navbar-footer.css">
+    <style>
+        /* Page-specific styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section - Maroon Theme */
+        .hero-section {
+            position: relative;
+            height: 350px;
+            background: linear-gradient(rgba(139, 21, 56, 0.75), rgba(139, 21, 56, 0.75)),
+                url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 8px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            border: 3px solid #C9A227;
+            padding: 25px 60px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-title span {
+            display: block;
+        }
+
+        /* Emergency Directory Section */
+        .emergency-section {
+            padding: 60px 0 80px;
+            background-color: #f8f9fa;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #8B1538;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #C9A227, #D4AF37);
+            margin: 15px auto 0;
+        }
+
+        /* Category Section */
+        .category-section {
+            margin-bottom: 45px;
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #5a5a5a;
+            margin-bottom: 18px;
+            padding-left: 12px;
+            border-left: 3px solid #8B1538;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-title i {
+            color: #8B1538;
+            font-size: 1rem;
+        }
+
+        .emergency-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        /* Emergency Card - Clean Design */
+        .emergency-card {
+            background: #fff;
+            border-radius: 10px;
+            border: 1px solid #e8e8e8;
+            overflow: hidden;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .emergency-card:hover {
+            border-color: #d0d0d0;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-header {
+            background: #fff;
+            color: #333;
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid transparent;
+            transition: background 0.2s ease;
+        }
+
+        .card-header:hover {
+            background: #fafafa;
+        }
+
+        .card-header.active {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .card-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #333;
+        }
+
+        .card-header h2 i {
+            color: #8B1538;
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .card-header .toggle-icon {
+            font-size: 0.75rem;
+            color: #999;
+            transition: transform 0.3s ease;
+        }
+
+        .card-header.active .toggle-icon {
+            transform: rotate(180deg);
+            color: #8B1538;
+        }
+
+        .card-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            background: #fcfcfc;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+        }
+
+        .card-content.active {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .contact-icon {
+            width: 32px;
+            height: 32px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-icon i {
+            color: #8B1538;
+            font-size: 0.85rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #999;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-value {
+            font-size: 0.88rem;
+            color: #444;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .contact-value a {
+            color: #8B1538;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .contact-value a:hover {
+            color: #c42255;
+            text-decoration: underline;
+        }
+
+        .contact-note {
+            font-size: 0.75rem;
+            color: #888;
+            font-style: italic;
+            margin-top: 3px;
+        }
+
+        /* Emergency Hotline - Cleaner Design */
+        .emergency-hotline {
+            background: #8B1538;
+            border-radius: 12px;
+            padding: 28px;
+            text-align: center;
+            color: #fff;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .emergency-hotline h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            opacity: 0.9;
+        }
+
+        .hotline-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+
+        .hotline-services {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .hotline-service {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .hotline-service i {
+            color: #C9A227;
+        }
+
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.5rem;
+                letter-spacing: 5px;
+                padding: 20px 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 280px;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+                letter-spacing: 3px;
+                padding: 15px 25px;
+            }
+
+            .hotline-number {
+                font-size: 3rem;
+            }
+
+            .hotline-services {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container" style="text-align: right;">
+            <a href="mailto:pptsbpbangi@gmail.com" class="email-link">
+                <i class="fa-regular fa-envelope"></i> pptsbpbangi@gmail.com
+            </a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <img src="../../partial/persatuan-penduduk-the-strata-bandar-puteri-bangi.png" alt="The Strata Logo"
+                    style="max-height: 60px; width: auto;">
+            </a>
+            <div class="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../../index.html">Utama</a></li>
+                <li><a href="#">Tentang Kami</a></li>
+                <li class="dropdown-item">
+                    <a href="#" class="active">Panduan Penduduk <i class="fa-solid fa-chevron-down"
+                            style="font-size: 0.7em;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="panduan_majlis.html">Panduan Majlis</a></li>
+                        <li><a href="permohonan_kad_akses_rfid.html">Permohonan Kad Akses & RFID</a></li>
+                        <li><a href="direktori_kecemasan.html" style="font-weight: 700; color: #8B1538;">Direktori
+                                Kecemasan</a></li>
+                        <li><a href="sistem_aduan.html">Sistem Aduan</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Pengumuman</a></li>
+                <li><a href="#">Hubungi Kami</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Log Masuk</a></li>
+                <li><button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- ==================== END NAVBAR ==================== -->
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title">
+            <span>DIREKTORI</span>
+            <span>KECEMASAN</span>
+        </h1>
+    </section>
+
+    <!-- Emergency Directory Content -->
+    <section class="emergency-section">
+        <div class="container">
+
+            <!-- Emergency Hotline -->
+            <div class="emergency-hotline" style="margin-bottom: 40px;">
+                <h2><i class="fa-solid fa-phone-volume"></i> Malaysia Emergency Response Services</h2>
+                <div class="hotline-number">999</div>
+                <div class="hotline-services">
+                    <div class="hotline-service"><i class="fa-solid fa-shield-halved"></i> Polis DiRaja Malaysia (PDRM)
+                    </div>
+                    <div class="hotline-service"><i class="fa-solid fa-fire-extinguisher"></i> Bomba dan Penyelamat
+                    </div>
+                    <div class="hotline-service"><i class="fa-solid fa-truck-medical"></i> Ambulans</div>
+                </div>
+            </div>
+
+            <!-- Pihak Berkuasa Tempatan -->
+            <div class="category-section">
+                <h3 class="category-title"><i class="fa-solid fa-landmark"></i> Pihak Berkuasa Tempatan</h3>
+                <div class="emergency-grid">
+
+                    <!-- MPKj -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-building-columns"></i> Majlis Perbandaran Kajang (MPKj)</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-building"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Jabatan</div>
+                                    <div class="contact-value">Jabatan Penguatkuasaan</div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Alamat</div>
+                                    <div class="contact-value">No. 23-G, Jalan Metro Avenue 1, Metro Avenue, 43000
+                                        Kajang, Selangor</div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Telefon</div>
+                                    <div class="contact-value"><a href="tel:0387377899">03-8737 7899</a> / <a
+                                            href="tel:0387371789">03-8737 1789</a> (samb. 25)</div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Waktu Operasi</div>
+                                    <div class="contact-value">Isnin - Jumaat (8.00 pagi - 5.00 petang)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ahli Majlis ZON 24 -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-user-tie"></i> Ahli Majlis ZON 24</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-user"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Nama</div>
+                                    <div class="contact-value">Puan Rawitiah binti Zakaria</div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Alamat</div>
+                                    <div class="contact-value">42, Jalan Impian Indah 2, Saujana Impian, 43000 Kajang,
+                                        Selangor</div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Telefon</div>
+                                    <div class="contact-value"><a href="tel:0193503871">019-350 3871</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Email</div>
+                                    <div class="contact-value"><a
+                                            href="mailto:rawiyiah@mpkj.gov.my">rawiyiah@mpkj.gov.my</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Portal</div>
+                                    <div class="contact-value"><a href="https://mpp.mpkj.gov.my/" target="_blank">MPP 24
+                                            – Majlis Perwakilan Penduduk MPKj</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Perkhidmatan Keselamatan & Kesihatan -->
+            <div class="category-section">
+                <h3 class="category-title"><i class="fa-solid fa-shield-halved"></i> Perkhidmatan Keselamatan &
+                    Kesihatan</h3>
+                <div class="emergency-grid">
+
+                    <!-- Balai Polis Bangi -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-building-shield"></i> Balai Polis Bangi</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Alamat</div>
+                                    <div class="contact-value">45, Jalan Seri Putra 1/4, Bandar Seri Putra, 43000
+                                        Kajang, Selangor</div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Telefon</div>
+                                    <div class="contact-value"><a href="tel:0389258222">03-8925 8222</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IPD Kajang -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-car"></i> IPD Kajang / Balai Polis Trafik</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Alamat</div>
+                                    <div class="contact-value">Jalan Cheras, Bandar Kajang, 43000 Kajang, Selangor</div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Telefon</div>
+                                    <div class="contact-value"><a href="tel:0389114222">03-8911 4222</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Email</div>
+                                    <div class="contact-value"><a href="mailto:heakjg@gmail.com">heakjg@gmail.com</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Klinik Kesihatan -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-hospital"></i> Klinik Kesihatan Bandar Seri Putra</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Alamat</div>
+                                    <div class="contact-value">Jalan Seri Putra 1/9, Bandar Seri Putra, 43000 Kajang,
+                                        Selangor</div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Telefon</div>
+                                    <div class="contact-value"><a href="tel:0389258518">03-8925 8518</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Portal</div>
+                                    <div class="contact-value"><a href="https://jknselangor.moh.gov.my/"
+                                            target="_blank">Jabatan Kesihatan Negeri Selangor</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Perkhidmatan Utiliti -->
+            <div class="category-section">
+                <h3 class="category-title"><i class="fa-solid fa-plug"></i> Perkhidmatan Utiliti</h3>
+                <div class="emergency-grid">
+
+                    <!-- TNB -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-bolt"></i> TNB (Elektrik)</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Hotline</div>
+                                    <div class="contact-value"><a href="tel:15454">15454</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Website</div>
+                                    <div class="contact-value"><a href="https://www.tnb.com.my/"
+                                            target="_blank">www.tnb.com.my</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-info-circle"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Perkhidmatan</div>
+                                    <div class="contact-value">Kehilangan Kuasa; Kerosakan Lampu Jalan</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Air Selangor -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-droplet"></i> Air Selangor</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Hotline</div>
+                                    <div class="contact-value"><a href="tel:15300">15300</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Website</div>
+                                    <div class="contact-value"><a href="https://www.airselangor.com/"
+                                            target="_blank">www.airselangor.com</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-info-circle"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Perkhidmatan</div>
+                                    <div class="contact-value">Gangguan Bekalan Air; Paip Pecah</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Telekom Malaysia -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-phone-flip"></i> Telekom Malaysia</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Hotline</div>
+                                    <div class="contact-value"><a href="tel:100">100</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Website</div>
+                                    <div class="contact-value"><a href="https://www.tm.com.my/"
+                                            target="_blank">www.tm.com.my</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-info-circle"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Perkhidmatan</div>
+                                    <div class="contact-value">Talian Telefon Terputus</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Indah Water -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-toilet"></i> Indah Water Konsortium</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Hotline</div>
+                                    <div class="contact-value"><a href="tel:0322847828">03-2284 7828</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Website</div>
+                                    <div class="contact-value"><a href="https://www.iwk.com.my/"
+                                            target="_blank">www.iwk.com.my</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-info-circle"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Perkhidmatan</div>
+                                    <div class="contact-value">Servis Kumbahan Tersumbat; Kebocoran; Air Limpah</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KDEB Waste Management -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-trash-can"></i> KDEB Waste Management</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Pejabat Cawangan Kajang</div>
+                                    <div class="contact-value">5-18, MKH Boulevard, Jalan Changkat, 43000 Kajang,
+                                        Selangor</div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Telefon</div>
+                                    <div class="contact-value">
+                                        <a href="tel:0387417644">03-8741 7644</a><br>
+                                        <a href="tel:1800882824">1-800-88-2824</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">WhatsApp</div>
+                                    <div class="contact-value"><a href="https://wa.me/60192742824"
+                                            target="_blank">019-274 2824</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Website</div>
+                                    <div class="contact-value"><a href="https://www.kdebwm.com/"
+                                            target="_blank">www.kdebwm.com</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-info-circle"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Perkhidmatan</div>
+                                    <div class="contact-value">Sampah Domestik dan Pukal</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Perkhidmatan Alam Sekitar & Haiwan -->
+            <div class="category-section">
+                <h3 class="category-title"><i class="fa-solid fa-leaf"></i> Perkhidmatan Alam Sekitar & Haiwan</h3>
+                <div class="emergency-grid">
+
+                    <!-- Jabatan Alam Sekitar -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-seedling"></i> Jabatan Alam Sekitar (DOE)</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Hotline</div>
+                                    <div class="contact-value"><a href="tel:1800882727">1-800-88-2727</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Website</div>
+                                    <div class="contact-value"><a href="https://www.doe.gov.my/"
+                                            target="_blank">www.doe.gov.my</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-info-circle"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Perkhidmatan</div>
+                                    <div class="contact-value">Pencemaran; Pembakaran Terbuka</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Perhilitan -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-paw"></i> PERHILITAN</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Hotline</div>
+                                    <div class="contact-value"><a href="tel:1800885151">1-800-88-5151</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Website</div>
+                                    <div class="contact-value"><a href="https://www.wildlife.gov.my/"
+                                            target="_blank">www.wildlife.gov.my</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-info-circle"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Perkhidmatan</div>
+                                    <div class="contact-value">Laporan Hidupan Liar dan Pengalihan Haiwan</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- My Bee Savior -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-bug"></i> My Bee Savior</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-user"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Pengasas</div>
+                                    <div class="contact-value">Mr John Chan</div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Telefon</div>
+                                    <div class="contact-value"><a href="tel:0163569169">016-356 9169</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Website</div>
+                                    <div class="contact-value"><a href="https://mybeesavior.org/en/lets-save-the-bees"
+                                            target="_blank">mybeesavior.org</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-brands fa-facebook"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Facebook</div>
+                                    <div class="contact-value"><a href="https://www.facebook.com/mybeesavior"
+                                            target="_blank">Penyelamat Lebah</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-info-circle"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Perkhidmatan</div>
+                                    <div class="contact-value">Penyelamat Lebah dan Pengalihan, Klang Valley</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Sekolah Terdekat -->
+            <div class="category-section">
+                <h3 class="category-title"><i class="fa-solid fa-graduation-cap"></i> Sekolah Terdekat</h3>
+                <div class="emergency-grid">
+
+                    <!-- SK Bandar Bukit Mahkota -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-school"></i> SK Bandar Bukit Mahkota</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Alamat</div>
+                                    <div class="contact-value">Jalan BM 5/12, Seksyen 5, Bandar Bukit Mahkota, 43000
+                                        Kajang, Selangor</div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Telefon</div>
+                                    <div class="contact-value"><a href="tel:0389125457">03-8912 5457</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-brands fa-facebook"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Facebook</div>
+                                    <div class="contact-value"><a href="https://www.facebook.com/skbbm"
+                                            target="_blank">SK BBM</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SMK Bandar Bukit Mahkota -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-school-flag"></i> SMK Bandar Bukit Mahkota</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Alamat</div>
+                                    <div class="contact-value">Jalan BM 5/12, Seksyen 5, Bandar Bukit Mahkota, 43000
+                                        Kajang, Selangor</div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-calendar"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Status</div>
+                                    <div class="contact-value" style="color: #C9A227; font-weight: 600;">Akan Datang
+                                        2025/26</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SMK Bandar Seri Putra -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-school-flag"></i> SMK Bandar Seri Putra</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Alamat</div>
+                                    <div class="contact-value">Bandar Seri Putra, 43000, Selangor</div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Telefon</div>
+                                    <div class="contact-value"><a href="tel:0389265675">03-8926 5675</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-brands fa-facebook"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Facebook</div>
+                                    <div class="contact-value"><a href="https://www.facebook.com/smkbsp"
+                                            target="_blank">SMK BSP</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SK Bandar Seri Putra -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-school"></i> SK Bandar Seri Putra</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Alamat</div>
+                                    <div class="contact-value">Bandar Seri Putra, 43000, Selangor</div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Telefon</div>
+                                    <div class="contact-value"><a href="tel:0389259717">03-8925 9717</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-brands fa-facebook"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Facebook</div>
+                                    <div class="contact-value"><a href="https://www.facebook.com/skbsp"
+                                            target="_blank">SK BSP</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SRA Bandar Seri Putra -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-book-quran"></i> SRA Bandar Seri Putra</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Alamat</div>
+                                    <div class="contact-value">Jalan Seri Putra 2/1, Bandar Seri Putra, Kajang, Malaysia
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Telefon</div>
+                                    <div class="contact-value"><a href="tel:0389250315">03-8925 0315</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Website</div>
+                                    <div class="contact-value"><a href="#" target="_blank">SRA Bandar Seri Putra</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Masjid -->
+            <div class="category-section">
+                <h3 class="category-title"><i class="fa-solid fa-mosque"></i> Masjid</h3>
+                <div class="emergency-grid">
+
+                    <!-- Masjid At-Taqwa -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-mosque"></i> Masjid At-Taqwa, Bandar Bukit Mahkota</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Alamat</div>
+                                    <div class="contact-value">Persiaran Mahkota 2, Bandar Bukit Mahkota, 43000 Kajang,
+                                        Selangor</div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Telefon</div>
+                                    <div class="contact-value"><a href="tel:0192209552">019-220 9552</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-brands fa-facebook"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Facebook</div>
+                                    <div class="contact-value"><a href="https://www.facebook.com/masjidattaqwabbm"
+                                            target="_blank">Masjid At-Taqwa</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Masjid Bandar Seri Putra -->
+                    <div class="emergency-card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <h2><i class="fa-solid fa-mosque"></i> Masjid Bandar Seri Putra Bangi</h2>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Telefon</div>
+                                    <div class="contact-value"><a href="tel:0389220600">03-8922 0600</a></div>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Website</div>
+                                    <div class="contact-value"><a href="http://www.masjidbsp.org.my/"
+                                            target="_blank">www.masjidbsp.org.my</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-item">
+                <i class="icon fa-regular fa-envelope"></i>
+                <h3>HUBUNGI EMAIL</h3>
+                <p>pptsbpbangi@gmail.com</p>
+            </div>
+            <div class="footer-separator"></div>
+            <div class="footer-item">
+                <i class="icon fa-solid fa-phone-volume"></i>
+                <h3>TALIAN PEJABAT</h3>
+                <p>03 - 4567 8980</p>
+            </div>
+            <div class="footer-separator"></div>
+            <div class="footer-item">
+                <i class="icon fa-solid fa-globe"></i>
+                <h3>PORTAL RASMI</h3>
+                <p>www.thestrata.com.my</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 JMB The Strata Bandar Puteri Bangi. Hak Cipta Terpelihara.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- ==================== END FOOTER ==================== -->
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function () {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('show');
+        });
+
+        // Accordion toggle function
+        function toggleCard(header) {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+
+            // Close all other cards (optional - remove if you want multiple open)
+            // document.querySelectorAll('.card-header.active').forEach(h => {
+            //     h.classList.remove('active');
+            //     h.nextElementSibling.classList.remove('active');
+            // });
+
+            // Toggle current card
+            if (isActive) {
+                header.classList.remove('active');
+                content.classList.remove('active');
+            } else {
+                header.classList.add('active');
+                content.classList.add('active');
+            }
+        }
+
+        // Open first card of each category by default
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.category-section').forEach(section => {
+                const firstCard = section.querySelector('.card-header');
+                if (firstCard) {
+                    firstCard.classList.add('active');
+                    firstCard.nextElementSibling.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
