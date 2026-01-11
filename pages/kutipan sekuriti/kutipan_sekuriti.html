@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran Sekuriti - The Strata</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../partial/navbar-footer.css">
+    <link rel="stylesheet" href="kutipan_sekuriti.css">
+</head>
+
+<body>
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-title-box">
+                <h1>Pembayaran Sekuriti</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Unit and Year Selection -->
+        <section class="unit-selection-section">
+            <div class="container">
+                <div class="unit-info-box">
+                    <h2>No. Rumah 123, Jalan 5D/9</h2>
+                </div>
+
+                <p class="selection-text">Pilih tahun pembayaran untuk semak atau membuat bayaran...</p>
+
+                <div class="year-selector">
+                    <button class="year-btn" data-year="2022">2022</button>
+                    <button class="year-btn" data-year="2023">2023</button>
+                    <button class="year-btn active" data-year="2024">2024</button>
+                    <button class="year-btn" data-year="2025">2025</button>
+                </div>
+
+                <!-- Status Filter -->
+                <div class="status-filter">
+                    <p class="filter-label">Tapis Mengikut Status:</p>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="semua">Semua</button>
+                        <button class="filter-btn" data-filter="selesai">Selesai</button>
+                        <button class="filter-btn" data-filter="tertunggak">Tertunggak</button>
+                    </div>
+                </div>
+
+                <!-- Payment Table -->
+                <div class="table-container">
+                    <table class="payment-table">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Bulan</th>
+                                <th>Status</th>
+                                <th>Tindakan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paymentTableBody">
+                            <tr>
+                                <td>1.</td>
+                                <td>Januari</td>
+                                <td><span class="status-badge selesai">SELESAI</span></td>
+                                <td>–</td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>Februari</td>
+                                <td><span class="status-badge selesai">SELESAI</span></td>
+                                <td>–</td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>Mac</td>
+                                <td><span class="status-badge selesai">SELESAI</span></td>
+                                <td>–</td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>April</td>
+                                <td><span class="status-badge selesai">SELESAI</span></td>
+                                <td>–</td>
+                            </tr>
+                            <tr>
+                                <td>5.</td>
+                                <td>Mei</td>
+                                <td><span class="status-badge selesai">SELESAI</span></td>
+                                <td>–</td>
+                            </tr>
+                            <tr>
+                                <td>6.</td>
+                                <td>Jun</td>
+                                <td><span class="status-badge tertunggak">TERTUNGGAK</span></td>
+                                <td><button class="btn-bayar" onclick="initiatePayment('Jun', '2024')">BAYAR</button></td>
+                            </tr>
+                            <tr>
+                                <td>7.</td>
+                                <td>Julai</td>
+                                <td><span class="status-badge selesai">SELESAI</span></td>
+                                <td>–</td>
+                            </tr>
+                            <tr>
+                                <td>8.</td>
+                                <td>Agustus</td>
+                                <td><span class="status-badge selesai">SELESAI</span></td>
+                                <td>–</td>
+                            </tr>
+                            <tr>
+                                <td>9.</td>
+                                <td>September</td>
+                                <td><span class="status-badge tertunggak">TERTUNGGAK</span></td>
+                                <td><button class="btn-bayar" onclick="initiatePayment('September', '2024')">BAYAR</button></td>
+                            </tr>
+                            <tr>
+                                <td>10.</td>
+                                <td>Oktober</td>
+                                <td><span class="status-badge selesai">SELESAI</span></td>
+                                <td>–</td>
+                            </tr>
+                            <tr>
+                                <td>11.</td>
+                                <td>November</td>
+                                <td><span class="status-badge tertunggak">TERTUNGGAK</span></td>
+                                <td><button class="btn-bayar" onclick="initiatePayment('November', '2024')">BAYAR</button></td>
+                            </tr>
+                            <tr>
+                                <td>12.</td>
+                                <td>Disember</td>
+                                <td><span class="status-badge selesai">SELESAI</span></td>
+                                <td>–</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Payment Instructions -->
+                <div class="instructions-box">
+                    <h3>Langkah-Langkah Pembayaran:</h3>
+                    <ol>
+                        <li><strong>Semak status semasa.</strong> Status 'SELESAI' bermaksud pembayaran telah berjaya, manakala 'TERTUNGGAK' memerlukan pembayaran segera.</li>
+                        <li><strong>Klik 'BAYAR' untuk meneruskan transaksi di TOYYIBPAY.</strong></li>
+                        <li><strong>Lengkapkan proses pembayaran anda.</strong></li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <section class="summary-section">
+            <div class="container">
+                <h2 class="section-title">Ringkasan Pembayaran Anda</h2>
+                
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <div class="summary-icon selesai">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <h3>Pembayaran Selesai</h3>
+                        <p class="summary-value" id="completedCount">9</p>
+                        <p class="summary-label">Bulan</p>
+                    </div>
+
+                    <div class="summary-card">
+                        <div class="summary-icon tertunggak">
+                            <i class="fa-solid fa-exclamation"></i>
+                        </div>
+                        <h3>Pembayaran Tertunggak</h3>
+                        <p class="summary-value" id="outstandingCount">3</p>
+                        <p class="summary-label">Bulan</p>
+                    </div>
+
+                    <div class="summary-card">
+                        <div class="summary-icon total">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <h3>Jumlah Tertunggak</h3>
+                        <p class="summary-value" id="outstandingAmount">RM 300</p>
+                        <p class="summary-label">Anggaran</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title">Soalan Lazim (FAQ)</h2>
+
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Berapa jumlah bayaran sekuriti bulanan?</h3>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Jumlah pembayaran sekuriti bergantung kepada jenis unit kediaman anda. Sila hubungi pejabat pengurusan untuk maklumat terperinci mengenai jumlah yang ditetapkan untuk unit anda.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Bagaimanakah cara membuat pembayaran?</h3>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Anda boleh membuat pembayaran melalui pautan TOYYIBPAY yang disediakan di halaman ini. Klik butang 'BAYAR' untuk setiap bulan yang tertunggak, kemudian lengkapkan transaksi anda dengan aman.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Apakah yang berlaku jika pembayaran saya lewat?</h3>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Pembayaran yang lewat mungkin tertakluk kepada caj tertunggak atau denda sesuai dengan peraturan dan undian JMB. Kami menggalakkan anda untuk membuat pembayaran tepat pada masanya.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Bolehkah saya membuat pembayaran untuk beberapa bulan sekaligus?</h3>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Ya, anda boleh membuat pembayaran untuk pelbagai bulan dalam satu transaksi. Tambahkan semua bulan yang tertunggak dan lengkapkan pembayaran dalam satu kali transaksi.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Apakah risit pembayaran saya?</h3>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Selepas pembayaran berjaya, anda akan menerima risit secara automatik melalui emel yang didaftarkan. Anda juga boleh memuat turun risit dari halaman ini.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Siapakah yang patut saya hubungi jika ada masalah pembayaran?</h3>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sila hubungi pejabat pengurusan JMB melalui emel pptsbpbangi@gmail.com atau telefon 03-4567 8980. Pasukan kami bersedia membantu anda.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../../partial/components.js"></script>
+    <script src="kutipan_sekuriti.js"></script>
+</body>
+
+</html>
