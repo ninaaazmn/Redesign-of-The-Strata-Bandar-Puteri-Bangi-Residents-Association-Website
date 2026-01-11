@@ -20,34 +20,44 @@
         }
 
         body {
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: #f9f9f9;
             color: #333;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                        url('./images/bg.png');
-            background-size: cover;
-            background-position: center;
-            height: 400px;
+            position: relative;
+            min-height: 420px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            text-align: center;
-            margin-bottom: 60px;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('../../partial/background.png') center/cover no-repeat;
+            filter: grayscale(40%);
+            transform: scale(1.02);
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: 48px;
-            letter-spacing: 8px;
+            position: relative;
+            z-index: 2;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.3rem;
+            letter-spacing: 1px;
             text-transform: uppercase;
             font-weight: 600;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            border: 3px solid white;
-            padding: 30px 80px;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            padding: 40px 50px;
+            color: white;
         }
 
         /* Main Content */
@@ -61,14 +71,14 @@
         .announcement-card {
             background-color: white;
             margin-bottom: 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(125, 28, 58, 0.08);
             transition: all 0.3s ease;
         }
 
         .announcement-card:hover {
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 12px 24px rgba(125, 28, 58, 0.12);
         }
 
         .announcement-header {
@@ -86,12 +96,12 @@
         }
 
         .announcement-header.expanded {
-            background-color: #8b2e4e;
+            background: linear-gradient(135deg, #7D1C3A 0%, #561025 100%);
             color: white;
         }
 
         .announcement-header.expanded:hover {
-            background-color: #a04060;
+            background: linear-gradient(135deg, #9E2B4B 0%, #561025 100%);
         }
 
         .announcement-img {
@@ -99,7 +109,7 @@
             height: 80px;
             background-color: #e0e0e0;
             flex-shrink: 0;
-            border-radius: 5px;
+            border-radius: 8px;
             overflow: hidden;
         }
 
@@ -114,14 +124,20 @@
         }
 
         .announcement-title h3 {
-            font-size: 18px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2em;
             margin-bottom: 8px;
             font-weight: 600;
+            color: #2D2426;
+        }
+
+        .announcement-header.expanded .announcement-title h3 {
+            color: white;
         }
 
         .announcement-title p {
-            font-size: 14px;
-            color: #666;
+            font-size: 0.9em;
+            color: #665C5F;
             font-weight: 400;
         }
 
@@ -132,7 +148,7 @@
         .arrow {
             font-size: 24px;
             transition: transform 0.3s ease;
-            color: #8b2e4e;
+            color: #7D1C3A;
             transform: rotate(180deg);
         }
 
@@ -146,7 +162,7 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.4s ease, padding 0.4s ease;
-            background-color: #f9f9f9;
+            background-color: #fafaf9;
         }
 
         .announcement-body.show {
@@ -156,36 +172,37 @@
 
         .announcement-body-content {
             line-height: 1.8;
+            font-size: 0.95em;
         }
 
         .announcement-body-content p {
             margin-bottom: 15px;
-            font-size: 15px;
+            color: #665C5F;
         }
 
         .announcement-body-content strong {
-            color: #8b2e4e;
+            color: #7D1C3A;
             font-weight: 600;
         }
 
         .announcement-body-content ol {
             margin: 20px 0 20px 25px;
+            color: #665C5F;
         }
 
         .announcement-body-content li {
             margin-bottom: 12px;
-            font-size: 15px;
         }
 
         .btn-download {
-            background-color: #8b2e4e;
+            background: linear-gradient(135deg, #7D1C3A 0%, #561025 100%);
             color: white;
             padding: 12px 30px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             margin-top: 20px;
-            font-size: 14px;
+            font-size: 0.9em;
             font-weight: 600;
             transition: all 0.3s;
             display: inline-flex;
@@ -196,9 +213,8 @@
         }
 
         .btn-download:hover {
-            background-color: #a04060;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(139, 46, 78, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(125, 28, 58, 0.3);
         }
 
         .btn-download i {

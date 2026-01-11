@@ -63,32 +63,59 @@ async function loadComponent(elementId, componentFile) {
 
 // Function to highlight active navigation item
 function setActiveNavItem() {
-    const activePage = document.body.getAttribute('data-active-page');
-
-    if (!activePage) return;
+    // Get the current URL path
+    const currentPath = window.location.pathname.toLowerCase();
+    
+    // Detect which page we're on by checking the URL
+    let activePage = '';
+    
+    if (currentPath.includes('hubungi')) {
+        activePage = 'hubungi_kami';
+    } else if (currentPath.includes('kutipan')) {
+        activePage = 'kutipan_sekuriti';
+    } else if (currentPath.includes('pengumuman')) {
+        activePage = 'pengumuman';
+    } else if (currentPath.includes('panduan_majlis')) {
+        activePage = 'panduan_majlis';
+    } else if (currentPath.includes('kad') && currentPath.includes('akses')) {
+        activePage = 'kad_akses';
+    } else if (currentPath.includes('direktori')) {
+        activePage = 'direktori_kecemasan';
+    } else if (currentPath.includes('sistem') && currentPath.includes('aduan')) {
+        activePage = 'sistem_aduan';
+    }
 
     // Map page names to their link selectors
     const pageMap = {
+        'hubungi_kami': 'a[href*="hubungi"]',
+        'kutipan_sekuriti': 'a[href*="kutipan"]',
+        'pengumuman': 'a[href*="Pengumuman"]',
         'panduan_majlis': 'a[href*="panduan_majlis"]',
-        'kad_akses': 'a[href*="kad akses"]',
-        'direktori_kecemasan': 'a[href*="direktori_kecemasan"]',
-        'sistem_aduan': 'a[href*="sistem_aduan"]'
+        'kad_akses': 'a[href*="kad"]',
+        'direktori_kecemasan': 'a[href*="direktori"]',
+        'sistem_aduan': 'a[href*="sistem"]'
     };
 
-    // Also mark parent "Panduan Penduduk" as active
-    const panduanLink = document.querySelector('.nav-panduan');
-    if (panduanLink && Object.keys(pageMap).includes(activePage)) {
-        panduanLink.classList.add('active');
-    }
+    // Remove active class from all nav links first
+    document.querySelectorAll('a').forEach(link => {
+        link.classList.remove('active');
+        link.style.fontWeight = 'normal';
+    });
 
-    // Mark the specific dropdown item as active
-    const selector = pageMap[activePage];
-    if (selector) {
+    // Highlight the current page
+    if (activePage && pageMap[activePage]) {
+        const selector = pageMap[activePage];
         const link = document.querySelector(selector);
         if (link) {
             link.classList.add('active');
             link.style.fontWeight = 'bold';
         }
+    }
+
+    // Mark parent "Panduan Penduduk" as active for dropdown items
+    const panduanLink = document.querySelector('.nav-panduan');
+    if (panduanLink && ['panduan_majlis', 'kad_akses', 'direktori_kecemasan', 'sistem_aduan'].includes(activePage)) {
+        panduanLink.classList.add('active');
     }
 }
 

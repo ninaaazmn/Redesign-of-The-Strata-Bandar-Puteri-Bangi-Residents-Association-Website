@@ -49,6 +49,12 @@ function setupStatusFilter() {
 
 // Update payment table data
 function updatePaymentTable(year, filter = 'semua') {
+    // Check if year is 2025 or beyond
+    if (year >= 2025) {
+        showMessageFor2025AndBeyond();
+        return;
+    }
+
     // Sample data for different years
     const paymentData = {
         2022: [
@@ -135,6 +141,29 @@ function updatePaymentTable(year, filter = 'semua') {
     updateSummary(currentData);
 }
 
+// Show message for 2025 and beyond
+function showMessageFor2025AndBeyond() {
+    const tableBody = document.getElementById('paymentTableBody');
+    tableBody.innerHTML = '';
+    
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td colspan="4" style="text-align: center; padding: 40px; color: var(--text-dark);">
+            <div style="line-height: 1.8;">
+                <p style="margin-bottom: 15px; font-weight: 600; font-size: 1.1em;">Bayaran masih boleh guna link ToyyibPay untuk Sekuriti 2025</p>
+                <p style="margin-bottom: 20px; color: var(--text-grey);">Untuk 2025 keatas, perlu melalui aplikasi JagaApp 2.0.</p>
+                <p style="color: var(--text-grey); font-size: 0.95em;">Link ToyyibPay hanya untuk backdated payment sahaja (Aug 2022 - Dec 2024)</p>
+            </div>
+        </td>
+    `;
+    tableBody.appendChild(row);
+    
+    // Clear summary for 2025
+    document.getElementById('completedCount').textContent = '–';
+    document.getElementById('outstandingCount').textContent = '–';
+    document.getElementById('outstandingAmount').textContent = '–';
+}
+
 // Update summary section
 function updateSummary(data) {
     const completedCount = data.filter(item => item.status === 'selesai').length;
@@ -148,9 +177,29 @@ function updateSummary(data) {
 
 // Payment initiation
 function initiatePayment(month, year) {
-    alert(`Memulai pembayaran untuk ${month} ${year}. Anda akan dialihkan ke TOYYIBPAY.`);
-    // In production, redirect to TOYYIBPAY payment gateway
-    // window.location.href = 'https://toyyibpay.com/...';
+    // Create TOYYIBPAY URL based on month and year
+    // Format: Sekuriti-{Month}-{YearShort}
+    const monthMap = {
+        'Januari': 'Jan',
+        'Februari': 'Feb',
+        'Mac': 'Mar',
+        'April': 'Apr',
+        'Mei': 'May',
+        'Jun': 'Jun',
+        'Julai': 'Jul',
+        'Agustus': 'Aug',
+        'September': 'Sep',
+        'Oktober': 'Oct',
+        'November': 'Nov',
+        'Disember': 'Dec'
+    };
+    
+    const monthAbbrev = monthMap[month];
+    const yearShort = year.toString().slice(-2); // Get last 2 digits of year
+    const toyyibPayUrl = `https://toyyibpay.com/Sekuriti-${monthAbbrev}-${yearShort}`;
+    
+    // Redirect to TOYYIBPAY
+    window.location.href = toyyibPayUrl;
 }
 
 // FAQ Accordion
