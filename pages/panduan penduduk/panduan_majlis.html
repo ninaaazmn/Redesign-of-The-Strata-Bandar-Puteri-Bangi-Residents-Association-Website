@@ -5,17 +5,896 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panduan Majlis - The Strata</title>
-    <!-- Google Fonts: Playfair Display for elegance, Poppins for modern UI -->
+    <meta name="description" content="Panduan lengkap untuk mengadakan majlis di The Strata Bandar Puteri Bangi">
+
+    <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <!-- FontAwesome for Premium Icons -->
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- add     <link rel="stylesheet" href="../../partial/navbar-footer.css"> here, remove .footer style dkt style.css-->
-    <link rel="stylesheet" href="style.css">
+    <!-- Navbar & Footer CSS -->
+    <link rel="stylesheet" href="../../partial/navbar-footer.css">
+
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            --maroon-primary: #8B1538;
+            --maroon-dark: #6A0F2B;
+            --maroon-light: #A91D45;
+            --gold-primary: #C9A227;
+            --gold-light: #E5C35D;
+            --cream: #FDF8F3;
+            --white: #FFFFFF;
+            --text-dark: #2D2426;
+            --text-grey: #665C5F;
+            --shadow-soft: 0 10px 40px rgba(139, 21, 56, 0.1);
+            --shadow-card: 0 20px 60px rgba(139, 21, 56, 0.15);
+            --gradient-maroon: linear-gradient(135deg, #8B1538 0%, #6A0F2B 100%);
+            --gradient-gold: linear-gradient(135deg, #E5C35D 0%, #C9A227 100%);
+        }
+
+        /* ===== Global Reset ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== Animations ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(139, 21, 56, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 15px rgba(139, 21, 56, 0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        /* ===== Hero Section ===== */
+        .hero-section {
+            position: relative;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-maroon);
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('../../partial/background.png') center/cover;
+            opacity: 0.15;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, var(--cream), transparent);
+        }
+
+        /* Floating particles */
+        .hero-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(201, 162, 39, 0.3);
+            border-radius: 50%;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) {
+            left: 10%;
+            top: 20%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            left: 20%;
+            top: 60%;
+            animation-delay: 0.5s;
+        }
+
+        .particle:nth-child(3) {
+            left: 60%;
+            top: 30%;
+            animation-delay: 1s;
+        }
+
+        .particle:nth-child(4) {
+            left: 80%;
+            top: 70%;
+            animation-delay: 1.5s;
+        }
+
+        .particle:nth-child(5) {
+            left: 40%;
+            top: 80%;
+            animation-delay: 2s;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 60px 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 50px;
+            color: var(--gold-light);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--white);
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 15px;
+        }
+
+        .hero-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* ===== Section Styles ===== */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(139, 21, 56, 0.1), rgba(139, 21, 56, 0.05));
+            padding: 8px 20px;
+            border-radius: 50px;
+            color: var(--maroon-primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--maroon-primary);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-desc {
+            color: var(--text-grey);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        /* ===== Rules Cards ===== */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .rule-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 35px 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(139, 21, 56, 0.05);
+        }
+
+        .rule-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-maroon);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .rule-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .rule-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .rule-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(139, 21, 56, 0.1), rgba(139, 21, 56, 0.05));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: all 0.4s ease;
+        }
+
+        .rule-card:hover .rule-icon {
+            background: var(--gradient-maroon);
+        }
+
+        .rule-icon i {
+            font-size: 1.5rem;
+            color: var(--maroon-primary);
+            transition: color 0.4s ease;
+        }
+
+        .rule-card:hover .rule-icon i {
+            color: var(--white);
+        }
+
+        .rule-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--maroon-primary);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .rule-list {
+            list-style: none;
+        }
+
+        .rule-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            color: var(--text-grey);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .rule-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold-primary);
+        }
+
+        .rule-list li strong {
+            color: var(--maroon-primary);
+            font-weight: 600;
+        }
+
+        /* ===== Download CTA ===== */
+        .download-cta {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--gradient-maroon);
+            color: var(--white);
+            padding: 18px 40px;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(139, 21, 56, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(139, 21, 56, 0.4);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        /* ===== Online Application Section ===== */
+        .online-section {
+            background: var(--gradient-maroon);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .online-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(201, 162, 39, 0.15), transparent 70%);
+            border-radius: 50%;
+        }
+
+        .online-section .section-tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--gold-light);
+        }
+
+        .online-section .section-title {
+            color: var(--white);
+        }
+
+        .online-section .section-desc {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .flyer-wrapper {
+            max-width: 450px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .flyer-card {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .flyer-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .flyer-action {
+            padding: 25px;
+            background: linear-gradient(to right, #f9f6f2, #fff);
+            text-align: center;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: var(--maroon-primary);
+            padding: 14px 30px;
+            border: 2px solid var(--maroon-primary);
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--maroon-primary);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+
+        /* ===== Booking Form Section ===== */
+        .booking-section {
+            background: linear-gradient(180deg, var(--cream) 0%, #fff 100%);
+        }
+
+        /* Stepper */
+        .stepper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 50px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .stepper::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 50px;
+            right: 50px;
+            height: 3px;
+            background: #e8e0e2;
+            z-index: 0;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 3px solid #e8e0e2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #c0b5b8;
+            transition: all 0.4s ease;
+        }
+
+        .step.active .step-circle {
+            background: var(--gradient-maroon);
+            border-color: transparent;
+            color: var(--white);
+            box-shadow: 0 0 0 8px rgba(139, 21, 56, 0.15);
+            animation: pulse 2s infinite;
+        }
+
+        .step.completed .step-circle {
+            background: var(--gold-primary);
+            border-color: transparent;
+            color: var(--white);
+        }
+
+        .step-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #a09498;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .step.active .step-label {
+            color: var(--maroon-primary);
+            font-weight: 600;
+        }
+
+        /* Form Card */
+        .form-card {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(139, 21, 56, 0.05);
+        }
+
+        .form-step {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        .form-step-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--maroon-primary);
+            text-align: center;
+            margin-bottom: 35px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-grey);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e8e0e2;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            background: #fdfbf9;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--maroon-primary);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(139, 21, 56, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #b5a8ab;
+        }
+
+        /* Form Actions */
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: transparent;
+            border: 2px solid #e8e0e2;
+            border-radius: 50px;
+            color: var(--text-grey);
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            border-color: var(--maroon-primary);
+            color: var(--maroon-primary);
+        }
+
+        .btn-next {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: var(--gradient-maroon);
+            border: none;
+            border-radius: 50px;
+            color: var(--white);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(139, 21, 56, 0.3);
+            margin-left: auto;
+        }
+
+        .btn-next:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 21, 56, 0.4);
+        }
+
+        .btn-submit {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, var(--gold-primary), #b8931f);
+            border: none;
+            border-radius: 50px;
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.4);
+            margin-left: auto;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 45px rgba(201, 162, 39, 0.5);
+        }
+
+        /* Review Box */
+        .review-box {
+            background: linear-gradient(135deg, #fdf8f3, #fff);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(139, 21, 56, 0.08);
+        }
+
+        .review-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px dashed #e8e0e2;
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .review-label {
+            font-size: 0.9rem;
+            color: var(--text-grey);
+            font-weight: 500;
+        }
+
+        .review-value {
+            font-size: 0.95rem;
+            color: var(--maroon-primary);
+            font-weight: 600;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            background: var(--gradient-maroon);
+            color: var(--white);
+            padding: 50px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-item {
+            text-align: center;
+        }
+
+        .footer-item .icon {
+            font-size: 2rem;
+            color: var(--gold-light);
+            margin-bottom: 15px;
+        }
+
+        .footer-item h3 {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+
+        .footer-item p {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 25px 0;
+        }
+
+        .footer-bottom p {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* ===== Responsive Design ===== */
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+
+            .rules-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .rule-card {
+                padding: 28px 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-card {
+                padding: 35px 25px;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .btn-back,
+            .btn-next,
+            .btn-submit {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .btn-next,
+            .btn-submit {
+                margin-left: 0;
+            }
+
+            .stepper::before {
+                left: 30px;
+                right: 30px;
+            }
+
+            .step-circle {
+                width: 44px;
+                height: 44px;
+            }
+
+            .step-label {
+                font-size: 0.75rem;
+            }
+
+            .hero-section {
+                min-height: 40vh;
+            }
+
+            .hero-content {
+                padding: 40px 20px;
+            }
+
+            .btn-primary {
+                padding: 16px 30px;
+                font-size: 0.9rem;
+            }
+
+            .flyer-action {
+                padding: 20px;
+            }
+
+            .footer-grid {
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+                letter-spacing: 1px;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .rule-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .rule-icon i {
+                font-size: 1.2rem;
+            }
+
+            .form-step-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <!-- ==================== NAVBAR ==================== -->
     <!-- Top Bar -->
     <div class="top-bar">
         <div class="container" style="text-align: right;">
@@ -28,219 +907,282 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="#" class="logo">
-                <img src="persatuan-penduduk-the-strata-bandar-puteri-bangi.png" alt="The Strata Logo"
+            <a href="../../index.html" class="logo">
+                <img src="../../partial/persatuan-penduduk-the-strata-bandar-puteri-bangi.png" alt="The Strata Logo"
                     style="max-height: 60px; width: auto;">
             </a>
             <div class="mobile-menu-btn">
                 <i class="fa-solid fa-bars"></i>
             </div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#">Utama</a></li>
+                <li><a href="../../index.html">Utama</a></li>
                 <li><a href="#">Tentang Kami</a></li>
                 <li class="dropdown-item">
                     <a href="#" class="active">Panduan Penduduk <i class="fa-solid fa-chevron-down"
                             style="font-size: 0.7em;"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="panduan_majlis.html" style="font-weight: 700; color: #8B1538;">Panduan Majlis</a>
-                        <li><a href="permohonan kad akses & rfid.html">Permohonan Kad Akses & RFID</a></li>
+                        </li>
+                        <li><a href="permohonan_kad_akses & rfid.html">Permohonan Kad Akses & RFID</a></li>
                         <li><a href="direktori_kecemasan.html">Direktori Kecemasan</a></li>
                         <li><a href="sistem_aduan.html">Sistem Aduan</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Pengumuman</a></li>
-                <li><a href="#">Hubungi</a></li>
+                <li><a href="#">Hubungi Kami</a></li>
+                <li><a href="#">FAQ</a></li>
                 <li><a href="#">Log Masuk</a></li>
                 <li><button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button></li>
             </ul>
         </div>
     </nav>
 
+
+
     <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-overlay"></div>
+    <section class="hero-section">
+        <div class="hero-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
         <div class="hero-content">
-            <div class="hero-title-box">
-                <h1>Panduan Majlis</h1>
+            <span class="hero-badge">The Strata BPB</span>
+            <h1 class="hero-title">Panduan Majlis</h1>
+            <p class="hero-subtitle">Panduan lengkap untuk mengadakan majlis di kawasan perumahan</p>
+        </div>
+    </section>
+
+    <!-- Rules Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag"><i class="fa-solid fa-book"></i> Panduan</span>
+                <h2 class="section-title">Panduan & Etika Majlis</h2>
+                <p class="section-desc">Sila patuhi peraturan berikut untuk memastikan kesejahteraan bersama</p>
+            </div>
+
+            <div class="rules-grid">
+                <!-- Rule Card 1 -->
+                <div class="rule-card">
+                    <div class="rule-icon">
+                        <i class="fa-regular fa-clipboard"></i>
+                    </div>
+                    <h3>Peraturan Am</h3>
+                    <ul class="rule-list">
+                        <li>Tempahan wajib dibuat <strong>7 hari</strong> sebelum majlis</li>
+                        <li>Waktu penggunaan maksimum <strong>6 jam</strong></li>
+                        <li>Deposit sekuriti <strong>RM200</strong> (dikembalikan)</li>
+                        <li>Kebersihan adalah tanggungjawab penganjur</li>
+                    </ul>
+                </div>
+
+                <!-- Rule Card 2 -->
+                <div class="rule-card">
+                    <div class="rule-icon">
+                        <i class="fa-solid fa-car-side"></i>
+                    </div>
+                    <h3>Parkir</h3>
+                    <ul class="rule-list">
+                        <li>Parkir hanya di petak pelawat yang dikhaskan</li>
+                        <li>Dilarang menghalang laluan kecemasan bomba</li>
+                        <li>Maksimum <strong>50 kenderaan</strong> luar dibenarkan</li>
+                        <li>Sila maklumkan kepada pos kawalan</li>
+                    </ul>
+                </div>
+
+                <!-- Rule Card 3 -->
+                <div class="rule-card">
+                    <div class="rule-icon">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </div>
+                    <h3>Etika Bunyi</h3>
+                    <ul class="rule-list">
+                        <li>Semua aktiviti bunyi tamat jam <strong>11:00 malam</strong></li>
+                        <li>Kekalkan tahap bunyi yang harmoni</li>
+                        <li>Hormati privasi jiran tetangga</li>
+                        <li>Tiada sebarang bunyi selepas jam 12 tengah malam</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="download-cta">
+                <a href="https://drive.google.com/file/d/1keBfdp0o8zxeTSmWuFs4QDZqhbAAzTIB/view?usp=sharing"
+                    class="btn-primary" target="_blank">
+                    <i class="fa-brands fa-google-drive"></i>
+                    Muat Turun Dokumen Lengkap
+                </a>
             </div>
         </div>
-    </header>
+    </section>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Rules Section -->
-        <section class="rules-section">
-            <div class="container">
-                <h2 class="section-title">Panduan & Etika Majlis</h2>
-
-                <div class="rule-grid">
-                    <div class="rule-item">
-                        <h3><i class="fa-regular fa-clipboard"></i> Peraturan Am</h3>
-                        <ul>
-                            <li>Tempahan wajib dibuat <strong>7 hari</strong> sebelum majlis.</li>
-                            <li>Waktu penggunaan maksimum <strong>6 jam</strong>.</li>
-                            <li>Deposit sekuriti <strong>RM200</strong> (dikembalikan).</li>
-                            <li>Kebersihan adalah tanggungjawab penganjur.</li>
-                        </ul>
-                    </div>
-
-                    <div class="rule-item">
-                        <h3><i class="fa-solid fa-car-side"></i> Parkir</h3>
-                        <ul>
-                            <li>Parkir hanya di petak pelawat yang dikhaskan.</li>
-                            <li>Dilarang menghalang laluan kecemasan bomba.</li>
-                            <li>Maksimum <strong>50 kenderaan</strong> luar dibenarkan.</li>
-                            <li>Sila maklumkan kepada pos kawalan.</li>
-                        </ul>
-                    </div>
-
-                    <div class="rule-item">
-                        <h3><i class="fa-solid fa-volume-high"></i> Etika Bunyi</h3>
-                        <ul>
-                            <li>Semua aktiviti bunyi tamat jam <strong>11:00 malam</strong>.</li>
-                            <li>Kekalkan tahap bunyi yang harmoni.</li>
-                            <li>Hormati privasi jiran tetangga.</li>
-                            <li>Tiada sebarang bunyi selepas jam 12 tengah malam.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="gdrive-link-container">
-                    <a href="https://drive.google.com/file/d/1keBfdp0o8zxeTSmWuFs4QDZqhbAAzTIB/view?usp=sharing"
-                        class="btn-gdrive" target="_blank"><i class="fa-brands fa-google-drive"></i> Muat Turun Dokumen
-                        Lengkap</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Online Application Section -->
-        <section class="online-app-section">
-            <div class="container">
+    <!-- Online Application Section -->
+    <section class="section online-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag"><i class="fa-solid fa-mobile-screen"></i> Digital</span>
                 <h2 class="section-title">Permohonan Secara Online</h2>
-                <p class="intro-text">Imbas kod QR di bawah atau klik pautan untuk mengisi borang permohonan majlis
-                    secara dalam talian. Mudah dan pantas.</p>
+                <p class="section-desc">Imbas kod QR atau klik pautan untuk mengisi borang permohonan majlis secara
+                    dalam talian</p>
+            </div>
 
+            <div class="flyer-wrapper">
                 <div class="flyer-card">
-                    <img src="panduan majlis.png" alt="Panduan Majlis Flyer"
-                        style="width: 100%; height: auto; border-radius: 10px;">
-                    <div class="flyer-footer" style="margin-top: -5px; border-radius: 0 0 10px 10px;">
+                    <img src="panduan majlis.png" alt="Panduan Majlis Flyer" class="flyer-image">
+                    <div class="flyer-action">
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSeseUdDDzZeTGtPBuhgZ-0wLh59UUvuYM0BcwyyQvXYPuxvrA/viewform"
-                            target="_blank">Buka Google Form <i class="fa-solid fa-external-link-alt"></i></a>
+                            target="_blank" class="btn-secondary">
+                            <i class="fa-solid fa-external-link-alt"></i>
+                            Buka Google Form
+                        </a>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Interactive Form Section -->
-        <section class="booking-section">
-            <div class="container">
+    <!-- Booking Form Section -->
+    <section class="section booking-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag"><i class="fa-solid fa-pen-to-square"></i> Borang</span>
                 <h2 class="section-title">Borang Tempahan & Semakan</h2>
+            </div>
 
-                <!-- Stepper -->
-                <div class="stepper">
-                    <div class="stepper-container">
-                        <div class="stepper-progress"></div>
-                        <!-- Steps -->
-                        <div class="step active" data-step="1">
-                            <div class="circle">1</div>
-                            <span>Maklumat</span>
-                        </div>
-                        <div class="step" data-step="2">
-                            <div class="circle">2</div>
-                            <span>Pemohon</span>
-                        </div>
-                        <div class="step" data-step="3">
-                            <div class="circle">3</div>
-                            <span>Sah</span>
-                        </div>
-                    </div>
+            <!-- Stepper -->
+            <div class="stepper">
+                <div class="step active" data-step="1">
+                    <div class="step-circle">1</div>
+                    <span class="step-label">Maklumat</span>
                 </div>
+                <div class="step" data-step="2">
+                    <div class="step-circle">2</div>
+                    <span class="step-label">Pemohon</span>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-circle">3</div>
+                    <span class="step-label">Semak</span>
+                </div>
+            </div>
 
-                <!-- Form Container -->
-                <form id="bookingForm" class="booking-form">
-                    <!-- Step 1: Maklumat Majlis -->
+            <!-- Form Card -->
+            <div class="form-card">
+                <form id="bookingForm">
+                    <!-- Step 1 -->
                     <div class="form-step active" id="step1">
-                        <h3 class="form-section-title">Butiran Majlis</h3>
+                        <h3 class="form-step-title">Butiran Majlis</h3>
                         <div class="form-group">
-                            <label>Tajuk Majlis</label>
-                            <input type="text" placeholder="Contoh: Majlis Kesyukuran" id="eventName">
+                            <label class="form-label">Tajuk Majlis</label>
+                            <input type="text" class="form-input" placeholder="Contoh: Majlis Kesyukuran"
+                                id="eventName">
                         </div>
                         <div class="form-row">
-                            <div class="form-group half">
-                                <label>Tarikh</label>
-                                <input type="date" id="eventDate">
+                            <div class="form-group">
+                                <label class="form-label">Tarikh</label>
+                                <input type="date" class="form-input" id="eventDate">
                             </div>
-                            <div class="form-group half">
-                                <label>Masa Mula</label>
-                                <input type="time" id="eventTime">
+                            <div class="form-group">
+                                <label class="form-label">Masa Mula</label>
+                                <input type="time" class="form-input" id="eventTime">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Anggaran Tetamu</label>
-                            <input type="number" placeholder="Jumlah kehadiran" id="guestCount">
+                            <label class="form-label">Anggaran Tetamu</label>
+                            <input type="number" class="form-input" placeholder="Jumlah kehadiran" id="guestCount">
                         </div>
-                        <div class="form-actions right">
-                            <button type="button" class="btn-next" onclick="nextStep(2)">Seterusnya <i
-                                    class="fa-solid fa-arrow-right"></i></button>
+                        <div class="form-actions">
+                            <button type="button" class="btn-next" onclick="nextStep(2)">
+                                Seterusnya <i class="fa-solid fa-arrow-right"></i>
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Step 2: Maklumat Penduduk -->
+                    <!-- Step 2 -->
                     <div class="form-step" id="step2">
-                        <h3 class="form-section-title">Butiran Pemohon</h3>
+                        <h3 class="form-step-title">Butiran Pemohon</h3>
                         <div class="form-group">
-                            <label>Nama Penuh</label>
-                            <input type="text" placeholder="Seperti dalam IC" id="applicantName">
+                            <label class="form-label">Nama Penuh</label>
+                            <input type="text" class="form-input" placeholder="Seperti dalam IC" id="applicantName">
                         </div>
                         <div class="form-group">
-                            <label>Alamat Emel</label>
-                            <input type="email" placeholder="Contoh: nama@email.com" id="email">
+                            <label class="form-label">Alamat Emel</label>
+                            <input type="email" class="form-input" placeholder="Contoh: nama@email.com" id="email">
                         </div>
                         <div class="form-row">
-                            <div class="form-group half">
-                                <label>No. Unit</label>
-                                <input type="text" placeholder="Contoh: A-10-2" id="unitNo">
+                            <div class="form-group">
+                                <label class="form-label">No. Unit</label>
+                                <input type="text" class="form-input" placeholder="Contoh: A-10-2" id="unitNo">
                             </div>
-                            <div class="form-group half">
-                                <label>No. Telefon</label>
-                                <input type="tel" placeholder="01x-xxxxxxx" id="phoneNo">
+                            <div class="form-group">
+                                <label class="form-label">No. Telefon</label>
+                                <input type="tel" class="form-input" placeholder="01x-xxxxxxx" id="phoneNo">
                             </div>
                         </div>
-                        <div class="form-actions split">
-                            <button type="button" class="btn-prev" onclick="prevStep(1)">Kembali</button>
-                            <button type="button" class="btn-next" onclick="nextStep(3)">Semak <i
-                                    class="fa-solid fa-arrow-right"></i></button>
+                        <div class="form-actions">
+                            <button type="button" class="btn-back" onclick="prevStep(1)">
+                                <i class="fa-solid fa-arrow-left"></i> Kembali
+                            </button>
+                            <button type="button" class="btn-next" onclick="nextStep(3)">
+                                Semak <i class="fa-solid fa-arrow-right"></i>
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Step 3: Semakan -->
+                    <!-- Step 3 -->
                     <div class="form-step" id="step3">
-                        <h3 class="form-section-title">Semakan Akhir</h3>
-                        <p style="text-align: center; color: #666; font-size: 0.9em; margin-bottom: 30px;">Sila pastikan
-                            semua maklumat adalah tepat.</p>
+                        <h3 class="form-step-title">Semakan Akhir</h3>
+                        <p style="text-align: center; color: var(--text-grey); margin-bottom: 30px;">Sila pastikan semua
+                            maklumat adalah tepat.</p>
 
                         <div class="review-box">
-                            <p><strong>Majlis</strong> <span id="reviewEvent">-</span></p>
-                            <p><strong>Tarikh & Masa</strong> <span id="reviewDate">-</span> @ <span
-                                    id="reviewTime">-</span></p>
-                            <p><strong>Jumlah Tetamu</strong> <span id="reviewGuests">-</span></p>
-                            <p><strong>Nama Pemohon</strong> <span id="reviewName">-</span></p>
-                            <p><strong>Emel</strong> <span id="reviewEmail">-</span></p>
-                            <p><strong>Unit Kediaman</strong> <span id="reviewUnit">-</span></p>
-                            <p><strong>No. Telefon</strong> <span id="reviewPhone">-</span></p>
+                            <div class="review-item">
+                                <span class="review-label">Majlis</span>
+                                <span class="review-value" id="reviewEvent">-</span>
+                            </div>
+                            <div class="review-item">
+                                <span class="review-label">Tarikh & Masa</span>
+                                <span class="review-value"><span id="reviewDate">-</span> @ <span
+                                        id="reviewTime">-</span></span>
+                            </div>
+                            <div class="review-item">
+                                <span class="review-label">Jumlah Tetamu</span>
+                                <span class="review-value" id="reviewGuests">-</span>
+                            </div>
+                            <div class="review-item">
+                                <span class="review-label">Nama Pemohon</span>
+                                <span class="review-value" id="reviewName">-</span>
+                            </div>
+                            <div class="review-item">
+                                <span class="review-label">Emel</span>
+                                <span class="review-value" id="reviewEmail">-</span>
+                            </div>
+                            <div class="review-item">
+                                <span class="review-label">Unit Kediaman</span>
+                                <span class="review-value" id="reviewUnit">-</span>
+                            </div>
+                            <div class="review-item">
+                                <span class="review-label">No. Telefon</span>
+                                <span class="review-value" id="reviewPhone">-</span>
+                            </div>
                         </div>
-                        <div class="form-actions split">
-                            <button type="button" class="btn-prev" onclick="prevStep(2)">Kembali</button>
-                            <button type="submit" class="btn-submit">Hantar Permohonan</button>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn-back" onclick="prevStep(2)">
+                                <i class="fa-solid fa-arrow-left"></i> Kembali
+                            </button>
+                            <button type="submit" class="btn-submit">
+                                <i class="fa-solid fa-paper-plane"></i> Hantar Permohonan
+                            </button>
                         </div>
                     </div>
                 </form>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <!-- Footer -->
+    <!-- ==================== FOOTER ==================== -->
     <footer class="footer">
         <div class="container footer-grid">
             <div class="footer-item">
@@ -248,13 +1190,11 @@
                 <h3>HUBUNGI EMAIL</h3>
                 <p>pptsbpbangi@gmail.com</p>
             </div>
-            <div class="footer-separator"></div>
             <div class="footer-item">
                 <i class="icon fa-solid fa-phone-volume"></i>
                 <h3>TALIAN PEJABAT</h3>
                 <p>03 - 4567 8980</p>
             </div>
-            <div class="footer-separator"></div>
             <div class="footer-item">
                 <i class="icon fa-solid fa-globe"></i>
                 <h3>PORTAL RASMI</h3>
@@ -267,8 +1207,75 @@
             </div>
         </div>
     </footer>
+    <!-- ==================== END FOOTER ==================== -->
 
-    <script src="panduan_majlis.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function () {
+            document.getElementById('navLinks').classList.toggle('show');
+        });
+
+        // Form step navigation
+        let currentStep = 1;
+
+        function nextStep(step) {
+            document.getElementById('step' + currentStep).classList.remove('active');
+            document.getElementById('step' + step).classList.add('active');
+
+            // Update stepper
+            document.querySelectorAll('.step').forEach((s, i) => {
+                if (i + 1 < step) {
+                    s.classList.add('completed');
+                    s.classList.remove('active');
+                } else if (i + 1 === step) {
+                    s.classList.add('active');
+                    s.classList.remove('completed');
+                } else {
+                    s.classList.remove('active', 'completed');
+                }
+            });
+
+            // Update review on step 3
+            if (step === 3) {
+                document.getElementById('reviewEvent').textContent = document.getElementById('eventName').value || '-';
+                document.getElementById('reviewDate').textContent = document.getElementById('eventDate').value || '-';
+                document.getElementById('reviewTime').textContent = document.getElementById('eventTime').value || '-';
+                document.getElementById('reviewGuests').textContent = document.getElementById('guestCount').value || '-';
+                document.getElementById('reviewName').textContent = document.getElementById('applicantName').value || '-';
+                document.getElementById('reviewEmail').textContent = document.getElementById('email').value || '-';
+                document.getElementById('reviewUnit').textContent = document.getElementById('unitNo').value || '-';
+                document.getElementById('reviewPhone').textContent = document.getElementById('phoneNo').value || '-';
+            }
+
+            currentStep = step;
+        }
+
+        function prevStep(step) {
+            document.getElementById('step' + currentStep).classList.remove('active');
+            document.getElementById('step' + step).classList.add('active');
+
+            // Update stepper
+            document.querySelectorAll('.step').forEach((s, i) => {
+                if (i + 1 < step) {
+                    s.classList.add('completed');
+                    s.classList.remove('active');
+                } else if (i + 1 === step) {
+                    s.classList.add('active');
+                    s.classList.remove('completed');
+                } else {
+                    s.classList.remove('active', 'completed');
+                }
+            });
+
+            currentStep = step;
+        }
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Permohonan anda telah dihantar! Kami akan menghubungi anda dalam masa 3 hari bekerja.');
+        });
+    </script>
 </body>
 
 </html>
