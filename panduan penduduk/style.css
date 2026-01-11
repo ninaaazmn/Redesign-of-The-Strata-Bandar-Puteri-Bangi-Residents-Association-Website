@@ -2608,3 +2608,565 @@ section {
             padding: 15px 20px;
         }
     }
+
+    /* ========================================
+   ACCESS CARD PAGE ENHANCEMENTS
+   ======================================== */
+
+    /* Simple Page Title Section (No Maroon Background) */
+    .page-title-section {
+        text-align: center;
+        padding: 60px 0 40px;
+        background: var(--bg-warm);
+    }
+
+    .page-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--primary-color);
+        color: var(--white);
+        padding: 10px 20px;
+        border-radius: var(--radius-full);
+        font-size: 0.85em;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .page-main-title {
+        font-family: var(--font-heading);
+        font-size: 3em;
+        color: var(--primary-color);
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+
+    .page-description {
+        color: var(--text-grey);
+        font-size: 1.1em;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    /* CTA Section */
+    .cta-section {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+        padding: 80px 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(197, 160, 40, 0.15) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    .cta-section::after {
+        content: '';
+        position: absolute;
+        bottom: -30%;
+        left: -5%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    .cta-content {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .cta-icon-wrapper {
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 30px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    .cta-icon-wrapper i {
+        font-size: 2em;
+        color: var(--accent-light);
+    }
+
+    @keyframes pulse {
+
+        0%,
+        100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(197, 160, 40, 0.4);
+        }
+
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 0 0 20px rgba(197, 160, 40, 0);
+        }
+    }
+
+    .cta-title {
+        font-family: var(--font-heading);
+        font-size: 3em;
+        color: var(--white);
+        margin-bottom: 15px;
+        font-weight: 700;
+        text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-subtitle {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.15em;
+        margin-bottom: 40px;
+        line-height: 1.6;
+        font-weight: 300;
+    }
+
+    .cta-main-button {
+        background: var(--gradient-gold);
+        color: var(--primary-dark);
+        border: none;
+        padding: 20px 50px;
+        font-size: 1.1em;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        border-radius: var(--radius-full);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+        font-family: var(--font-body);
+        min-height: 60px;
+    }
+
+    .cta-main-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .cta-main-button:hover::before {
+        left: 100%;
+    }
+
+    .cta-main-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(197, 160, 40, 0.5);
+    }
+
+    .cta-main-button:active {
+        transform: translateY(-2px);
+    }
+
+    .cta-main-button i {
+        transition: transform 0.3s ease;
+    }
+
+    .cta-main-button:hover i {
+        transform: translateX(5px);
+    }
+
+    .cta-help-text {
+        margin-top: 30px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .cta-help-text a {
+        color: var(--accent-light);
+        text-decoration: none;
+        border-bottom: 1px dashed var(--accent-light);
+        transition: all 0.3s;
+    }
+
+    .cta-help-text a:hover {
+        color: var(--white);
+        border-bottom-color: var(--white);
+    }
+
+    /* Interactive Category Selection Cards */
+    .app-option-row {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 2px solid transparent;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .app-option-row::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(125, 28, 58, 0.05) 0%, transparent 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        border-radius: 12px;
+    }
+
+    .app-option-row:hover::before {
+        opacity: 1;
+    }
+
+    .app-option-row:hover {
+        border-color: var(--primary-color);
+        transform: translateX(8px);
+        box-shadow: 0 8px 24px rgba(125, 28, 58, 0.15);
+    }
+
+    .app-option-row.selected {
+        border-color: var(--primary-color);
+        background: linear-gradient(135deg, rgba(125, 28, 58, 0.05) 0%, transparent 100%);
+        transform: translateX(8px);
+        box-shadow: 0 8px 24px rgba(125, 28, 58, 0.2);
+    }
+
+    .app-option-row.selected .option-icon {
+        background: var(--gradient-primary);
+        color: var(--white);
+        box-shadow: 0 0 20px rgba(125, 28, 58, 0.3);
+    }
+
+    .app-option-row .option-icon {
+        transition: all 0.3s ease;
+    }
+
+    .app-option-row:hover .option-icon {
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    .app-option-row .option-arrow {
+        transition: transform 0.3s ease;
+    }
+
+    .app-option-row:hover .option-arrow {
+        transform: translateX(5px);
+    }
+
+    /* Enhanced Info Blocks with Icons */
+    .info-block {
+        transition: all 0.3s ease;
+        padding: 20px;
+        border-radius: var(--radius-sm);
+        margin-bottom: 20px;
+    }
+
+    .info-block:hover {
+        background: rgba(125, 28, 58, 0.03);
+        transform: translateX(5px);
+    }
+
+    .info-block .info-icon {
+        transition: all 0.3s ease;
+    }
+
+    .info-block:hover .info-icon {
+        transform: scale(1.1);
+        background: var(--gradient-primary);
+        color: var(--white);
+    }
+
+    /* Collapsible Terms Card */
+    .terms-card h3 {
+        user-select: none;
+        transition: color 0.3s ease;
+    }
+
+    .terms-card h3:hover {
+        color: var(--primary-color);
+    }
+
+    .terms-card h3 i {
+        font-size: 0.8em;
+        opacity: 0.7;
+    }
+
+    .terms-list {
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* Enhanced Copy Button */
+    .copy-btn {
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .copy-btn:hover {
+        transform: scale(1.1);
+        background: var(--primary-color) !important;
+        color: var(--white) !important;
+    }
+
+    /* Highlight Keywords Enhancement */
+    .compact-list strong,
+    .terms-list strong {
+        color: var(--primary-color);
+        font-weight: 700;
+        background: linear-gradient(to bottom, transparent 60%, rgba(125, 28, 58, 0.1) 60%);
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+
+    /* Enhanced Step Badge */
+    .step-badge {
+        animation: fadeInData 0.6s ease;
+    }
+
+    /* Mobile Responsiveness Enhancements */
+    @media (max-width: 768px) {
+
+        /* CTA Section Mobile */
+        .cta-section {
+            padding: 60px 0;
+        }
+
+        .cta-title {
+            font-size: 2em;
+        }
+
+        .cta-subtitle {
+            font-size: 1em;
+            margin-bottom: 30px;
+        }
+
+        .cta-main-button {
+            padding: 18px 35px;
+            font-size: 0.95em;
+            width: 100%;
+            max-width: 350px;
+            justify-content: center;
+        }
+
+        .cta-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        .cta-icon-wrapper i {
+            font-size: 1.5em;
+        }
+
+        .cta-help-text {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        /* Category Selection Mobile */
+        .app-option-row {
+            margin-bottom: 15px;
+        }
+
+        .app-option-row:hover,
+        .app-option-row.selected {
+            transform: translateX(0);
+        }
+
+        /* Cards Stack on Mobile */
+        .main-content-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        /* Info Blocks Mobile */
+        .info-block {
+            padding: 15px;
+        }
+
+        .info-block:hover {
+            transform: translateX(0);
+        }
+
+        /* Pricing Card Mobile Adjustments */
+        .price-item-row {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .price-item-left,
+        .price-item-right {
+            width: 100%;
+        }
+
+        .price-item-right {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .price-tag {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Terms List Mobile */
+        .terms-list {
+            font-size: 0.9em;
+        }
+
+        .terms-list li {
+            margin-bottom: 12px;
+        }
+
+        /* Compact List Mobile */
+        .compact-list {
+            font-size: 0.9em;
+        }
+
+        /* Account Copy Box Mobile */
+        .account-copy-box {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .account-number {
+            font-size: 1.1em;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+        }
+
+        /* Enhanced Touch Targets for Mobile */
+        .nav-links a,
+        .search-btn,
+        button,
+        .btn-gdrive,
+        .cta-main-button {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        /* Mobile Menu Active State */
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 var(--radius-md) var(--radius-md);
+            animation: slideDown 0.3s ease;
+        }
+
+        .mobile-menu-btn {
+            display: block;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        /* Ensure readable text sizes */
+        body {
+            font-size: 14px;
+        }
+
+        h1 {
+            font-size: 2em;
+        }
+
+        h2 {
+            font-size: 1.5em;
+        }
+
+        h3 {
+            font-size: 1.2em;
+        }
+
+        h4 {
+            font-size: 1em;
+        }
+
+        /* Prevent horizontal scroll */
+        .container {
+            padding: 0 16px;
+        }
+
+        .hero {
+            min-height: 300px;
+            height: 40vh;
+        }
+
+        .hero h1 {
+            font-size: 1.8em;
+            letter-spacing: 0.1em;
+        }
+    }
+
+    /* Tablet Specific Adjustments */
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .main-content-grid {
+            gap: 30px;
+        }
+
+        .cta-title {
+            font-size: 2.5em;
+        }
+
+        .container {
+            padding: 0 30px;
+        }
+    }
+
+    /* Small Mobile Devices */
+    @media (max-width: 480px) {
+        .cta-title {
+            font-size: 1.6em;
+        }
+
+        .cta-main-button {
+            padding: 16px 30px;
+            font-size: 0.85em;
+        }
+
+        .card-elevated {
+            padding: 20px;
+        }
+
+        .hero-title-box {
+            padding: 20px 25px;
+        }
+
+        .price-badge,
+        .option-icon {
+            width: 40px;
+            height: 40px;
+            font-size: 1em;
+        }
+    }
