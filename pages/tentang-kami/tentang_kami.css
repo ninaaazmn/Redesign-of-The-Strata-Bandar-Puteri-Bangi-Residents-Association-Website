@@ -211,28 +211,6 @@ body {
     margin-bottom: 16px;
 }
 
-.footer {
-    background-color: var(--primary-color);
-    color: #fff;
-    clip-path: none;
-    padding-top: 60px;
-}
-
-.footer-item h3,
-.footer-item p {
-    color: #fff;
-}
-
-.footer-separator {
-    background: rgba(255, 255, 255, 0.4);
-    height: 80px;
-}
-
-.footer-bottom {
-    background-color: #641630;
-    color: rgba(255, 255, 255, 0.8);
-}
-
 @media (max-width: 992px) {
     .hero-menu {
         position: static;
