@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Masuk - The Strata</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <main>
+        <!-- Logo Header -->
+        <div class="header-logo">
+            <img src="../../partial/persatuan-penduduk-the-strata-bandar-puteri-bangi.png" alt="The Strata Logo">
+        </div>
+
+        <!-- Login Section -->
+        <section class="login-section">
+            <div class="container">
+                <div class="login-content">
+                    <h2>LOG MASUK</h2>
+                    
+                    <form class="login-form" id="loginForm">
+                        <div class="form-group">
+                            <label for="email">E-MAIL</label>
+                            <input type="email" id="email" name="email" placeholder="Masukkan e-mel anda">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">KATA LALUAN</label>
+                            <input type="password" id="password" name="password" placeholder="Masukkan kata laluan anda">
+                        </div>
+
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-sign-in-alt"></i> LOG MASUK
+                        </button>
+                    </form>
+
+                    <div class="login-footer">
+                        <p>Belum mempunyai akaun? <a href="../../pages/daftar-ahli/daftar_ahli.html">Daftar di sini</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-body success-body">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>LOG MASUK BERJAYA</h2>
+                <p>Selamat datang kembali!</p>
+                <button class="btn-submit" id="okBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+
+</html>

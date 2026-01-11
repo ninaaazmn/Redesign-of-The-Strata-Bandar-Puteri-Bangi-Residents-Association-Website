@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Ahli - The Strata</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="daftar_ahli.css">
+</head>
+
+<body>
+    <main>
+        <!-- Logo Header -->
+        <div class="header-logo">
+            <img src="../../partial/persatuan-penduduk-the-strata-bandar-puteri-bangi.png" alt="The Strata Logo">
+        </div>
+
+        <!-- Registration Form Section -->
+        <section class="registration-section">
+            <div class="container">
+                <div class="registration-content">
+                    <h2>BORANG PENDAFTARAN AHLI</h2>
+                    <p>Sila isi borang pendaftaran berikut untuk menjadi ahli Persatuan Penduduk The Strata Bandar Puteri Bangi.</p>
+                    
+                    <button class="btn-view-terms" id="openTermsBtn">
+                        LIHAT SYARAT PENDAFTARAN
+                    </button>
+
+                    <form class="registration-form">
+                        <!-- Section A: Maklumat Ahli -->
+                        <div class="form-section">
+                            <h3>A. MAKLUMAT AHLI</h3>
+                            
+                            <div class="form-group">
+                                <label for="nama">NAMA PENUH *</label>
+                                <input type="text" id="nama" name="nama" placeholder="Contoh: Muhammad Ali Bin Ibrahim">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="kp">NO. K/P *</label>
+                                <input type="text" id="kp" name="kp" placeholder="Contoh: 123456-12-1234">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bangsa">BANGSA *</label>
+                                <input type="text" id="bangsa" name="bangsa" placeholder="Contoh: Melayu / Cina / India">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="no_rumah">NO. RUMAH *</label>
+                                    <input type="text" id="no_rumah" name="no_rumah" placeholder="Contoh: 1-2A">
+                                </div>
+                                <div class="form-group">
+                                    <label for="jalan_puteri">JALAN PUTERI *</label>
+                                    <input type="text" id="jalan_puteri" name="jalan_puteri" placeholder="Contoh: Jalan Puteri 3/1">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hp">NO. H/P *</label>
+                                <input type="tel" id="hp" name="hp" placeholder="Contoh: 012-3456789">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">E-MAIL *</label>
+                                <input type="email" id="email" name="email" placeholder="Contoh: ali@example.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label>STATUS AHLI *</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="status_ahli" value="pemilik">
+                                        PEMILIK / AHLI KELUARGA PEMILIK
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="status_ahli" value="penyewa">
+                                        PENYEWA
+                                    </label>
+                                </div>
+                                <p class="form-note">Sila tandakan pada ✓ pada kotak yang berkaitan.</p>
+                            </div>
+                        </div>
+
+                        <!-- Section B: Maklumat Isirumah -->
+                        <div class="form-section">
+                            <h3>B. MAKLUMAT ISIRUMAH</h3>
+                            <p class="form-note">Nota: Bagi ruangan status/hubungan, sila nyatakan sama ada suami/isteri/anak/bapa/emak/dll.</p>
+                            
+                            <div class="table-wrapper">
+                                <table class="form-table" id="isirumahTable">
+                                    <thead>
+                                        <tr>
+                                            <th>BIL</th>
+                                            <th>NAMA PENUH</th>
+                                            <th>STATUS / HUBUNGAN</th>
+                                            <th>NO.TEL</th>
+                                            <th>AKSI</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="isirumahTableBody">
+                                        <tr class="table-row">
+                                            <td class="row-number">1.</td>
+                                            <td><input type="text" name="isirumah_nama[]" class="isirumah-input" placeholder="Nama penuh"></td>
+                                            <td><input type="text" name="isirumah_status[]" class="isirumah-input" placeholder="Contoh: Isteri / Anak"></td>
+                                            <td><input type="text" name="isirumah_tel[]" class="isirumah-input" placeholder="012-3456789"></td>
+                                            <td class="action-cell">
+                                                <button type="button" class="btn-remove-row" style="display:none;">✕</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button type="button" class="btn-add-row" id="addIsirumahRow">
+                                    <i class="fa-solid fa-plus"></i> TAMBAH BARIS
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Section C: Maklumat Kenderaan -->
+                        <div class="form-section">
+                            <h3>C. MAKLUMAT KENDERAAN</h3>
+                            
+                            <div class="table-wrapper">
+                                <table class="form-table" id="kenderaanTable">
+                                    <thead>
+                                        <tr>
+                                            <th>BIL</th>
+                                            <th>JENIS KENDERAAN / MODEL</th>
+                                            <th>NO. PENDAFTARAN</th>
+                                            <th>NO. PELEKAT</th>
+                                            <th>AKSI</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="kenderaanTableBody">
+                                        <tr class="table-row">
+                                            <td class="row-number">1.</td>
+                                            <td><input type="text" name="kenderaan_jenis[]" class="kenderaan-input" placeholder="Contoh: Honda Civic 2020"></td>
+                                            <td><input type="text" name="kenderaan_no[]" class="kenderaan-input" placeholder="WXY 1234"></td>
+                                            <td><input type="text" name="kenderaan_pelekat[]" class="kenderaan-input" placeholder="Contoh: TSP001"></td>
+                                            <td class="action-cell">
+                                                <button type="button" class="btn-remove-row" style="display:none;">✕</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button type="button" class="btn-add-row" id="addKenderaanRow">
+                                    <i class="fa-solid fa-plus"></i> TAMBAH BARIS
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Section D: Bukti Kelayakan -->
+                        <div class="form-section">
+                            <h3>D. BUKTI KELAYAKAN</h3>
+                            <p class="form-note">Sila kemukakan salinan muka hadapan Perjanjian Jual Beli / Kontrak Sewaan (yang mana berkaitan) sebagai bukti kelayakan menyertai persatuan.</p>
+                            
+                            <div class="form-group">
+                                <label for="bukti_kelayakan">MUAT NAIK DOKUMEN *</label>
+                                <div class="file-upload-wrapper">
+                                    <input type="file" id="bukti_kelayakan" name="bukti_kelayakan" accept=".pdf,.jpg,.jpeg,.png">
+                                    <div class="file-upload-label">
+                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                        <p>Klik untuk memilih fail atau tarik dan lepas</p>
+                                        <span class="file-types">Format yang dibenarkan: PDF, JPG, PNG (Maksimum 5MB)</span>
+                                    </div>
+                                    <div class="file-name-display"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" name="terms">
+                                Saya bersetuju dengan syarat dan ketentuan pendaftaran
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn-submit">
+                            HANTAR PENDAFTARAN
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-body success-body">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>PENDAFTARAN DITERIMA</h2>
+                <p>Terima kasih telah mendaftar sebagai ahli Persatuan Penduduk The Strata Bandar Puteri Bangi.</p>
+                <div class="success-message">
+                    <p><strong>Sila tunggu selama 5 hari bekerja untuk pengesahan permohonan anda.</strong></p>
+                    <p>Pautan pembayaran yuran pendaftaran dan tahunan akan dihantar ke alamat e-mel anda.</p>
+                </div>
+                <button class="btn-submit" id="okBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>SYARAT PENDAFTARAN</h2>
+                <button class="modal-close" id="closeTermsBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ul class="terms-list">
+                    <li>TERBUKA KEPADA PEMILIK ATAU PENYEWA RUMAH DI THE STRATA BANDAR PUTERI BANGI YANG BERUMUR 18 TAHUN KE ATAS DAN WARGANEGARA MALAYSIA.</li>
+                    <li>MAKSIMUM DUA (2) KEAHLIAN DIBERIKAN BAGI SETIAP UNIT KEDIAMAN PADA SATU MASA.</li>
+                    <li>PERMOHONAN KEAHLIAN AKAN DILULUSKAN SELEPAS BAYARAN PENDAFTARAN DAN YURAN TAHUNAN DIJELASKAN.</li>
+                    <li>MAKLUMAT PERIBADI YANG DIKUMPUL ADALAH UNTUK TUJUAN PENGESAHAN DAN KESELAMATAN SAHAJA.</li>
+                </ul>
+
+                <div class="terms-fees">
+                    <p><strong>YURAN PENDAFTARAN: RM 20.00</strong></p>
+                    <p><strong>YURAN TAHUNAN: RM 20.00</strong></p>
+                </div>
+
+                <ul class="terms-list">
+                    <li>SILA SEDIAKAN SALINAN PERJANJIAN JUAL BELI ATAU KONTRAK SEWAAN SEBAGAI BUKTI KELAYAKAN.</li>
+                    <li>BORANG YANG LENGKAP DAN SLIP BAYARAN BOLEH DISERAHKAN KEPADA KETUA LORONG ATAU PIHAK YANG DITAPAKAN.</li>
+                </ul>
+
+                <button class="btn-submit" id="acceptTermsBtn">
+                    TERUSKAN <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../partial/components.js"></script>
+    <script src="daftar_ahli.js"></script>
+</body>
+
+</html>

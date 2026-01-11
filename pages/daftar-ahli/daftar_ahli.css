@@ -1,0 +1,657 @@
+:root {
+    --primary-color: #7D1C3A;
+    --secondary-color: #9D4E6C;
+    --accent-color: #C1666B;
+    --text-dark: #333;
+    --text-light: #666;
+    --border-color: #DDD;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #e8f0f7 0%, #f0e8f7 100%);
+    color: var(--text-dark);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.header-logo {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-left: 0;
+}
+
+.header-logo img {
+    max-width: 200px;
+    height: auto;
+}
+
+.hero {
+    position: relative;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url("../../partial/hero-bg.png") center/cover no-repeat;
+    filter: grayscale(40%);
+    transform: scale(1.02);
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.hero-content {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-title-box {
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    padding: 40px 50px;
+    text-align: center;
+    max-width: 700px;
+}
+
+.hero-title-box h1 {
+    font-family: var(--font-heading);
+    font-size: 2.3rem;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+/* Registration Section */
+.registration-section {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 100%;
+    padding: 50px;
+    margin: 0 auto;
+}
+
+.registration-content {
+    max-width: 100%;
+}
+
+.registration-content h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.registration-content > p {
+    color: var(--text-grey);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.btn-view-terms {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 40px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-view-terms:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(125, 28, 58, 0.3);
+}
+
+/* Registration Form */
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.form-section {
+    border: 1px solid #e5e5e5;
+    padding: 25px;
+    border-radius: 8px;
+    background: #fafafa;
+}
+
+.form-section h3 {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: #fff;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder,
+.form-table input::placeholder {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    font-size: 0.9rem;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.form-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-right: 10px;
+    accent-color: var(--primary-color);
+}
+
+.form-group label:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 0;
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: 500;
+}
+
+.form-note {
+    font-size: 0.85rem;
+    color: var(--text-grey);
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Table Styles */
+.table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 15px;
+}
+
+.form-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+.form-table thead {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.form-table th {
+    padding: 12px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    border: 1px solid #ddd;
+}
+
+.form-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.form-table tbody tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.form-table tbody tr:hover {
+    background: #f0f0f0;
+}
+
+.form-table input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-family: var(--font-body);
+}
+
+.form-table input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: #fffbf0;
+}
+
+/* File Upload Styles */
+.file-upload-wrapper {
+    position: relative;
+    display: block;
+}
+
+.file-upload-wrapper input[type="file"] {
+    display: none;
+}
+
+.file-upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    border: 2px dashed var(--primary-color);
+    border-radius: 8px;
+    background-color: #fafafa;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.file-upload-label:hover {
+    background-color: #f0f0f0;
+    border-color: var(--primary-dark);
+}
+
+.file-upload-label i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.file-upload-label p {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 5px 0;
+    font-size: 0.95rem;
+}
+
+.file-upload-label .file-types {
+    font-size: 0.85rem;
+    color: var(--text-grey);
+    margin-top: 5px;
+}
+
+.file-name-display {
+    margin-top: 15px;
+    padding: 10px;
+    background: #e8f5e9;
+    border-radius: 4px;
+    color: #2e7d32;
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: none;
+}
+
+.action-cell {
+    text-align: center;
+    padding: 8px;
+}
+
+.btn-add-row,
+.btn-remove-row {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.btn-add-row {
+    background: var(--primary-color);
+    color: #fff;
+    margin-top: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-add-row:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.btn-remove-row {
+    background: #ff6b6b;
+    color: #fff;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.btn-remove-row:hover {
+    background: #ff5252;
+    transform: scale(1.1);
+}
+
+.btn-submit {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-submit:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(125, 28, 58, 0.3);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 12px;
+    max-width: 700px;
+    width: 90%;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.modal-header h2 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-grey);
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: var(--primary-color);
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.success-body {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.success-icon {
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+}
+
+.success-body h2 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.success-body > p {
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+}
+
+.success-message {
+    background: #f0f4f8;
+    padding: 18px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 5px solid var(--primary-color);
+}
+
+.success-message p {
+    margin: 8px 0;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.terms-list {
+    list-style: disc;
+    padding-left: 20px;
+    margin-bottom: 25px;
+}
+
+.terms-list li {
+    margin-bottom: 15px;
+    color: var(--text-dark);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+}
+
+.terms-fees {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.terms-fees p {
+    margin: 8px 0;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title-box {
+        padding: 30px 25px;
+    }
+
+    .hero-title-box h1 {
+        font-size: 1.8rem;
+    }
+
+    .registration-section {
+        padding: 60px 0;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+
+    .modal-header {
+        padding: 20px;
+    }
+
+    .modal-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .terms-list li {
+        font-size: 0.85rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .form-section {
+        padding: 15px;
+    }
+
+    .form-table {
+        font-size: 0.85rem;
+    }
+
+    .form-table th,
+    .form-table td {
+        padding: 6px 4px;
+    }
+
+    .form-table input {
+        padding: 4px;
+        font-size: 0.8rem;
+    }
+}

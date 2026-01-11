@@ -440,6 +440,7 @@ body {
     letter-spacing: 0.5px;
     box-shadow: 0 8px 18px rgba(125, 28, 58, 0.2);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
 }
 
 .btn-daftar:hover {

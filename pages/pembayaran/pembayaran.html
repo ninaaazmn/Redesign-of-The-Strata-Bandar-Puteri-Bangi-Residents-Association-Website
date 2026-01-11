@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran - The Strata</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="pembayaran.css">
+</head>
+
+<body>
+    <main>
+        <!-- Logo Header -->
+        <div class="header-logo">
+            <img src="../../partial/persatuan-penduduk-the-strata-bandar-puteri-bangi.png" alt="The Strata Logo">
+        </div>
+
+        <!-- Payment Section -->
+        <section class="payment-section">
+            <div class="container">
+                <div class="payment-content">
+                    <h2>PROSES PENDAFTARAN</h2>
+                    
+                    <!-- Steps Indicator -->
+                    <div class="steps-container">
+                        <div class="step-item active" id="step1-indicator">
+                            <div class="step-number">
+                                <span class="step-count">1</span>
+                                <i class="fas fa-check check-icon"></i>
+                            </div>
+                            <div class="step-label">Pembayaran</div>
+                        </div>
+                        
+                        <div class="step-connector"></div>
+                        
+                        <div class="step-item" id="step2-indicator">
+                            <div class="step-number">
+                                <span class="step-count">2</span>
+                                <i class="fas fa-check check-icon"></i>
+                            </div>
+                            <div class="step-label">Cipta Akaun</div>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Make Payment -->
+                    <div class="step-content active" id="step1">
+                        <h3>Langkah 1: Pembayaran</h3>
+                        <div class="step-body">
+                            <div class="payment-info">
+                                <p><strong>Yuran Pendaftaran:</strong> RM 20.00</p>
+                                <p><strong>Yuran Tahunan:</strong> RM 20.00</p>
+                                <hr>
+                                <p><strong>Jumlah Keseluruhan: RM 40.00</strong></p>
+                            </div>
+                            
+                            <button type="button" class="btn-submit" id="paymentBtn">
+                                <i class="fas fa-credit-card"></i> BAYAR SEKARANG
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Create Account -->
+                    <div class="step-content" id="step2">
+                        <h3>Langkah 2: Cipta Akaun</h3>
+                        <div class="step-body">
+                            <form class="account-form" id="accountForm">
+                                <div class="form-group">
+                                    <label for="email">E-MAIL *</label>
+                                    <input type="email" id="email" name="email" placeholder="Contoh: ali@example.com">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password">KATA LALUAN *</label>
+                                    <input type="password" id="password" name="password" placeholder="Masukkan kata laluan yang kuat">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="confirm_password">SAHKAN KATA LALUAN *</label>
+                                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Sahkan kata laluan anda">
+                                </div>
+
+                                <button type="submit" class="btn-submit">
+                                    CIPTA AKAUN
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-body success-body">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>PENDAFTARAN SELESAI</h2>
+                <p>Akaun anda telah berjaya dibuat.</p>
+                <div class="success-message">
+                    <p><strong>Anda kini boleh memilihat rekod kutipan sekuriti anda.</strong></p>
+                    <p>Terima kasih telah menyertai kami!</p>
+                </div>
+                <button class="btn-submit" id="okBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="pembayaran.js"></script>
+</body>
+
+</html>
