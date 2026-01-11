@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - The Strata</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../partial/navbar-footer.css">
+    <link rel="stylesheet" href="faq.css">
+</head>
+
+<body>
+
+<div id="navbar-placeholder"></div>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-title-box">
+                <h1>Soalan Lazim (FAQ)</h1>
+                <p class="hero-subtitle">Cari jawapan kepada soalan yang sering ditanya</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Cari soalan...">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </div>
+
+            <!-- FAQ Categories -->
+            <div class="category-tabs">
+                <button class="category-btn active" data-category="all">SEMUA</button>
+                <button class="category-btn" data-category="keahlian">KEAHLIAN</button>
+                <button class="category-btn" data-category="pembayaran">PEMBAYARAN</button>
+                <button class="category-btn" data-category="khidmat">KHIDMAT</button>
+                <button class="category-btn" data-category="teknikal">TEKNIKAL</button>
+            </div>
+
+            <!-- FAQ Items -->
+            <div class="faq-container">
+                <!-- Category: Keahlian -->
+                <div class="faq-item" data-category="keahlian all">
+                    <div class="faq-question">
+                        <span class="question-text">Bagaimanakah saya boleh menjadi ahli Persatuan?</span>
+                        <i class="fa-solid fa-chevron-down chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Anda boleh mendaftar sebagai ahli melalui portal dalam talian kami. Sila klik butang "Daftar Ahli" di halaman utama dan ikuti proses pendaftaran yang disediakan. Anda perlu menyediakan bukti kelayakan seperti Perjanjian Jual Beli atau Kontrak Sewaan.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="keahlian all">
+                    <div class="faq-question">
+                        <span class="question-text">Berapa lama masa untuk permohonan saya diluluskan?</span>
+                        <i class="fa-solid fa-chevron-down chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Permohonan ahli biasanya diproses dalam tempoh 5 hari bekerja. Anda akan menerima pemberitahuan melalui e-mel setelah permohonan anda diluluskan atau ditolak.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="keahlian all">
+                    <div class="faq-question">
+                        <span class="question-text">Apakah keperluan untuk menjadi ahli?</span>
+                        <i class="fa-solid fa-chevron-down chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Anda mestilah berusia 18 tahun ke atas, warganegara Malaysia, dan pemilik atau penyewa rumah di The Strata Bandar Puteri Bangi. Maksimum dua keahlian dibenarkan bagi setiap unit kediaman pada satu masa.</p>
+                    </div>
+                </div>
+
+                <!-- Category: Pembayaran -->
+                <div class="faq-item" data-category="pembayaran all">
+                    <div class="faq-question">
+                        <span class="question-text">Berapakah yuran pendaftaran dan tahunan?</span>
+                        <i class="fa-solid fa-chevron-down chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yuran pendaftaran adalah RM 20.00 dan yuran tahunan adalah RM 20.00. Jumlah keseluruhan RM 40.00 wajib dibayar semasa pendaftaran. Yuran tahunan akan diperbaharui setiap tahun secara bersesuaian.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="pembayaran all">
+                    <div class="faq-question">
+                        <span class="question-text">Apakah kaedah pembayaran yang diterima?</span>
+                        <i class="fa-solid fa-chevron-down chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Kami menerima pembayaran melalui pemindahan bank, cek, atau tunai. Sila hubungi pejabat kami untuk maklumat akaun bank yang telah ditetapkan.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="pembayaran all">
+                    <div class="faq-question">
+                        <span class="question-text">Bilakah saya perlu membayar yuran tahunan?</span>
+                        <i class="fa-solid fa-chevron-down chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yuran tahunan perlu dibayar setiap tahun pada bulan Januari. Notis pembayaran akan dihantar kepada semua ahli dua minggu sebelum tarikh akhir pembayaran.</p>
+                    </div>
+                </div>
+
+                <!-- Category: Khidmat -->
+                <div class="faq-item" data-category="khidmat all">
+                    <div class="faq-question">
+                        <span class="question-text">Bagaimanakah saya boleh membuat aduan?</span>
+                        <i class="fa-solid fa-chevron-down chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Anda boleh membuat aduan melalui Sistem Aduan dalam talian kami yang tersedia di bahagian Panduan Penduduk. Sisi juga boleh menghubungi pejabat kami secara langsung atau menghantar e-mel kepada pptsbpbangi@gmail.com.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="khidmat all">
+                    <div class="faq-question">
+                        <span class="question-text">Bagaimanakah cara memohon kad akses dan RFID?</span>
+                        <i class="fa-solid fa-chevron-down chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Anda boleh memohon kad akses dan RFID melalui portal dalam talian. Sila lawati bahagian "Permohonan Kad Akses & RFID" di bawah Panduan Penduduk untuk mendapatkan maklumat lanjut dan membuat permohonan.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="khidmat all">
+                    <div class="faq-question">
+                        <span class="question-text">Bagaimanakah saya boleh memohon kutipan sekuriti?</span>
+                        <i class="fa-solid fa-chevron-down chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Selepas pendaftaran anda selesai, anda boleh memilih dan memohon kutipan sekuriti anda. Anda akan diberikan pilihan warna dan lokasi kutipan berdasarkan ketersediaan.</p>
+                    </div>
+                </div>
+
+                <!-- Category: Teknikal -->
+                <div class="faq-item" data-category="teknikal all">
+                    <div class="faq-question">
+                        <span class="question-text">Apakah yang perlu saya lakukan jika saya lupa kata laluan?</span>
+                        <i class="fa-solid fa-chevron-down chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Klik pautan "Lupa Kata Laluan" di halaman log masuk. Anda akan diminta memasukkan alamat e-mel anda dan pautan tetapan semula kata laluan akan dihantar ke e-mel anda.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="teknikal all">
+                    <div class="faq-question">
+                        <span class="question-text">Apakah yang perlu saya lakukan jika saya menghadapi isu teknikal?</span>
+                        <i class="fa-solid fa-chevron-down chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sila hubungi pejabat kami di 03-4567 8980 atau e-mel pptsbpbangi@gmail.com dengan perihalan masalah yang anda hadapi. Tim teknikal kami akan membantu anda sebaik mungkin.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="teknikal all">
+                    <div class="faq-question">
+                        <span class="question-text">Apakah saiz fail maksimum untuk muat naik dokumen?</span>
+                        <i class="fa-solid fa-chevron-down chevron"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Saiz fail maksimum yang boleh dimuat naik adalah 5MB. Format fail yang diterima adalah PDF, JPG, dan PNG.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Support -->
+            <div class="support-section">
+                <h3>Masih Ada Soalan?</h3>
+                <p>Hubungi kami untuk mendapatkan bantuan lanjut</p>
+                <div class="contact-methods">
+                    <a href="mailto:pptsbpbangi@gmail.com" class="contact-btn">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span>E-mel Kami</span>
+                    </a>
+                    <a href="tel:+60345678980" class="contact-btn">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>Hubungi Kami</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+    
+    <script src="../../partial/components.js"></script>
+    <script src="faq.js"></script>
+</body>
+
+</html>

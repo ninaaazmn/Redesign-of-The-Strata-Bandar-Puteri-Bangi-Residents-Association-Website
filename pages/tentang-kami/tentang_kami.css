@@ -15,7 +15,7 @@ body {
 .hero-bg {
     position: absolute;
     inset: 0;
-    background: url("../../partial/hero-bg.png") center/cover no-repeat;
+    background: url("../../partial/background.png") center/cover no-repeat;
     filter: grayscale(40%);
     transform: scale(1.02);
 }
