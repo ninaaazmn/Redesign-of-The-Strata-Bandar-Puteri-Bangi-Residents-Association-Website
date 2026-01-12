@@ -2,6 +2,12 @@
     "configurations": [
         {
             "type": "chrome",
+            "name": "http://127.0.0.1:3000/pages/panduan penduduk/panduan_majlis.html",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000/pages/panduan penduduk/panduan_majlis.html"
+        },
+        {
+            "type": "chrome",
             "name": "http://127.0.0.1:3000/pages/kutipan sekuriti/kutipan_sekuriti.html",
             "request": "launch",
             "url": "http://127.0.0.1:3000/pages/kutipan sekuriti/kutipan_sekuriti.html"
