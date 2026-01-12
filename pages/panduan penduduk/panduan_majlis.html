@@ -14,7 +14,8 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Navbar & Footer CSS -->
-    <link rel="stylesheet" href="../../partial/navbar-footer.css">
+    <link rel="stylesheet" href="../../partial/navbar-footer.css?v=updated">
+
 
     <style>
         /* ===== CSS Variables ===== */
@@ -102,128 +103,61 @@
             }
         }
 
-        /* ===== Hero Section ===== */
-        .hero-section {
+        /* ===== Hero Section - Matching Hubungi Kami Style ===== */
+        .hero {
             position: relative;
-            min-height: 50vh;
+            min-height: 420px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--gradient-maroon);
             overflow: hidden;
         }
 
-        .hero-section::before {
-            content: '';
+        .hero-bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('../../partial/background.png') center/cover;
-            opacity: 0.15;
+            inset: 0;
+            background: url("../../partial/background.png") center/cover no-repeat;
+            filter: grayscale(40%);
+            transform: scale(1.02);
         }
 
-        .hero-section::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(to top, var(--cream), transparent);
-        }
-
-        /* Floating particles */
-        .hero-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: rgba(201, 162, 39, 0.3);
-            border-radius: 50%;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        .particle:nth-child(1) {
-            left: 10%;
-            top: 20%;
-            animation-delay: 0s;
-        }
-
-        .particle:nth-child(2) {
-            left: 20%;
-            top: 60%;
-            animation-delay: 0.5s;
-        }
-
-        .particle:nth-child(3) {
-            left: 60%;
-            top: 30%;
-            animation-delay: 1s;
-        }
-
-        .particle:nth-child(4) {
-            left: 80%;
-            top: 70%;
-            animation-delay: 1.5s;
-        }
-
-        .particle:nth-child(5) {
-            left: 40%;
-            top: 80%;
-            animation-delay: 2s;
+        .hero-overlay {
+            display: none;
         }
 
         .hero-content {
             position: relative;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             z-index: 2;
+        }
+
+        .hero-title-box {
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            padding: 40px 50px;
             text-align: center;
-            padding: 60px 20px;
-            animation: fadeInUp 1s ease-out;
+            max-width: 700px;
         }
 
-        .hero-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 8px 20px;
-            border-radius: 50px;
-            color: var(--gold-light);
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .hero-title {
+        .hero-title-box h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            color: var(--white);
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-            margin-bottom: 15px;
-        }
-
-        .hero-subtitle {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.1rem;
-            max-width: 500px;
-            margin: 0 auto;
+            font-size: 2.3rem;
+            color: #fff;
+            letter-spacing: 1px;
+            font-weight: 600;
         }
 
         /* ===== Section Styles ===== */
         .section {
             padding: 80px 0;
+        }
+
+        .section:first-of-type {
+            margin-top: 40px;
         }
 
         .section-header {
@@ -926,17 +860,7 @@
     </style>
 </head>
 
-<body>
-    <!-- ==================== NAVBAR ==================== -->
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="container" style="text-align: right;">
-            <a href="mailto:pptsbpbangi@gmail.com" class="email-link">
-                <i class="fa-regular fa-envelope"></i> pptsbpbangi@gmail.com
-            </a>
-        </div>
-    </div>
-
+<body data-active-page="panduan_majlis">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
@@ -948,45 +872,50 @@
                 <i class="fa-solid fa-bars"></i>
             </div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="../../index.html">Utama</a></li>
-                <li><a href="#">Tentang Kami</a></li>
+                <li><a href="../Utama/utama.html">Utama</a></li>
+                <li class="dropdown-item">
+                    <a href="../tentang-kami/tentang_kami.html">Tentang Kami <i class="fa-solid fa-chevron-down"
+                            style="font-size: 0.7em;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../tentang-kami/tentang_kami.html#maklumat">Maklumat Persatuan</a></li>
+                        <li><a href="../tentang-kami/tentang_kami.html#objektif">Objektif Kami</a></li>
+                        <li><a href="../tentang-kami/tentang_kami.html#ahli-jk">Ahli Jawatankuasa 24/26</a></li>
+                        <li><a href="../tentang-kami/tentang_kami.html#mengapa-penting">Mengapa Persatuan Penduduk
+                                Penting?</a></li>
+                        <li><a href="../tentang-kami/tentang_kami.html#daftar-ahli">Mengapa Perlu Mendaftar Sebagai
+                                Ahli?</a></li>
+                    </ul>
+                </li>
                 <li class="dropdown-item">
                     <a href="#" class="active">Panduan Penduduk <i class="fa-solid fa-chevron-down"
                             style="font-size: 0.7em;"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="panduan_majlis.html" style="font-weight: 700; color: #8B1538;">Panduan Majlis</a>
-                        </li>
+                        <li><a href="panduan_majlis.html" class="active"
+                                style="font-weight: 700; color: #8B1538;">Panduan Majlis</a></li>
                         <li><a href="permohonan_kad_akses & rfid.html">Permohonan Kad Akses & RFID</a></li>
                         <li><a href="direktori_kecemasan.html">Direktori Kecemasan</a></li>
                         <li><a href="sistem_aduan.html">Sistem Aduan</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Pengumuman</a></li>
-                <li><a href="#">Hubungi Kami</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Log Masuk</a></li>
+                <li><a href="../Pengumuman/pengumuman.html">Pengumuman</a></li>
+                <li><a href="../hubungi kami/hubungi_kami.html">Hubungi Kami</a></li>
+                <li><a href="../faq/faq.html">FAQ</a></li>
+                <li><a href="../login/login.html">Log Masuk</a></li>
                 <li><button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button></li>
             </ul>
         </div>
     </nav>
 
-
-
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-particles">
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-        </div>
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <span class="hero-badge">The Strata BPB</span>
-            <h1 class="hero-title">Panduan Majlis</h1>
-            <p class="hero-subtitle">Panduan lengkap untuk mengadakan majlis di kawasan perumahan</p>
+            <div class="hero-title-box">
+                <h1>Panduan Majlis</h1>
+            </div>
         </div>
-    </section>
+    </header>
 
     <!-- Rules Section -->
     <section class="section">
@@ -1215,39 +1144,7 @@
         </div>
     </section>
 
-    <!-- ==================== FOOTER ==================== -->
-    <footer class="footer">
-        <div class="container footer-grid">
-            <div class="footer-item">
-                <i class="icon fa-regular fa-envelope"></i>
-                <h3>HUBUNGI EMAIL</h3>
-                <p>pptsbpbangi@gmail.com</p>
-            </div>
-            <div class="footer-item">
-                <i class="icon fa-solid fa-phone-volume"></i>
-                <h3>TALIAN PEJABAT</h3>
-                <p>03 - 4567 8980</p>
-            </div>
-            <div class="footer-item">
-                <i class="icon fa-solid fa-globe"></i>
-                <h3>PORTAL RASMI</h3>
-                <p>www.thestrata.com.my</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <p>&copy; 2024 JMB The Strata Bandar Puteri Bangi. Hak Cipta Terpelihara.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ==================== END FOOTER ==================== -->
-
     <script>
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function () {
-            document.getElementById('navLinks').classList.toggle('show');
-        });
 
         // Form step navigation
         let currentStep = 1;
@@ -1328,6 +1225,34 @@
             });
         });
     </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-item">
+                <i class="icon fa-regular fa-envelope"></i>
+                <h3>EMAIL KAMI</h3>
+                <p>pptsbpbangi@gmail.com</p>
+            </div>
+            <div class="footer-separator"></div>
+            <div class="footer-item">
+                <i class="icon fa-solid fa-phone-volume"></i>
+                <h3>HUBUNGI KAMI</h3>
+                <p>03 - 4567 8980</p>
+            </div>
+            <div class="footer-separator"></div>
+            <div class="footer-item">
+                <i class="icon fa-solid fa-globe"></i>
+                <h3>LAMAN SESAWANG KAMI</h3>
+                <p>https://thestrata.com.my</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Sofeah, Rai, Nina, Maya. Hak Cipta Terpelihara.</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Scroll to Top Button -->
     <button id="scrollToTopBtn" class="scroll-to-top">
