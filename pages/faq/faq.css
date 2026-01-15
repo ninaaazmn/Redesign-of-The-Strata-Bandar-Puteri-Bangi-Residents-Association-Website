@@ -35,7 +35,7 @@ body {
     padding: 0 20px;
 }
 
-/* ===== Hero Section ===== */
+/* Hero Section */
 .hero {
     position: relative;
     min-height: 420px;
@@ -43,6 +43,7 @@ body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    margin-top: 60px;
 }
 
 .hero-bg {
@@ -54,19 +55,18 @@ body {
 }
 
 .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.5) 100%);
+    display: none;
 }
 
 .hero-content {
     position: relative;
+    z-index: 2;
     width: 100%;
-    max-width: 1200px;
-    padding: 0 24px;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 24px;
 }
 
 .hero-title-box {
@@ -81,6 +81,7 @@ body {
     font-size: 2.3rem;
     color: #fff;
     letter-spacing: 1px;
+    font-weight: 600;
 }
 
 .hero-subtitle {
