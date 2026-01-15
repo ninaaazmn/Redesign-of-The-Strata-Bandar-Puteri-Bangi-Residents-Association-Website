@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Ahli - The Strata</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="daftar_ahli.css">
 </head>
@@ -14,7 +16,9 @@
     <main>
         <!-- Logo Header -->
         <div class="header-logo">
-            <img src="../../partial/persatuan-penduduk-the-strata-bandar-puteri-bangi.png" alt="The Strata Logo">
+            <a href="../../index.html">
+                <img src="../../partial/persatuan-penduduk-the-strata-bandar-puteri-bangi.png" alt="The Strata Logo">
+            </a>
         </div>
 
         <!-- Registration Form Section -->
@@ -22,51 +26,90 @@
             <div class="container">
                 <div class="registration-content">
                     <h2>BORANG PENDAFTARAN AHLI</h2>
-                    <p>Sila isi borang pendaftaran berikut untuk menjadi ahli Persatuan Penduduk The Strata Bandar Puteri Bangi.</p>
-                    
+                    <p>Sila isi borang pendaftaran berikut untuk menjadi ahli Persatuan Penduduk The Strata Bandar
+                        Puteri Bangi.</p>
+
+                    <!-- Error/Success Message -->
+                    <div id="messageBox" class="message-box" style="display: none;"></div>
+
                     <button class="btn-view-terms" id="openTermsBtn">
                         LIHAT SYARAT PENDAFTARAN
                     </button>
 
-                    <form class="registration-form">
+                    <form class="registration-form" id="registrationForm">
+                        <!-- Section: Maklumat Akaun (NEW) -->
+                        <div class="form-section account-section">
+                            <h3><i class="fa-solid fa-user-lock"></i> MAKLUMAT AKAUN</h3>
+
+                            <div class="form-group">
+                                <label for="email">E-MAIL *</label>
+                                <input type="email" id="email" name="email" placeholder="Contoh: ali@example.com"
+                                    required>
+                                <small class="form-hint">Gunakan e-mel yang aktif untuk log masuk</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">KATA LALUAN *</label>
+                                <div class="password-wrapper">
+                                    <input type="password" id="password" name="password" placeholder="Minimum 6 aksara"
+                                        required minlength="6">
+                                    <button type="button" class="toggle-password"
+                                        onclick="togglePassword('password', 'toggleIcon1')">
+                                        <i class="fas fa-eye" id="toggleIcon1"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword">SAHKAN KATA LALUAN *</label>
+                                <div class="password-wrapper">
+                                    <input type="password" id="confirmPassword" name="confirmPassword"
+                                        placeholder="Masukkan semula kata laluan" required>
+                                    <button type="button" class="toggle-password"
+                                        onclick="togglePassword('confirmPassword', 'toggleIcon2')">
+                                        <i class="fas fa-eye" id="toggleIcon2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Section A: Maklumat Ahli -->
                         <div class="form-section">
                             <h3>A. MAKLUMAT AHLI</h3>
-                            
+
                             <div class="form-group">
                                 <label for="nama">NAMA PENUH *</label>
-                                <input type="text" id="nama" name="nama" placeholder="Contoh: Muhammad Ali Bin Ibrahim">
+                                <input type="text" id="nama" name="nama" placeholder="Contoh: Muhammad Ali Bin Ibrahim"
+                                    required>
                             </div>
 
                             <div class="form-group">
                                 <label for="kp">NO. K/P *</label>
-                                <input type="text" id="kp" name="kp" placeholder="Contoh: 123456-12-1234">
+                                <input type="text" id="kp" name="kp" placeholder="Contoh: 123456-12-1234" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="bangsa">BANGSA *</label>
-                                <input type="text" id="bangsa" name="bangsa" placeholder="Contoh: Melayu / Cina / India">
+                                <input type="text" id="bangsa" name="bangsa" placeholder="Contoh: Melayu / Cina / India"
+                                    required>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="no_rumah">NO. RUMAH *</label>
-                                    <input type="text" id="no_rumah" name="no_rumah" placeholder="Contoh: 1-2A">
+                                    <input type="text" id="no_rumah" name="no_rumah" placeholder="Contoh: 1-2A"
+                                        required>
                                 </div>
                                 <div class="form-group">
                                     <label for="jalan_puteri">JALAN PUTERI *</label>
-                                    <input type="text" id="jalan_puteri" name="jalan_puteri" placeholder="Contoh: Jalan Puteri 3/1">
+                                    <input type="text" id="jalan_puteri" name="jalan_puteri"
+                                        placeholder="Contoh: Jalan Puteri 3/1" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="hp">NO. H/P *</label>
-                                <input type="tel" id="hp" name="hp" placeholder="Contoh: 012-3456789">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">E-MAIL *</label>
-                                <input type="email" id="email" name="email" placeholder="Contoh: ali@example.com">
+                                <input type="tel" id="hp" name="hp" placeholder="Contoh: 012-3456789" required>
                             </div>
 
                             <div class="form-group">
@@ -88,8 +131,9 @@
                         <!-- Section B: Maklumat Isirumah -->
                         <div class="form-section">
                             <h3>B. MAKLUMAT ISIRUMAH</h3>
-                            <p class="form-note">Nota: Bagi ruangan status/hubungan, sila nyatakan sama ada suami/isteri/anak/bapa/emak/dll.</p>
-                            
+                            <p class="form-note">Nota: Bagi ruangan status/hubungan, sila nyatakan sama ada
+                                suami/isteri/anak/bapa/emak/dll.</p>
+
                             <div class="table-wrapper">
                                 <table class="form-table" id="isirumahTable">
                                     <thead>
@@ -104,11 +148,15 @@
                                     <tbody id="isirumahTableBody">
                                         <tr class="table-row">
                                             <td class="row-number">1.</td>
-                                            <td><input type="text" name="isirumah_nama[]" class="isirumah-input" placeholder="Nama penuh"></td>
-                                            <td><input type="text" name="isirumah_status[]" class="isirumah-input" placeholder="Contoh: Isteri / Anak"></td>
-                                            <td><input type="text" name="isirumah_tel[]" class="isirumah-input" placeholder="012-3456789"></td>
+                                            <td><input type="text" name="isirumah_nama[]" class="isirumah-input"
+                                                    placeholder="Nama penuh"></td>
+                                            <td><input type="text" name="isirumah_status[]" class="isirumah-input"
+                                                    placeholder="Contoh: Isteri / Anak"></td>
+                                            <td><input type="text" name="isirumah_tel[]" class="isirumah-input"
+                                                    placeholder="012-3456789"></td>
                                             <td class="action-cell">
-                                                <button type="button" class="btn-remove-row" style="display:none;">✕</button>
+                                                <button type="button" class="btn-remove-row"
+                                                    style="display:none;">✕</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -122,7 +170,7 @@
                         <!-- Section C: Maklumat Kenderaan -->
                         <div class="form-section">
                             <h3>C. MAKLUMAT KENDERAAN</h3>
-                            
+
                             <div class="table-wrapper">
                                 <table class="form-table" id="kenderaanTable">
                                     <thead>
@@ -137,11 +185,15 @@
                                     <tbody id="kenderaanTableBody">
                                         <tr class="table-row">
                                             <td class="row-number">1.</td>
-                                            <td><input type="text" name="kenderaan_jenis[]" class="kenderaan-input" placeholder="Contoh: Honda Civic 2020"></td>
-                                            <td><input type="text" name="kenderaan_no[]" class="kenderaan-input" placeholder="WXY 1234"></td>
-                                            <td><input type="text" name="kenderaan_pelekat[]" class="kenderaan-input" placeholder="Contoh: TSP001"></td>
+                                            <td><input type="text" name="kenderaan_jenis[]" class="kenderaan-input"
+                                                    placeholder="Contoh: Honda Civic 2020"></td>
+                                            <td><input type="text" name="kenderaan_no[]" class="kenderaan-input"
+                                                    placeholder="WXY 1234"></td>
+                                            <td><input type="text" name="kenderaan_pelekat[]" class="kenderaan-input"
+                                                    placeholder="Contoh: TSP001"></td>
                                             <td class="action-cell">
-                                                <button type="button" class="btn-remove-row" style="display:none;">✕</button>
+                                                <button type="button" class="btn-remove-row"
+                                                    style="display:none;">✕</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -155,33 +207,40 @@
                         <!-- Section D: Bukti Kelayakan -->
                         <div class="form-section">
                             <h3>D. BUKTI KELAYAKAN</h3>
-                            <p class="form-note">Sila kemukakan salinan muka hadapan Perjanjian Jual Beli / Kontrak Sewaan (yang mana berkaitan) sebagai bukti kelayakan menyertai persatuan.</p>
-                            
+                            <p class="form-note">Sila kemukakan salinan muka hadapan Perjanjian Jual Beli / Kontrak
+                                Sewaan (yang mana berkaitan) sebagai bukti kelayakan menyertai persatuan.</p>
+
                             <div class="form-group">
                                 <label for="bukti_kelayakan">MUAT NAIK DOKUMEN *</label>
                                 <div class="file-upload-wrapper">
-                                    <input type="file" id="bukti_kelayakan" name="bukti_kelayakan" accept=".pdf,.jpg,.jpeg,.png">
+                                    <input type="file" id="bukti_kelayakan" name="bukti_kelayakan"
+                                        accept=".pdf,.jpg,.jpeg,.png">
                                     <div class="file-upload-label">
                                         <i class="fa-solid fa-cloud-arrow-up"></i>
                                         <p>Klik untuk memilih fail atau tarik dan lepas</p>
-                                        <span class="file-types">Format yang dibenarkan: PDF, JPG, PNG (Maksimum 5MB)</span>
+                                        <span class="file-types">Format yang dibenarkan: PDF, JPG, PNG (Maksimum
+                                            5MB)</span>
                                     </div>
                                     <div class="file-name-display"></div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group terms-checkbox">
                             <label>
-                                <input type="checkbox" name="terms">
+                                <input type="checkbox" name="terms" id="termsCheckbox" required>
                                 Saya bersetuju dengan syarat dan ketentuan pendaftaran
                             </label>
                         </div>
 
-                        <button type="submit" class="btn-submit">
-                            HANTAR PENDAFTARAN
+                        <button type="submit" class="btn-submit" id="submitBtn">
+                            <i class="fa-solid fa-paper-plane"></i> HANTAR PENDAFTARAN
                         </button>
                     </form>
+
+                    <div class="login-link">
+                        <p>Sudah mempunyai akaun? <a href="../login/login.html">Log masuk di sini</a></p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -194,13 +253,14 @@
                 <div class="success-icon">
                     <i class="fas fa-check-circle"></i>
                 </div>
-                <h2>PENDAFTARAN DITERIMA</h2>
+                <h2>PENDAFTARAN BERJAYA</h2>
                 <p>Terima kasih telah mendaftar sebagai ahli Persatuan Penduduk The Strata Bandar Puteri Bangi.</p>
                 <div class="success-message">
-                    <p><strong>Sila tunggu selama 5 hari bekerja untuk pengesahan permohonan anda.</strong></p>
+                    <p><strong>Akaun anda telah berjaya dicipta!</strong></p>
+                    <p>Sila tunggu selama 5 hari bekerja untuk pengesahan permohonan anda.</p>
                     <p>Pautan pembayaran yuran pendaftaran dan tahunan akan dihantar ke alamat e-mel anda.</p>
                 </div>
-                <button class="btn-submit" id="okBtn">OK</button>
+                <button class="btn-submit" id="okBtn">LOG MASUK SEKARANG</button>
             </div>
         </div>
     </div>
@@ -214,9 +274,11 @@
             </div>
             <div class="modal-body">
                 <ul class="terms-list">
-                    <li>TERBUKA KEPADA PEMILIK ATAU PENYEWA RUMAH DI THE STRATA BANDAR PUTERI BANGI YANG BERUMUR 18 TAHUN KE ATAS DAN WARGANEGARA MALAYSIA.</li>
+                    <li>TERBUKA KEPADA PEMILIK ATAU PENYEWA RUMAH DI THE STRATA BANDAR PUTERI BANGI YANG BERUMUR 18
+                        TAHUN KE ATAS DAN WARGANEGARA MALAYSIA.</li>
                     <li>MAKSIMUM DUA (2) KEAHLIAN DIBERIKAN BAGI SETIAP UNIT KEDIAMAN PADA SATU MASA.</li>
-                    <li>PERMOHONAN KEAHLIAN AKAN DILULUSKAN SELEPAS BAYARAN PENDAFTARAN DAN YURAN TAHUNAN DIJELASKAN.</li>
+                    <li>PERMOHONAN KEAHLIAN AKAN DILULUSKAN SELEPAS BAYARAN PENDAFTARAN DAN YURAN TAHUNAN DIJELASKAN.
+                    </li>
                     <li>MAKLUMAT PERIBADI YANG DIKUMPUL ADALAH UNTUK TUJUAN PENGESAHAN DAN KESELAMATAN SAHAJA.</li>
                 </ul>
 
@@ -227,7 +289,8 @@
 
                 <ul class="terms-list">
                     <li>SILA SEDIAKAN SALINAN PERJANJIAN JUAL BELI ATAU KONTRAK SEWAAN SEBAGAI BUKTI KELAYAKAN.</li>
-                    <li>BORANG YANG LENGKAP DAN SLIP BAYARAN BOLEH DISERAHKAN KEPADA KETUA LORONG ATAU PIHAK YANG DITAPAKAN.</li>
+                    <li>BORANG YANG LENGKAP DAN SLIP BAYARAN BOLEH DISERAHKAN KEPADA KETUA LORONG ATAU PIHAK YANG
+                        DITAPAKAN.</li>
                 </ul>
 
                 <button class="btn-submit" id="acceptTermsBtn">
@@ -237,8 +300,253 @@
         </div>
     </div>
 
-    <script src="../../partial/components.js"></script>
-    <script src="daftar_ahli.js"></script>
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p>Sila tunggu...</p>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase Config -->
+    <script src="../../js/firebase-config.js"></script>
+
+    <!-- Registration Script -->
+    <script>
+        // DOM Elements
+        const registrationForm = document.getElementById('registrationForm');
+        const messageBox = document.getElementById('messageBox');
+        const successModal = document.getElementById('successModal');
+        const termsModal = document.getElementById('termsModal');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const okBtn = document.getElementById('okBtn');
+        const openTermsBtn = document.getElementById('openTermsBtn');
+        const closeTermsBtn = document.getElementById('closeTermsBtn');
+        const acceptTermsBtn = document.getElementById('acceptTermsBtn');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Toggle password visibility
+        function togglePassword(inputId, iconId) {
+            const passwordField = document.getElementById(inputId);
+            const toggleIcon = document.getElementById(iconId);
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Show message
+        function showMessage(message, isError = true) {
+            messageBox.textContent = message;
+            messageBox.className = 'message-box ' + (isError ? 'error' : 'success');
+            messageBox.style.display = 'block';
+            messageBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Show/hide loading
+        function showLoading(show) {
+            loadingOverlay.style.display = show ? 'flex' : 'none';
+            submitBtn.disabled = show;
+        }
+
+        // Terms modal handlers
+        openTermsBtn.addEventListener('click', () => {
+            termsModal.style.display = 'flex';
+        });
+
+        closeTermsBtn.addEventListener('click', () => {
+            termsModal.style.display = 'none';
+        });
+
+        acceptTermsBtn.addEventListener('click', () => {
+            document.getElementById('termsCheckbox').checked = true;
+            termsModal.style.display = 'none';
+        });
+
+        // Add row functionality for tables
+        let isirumahRowCount = 1;
+        let kenderaanRowCount = 1;
+
+        document.getElementById('addIsirumahRow').addEventListener('click', function () {
+            isirumahRowCount++;
+            const tbody = document.getElementById('isirumahTableBody');
+            const newRow = document.createElement('tr');
+            newRow.className = 'table-row';
+            newRow.innerHTML = `
+                <td class="row-number">${isirumahRowCount}.</td>
+                <td><input type="text" name="isirumah_nama[]" class="isirumah-input" placeholder="Nama penuh"></td>
+                <td><input type="text" name="isirumah_status[]" class="isirumah-input" placeholder="Contoh: Isteri / Anak"></td>
+                <td><input type="text" name="isirumah_tel[]" class="isirumah-input" placeholder="012-3456789"></td>
+                <td class="action-cell">
+                    <button type="button" class="btn-remove-row" onclick="removeRow(this, 'isirumah')">✕</button>
+                </td>
+            `;
+            tbody.appendChild(newRow);
+        });
+
+        document.getElementById('addKenderaanRow').addEventListener('click', function () {
+            kenderaanRowCount++;
+            const tbody = document.getElementById('kenderaanTableBody');
+            const newRow = document.createElement('tr');
+            newRow.className = 'table-row';
+            newRow.innerHTML = `
+                <td class="row-number">${kenderaanRowCount}.</td>
+                <td><input type="text" name="kenderaan_jenis[]" class="kenderaan-input" placeholder="Contoh: Honda Civic 2020"></td>
+                <td><input type="text" name="kenderaan_no[]" class="kenderaan-input" placeholder="WXY 1234"></td>
+                <td><input type="text" name="kenderaan_pelekat[]" class="kenderaan-input" placeholder="Contoh: TSP001"></td>
+                <td class="action-cell">
+                    <button type="button" class="btn-remove-row" onclick="removeRow(this, 'kenderaan')">✕</button>
+                </td>
+            `;
+            tbody.appendChild(newRow);
+        });
+
+        function removeRow(btn, type) {
+            btn.closest('tr').remove();
+            // Update row numbers
+            const tbody = document.getElementById(type === 'isirumah' ? 'isirumahTableBody' : 'kenderaanTableBody');
+            const rows = tbody.querySelectorAll('tr');
+            rows.forEach((row, index) => {
+                row.querySelector('.row-number').textContent = (index + 1) + '.';
+            });
+            if (type === 'isirumah') isirumahRowCount = rows.length;
+            else kenderaanRowCount = rows.length;
+        }
+
+        // File upload display
+        document.getElementById('bukti_kelayakan').addEventListener('change', function (e) {
+            const fileName = e.target.files[0]?.name;
+            const display = document.querySelector('.file-name-display');
+            if (fileName) {
+                display.innerHTML = `<i class="fa-solid fa-file"></i> ${fileName}`;
+                display.style.display = 'block';
+            }
+        });
+
+        // Collect household data
+        function getIsirumahData() {
+            const rows = document.querySelectorAll('#isirumahTableBody tr');
+            const data = [];
+            rows.forEach(row => {
+                const nama = row.querySelector('input[name="isirumah_nama[]"]')?.value;
+                const status = row.querySelector('input[name="isirumah_status[]"]')?.value;
+                const tel = row.querySelector('input[name="isirumah_tel[]"]')?.value;
+                if (nama) {
+                    data.push({ nama, status, tel });
+                }
+            });
+            return data;
+        }
+
+        // Collect vehicle data
+        function getKenderaanData() {
+            const rows = document.querySelectorAll('#kenderaanTableBody tr');
+            const data = [];
+            rows.forEach(row => {
+                const jenis = row.querySelector('input[name="kenderaan_jenis[]"]')?.value;
+                const no = row.querySelector('input[name="kenderaan_no[]"]')?.value;
+                const pelekat = row.querySelector('input[name="kenderaan_pelekat[]"]')?.value;
+                if (jenis) {
+                    data.push({ jenis, no, pelekat });
+                }
+            });
+            return data;
+        }
+
+        // Form submission
+        registrationForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Get form values
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const nama = document.getElementById('nama').value.trim();
+            const kp = document.getElementById('kp').value.trim();
+            const bangsa = document.getElementById('bangsa').value.trim();
+            const noRumah = document.getElementById('no_rumah').value.trim();
+            const jalanPuteri = document.getElementById('jalan_puteri').value.trim();
+            const hp = document.getElementById('hp').value.trim();
+            const termsChecked = document.getElementById('termsCheckbox').checked;
+
+            // Validation
+            if (!email || !password || !nama || !kp) {
+                showMessage('Sila lengkapkan semua ruangan yang diperlukan.');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showMessage('Kata laluan tidak sepadan. Sila cuba lagi.');
+                return;
+            }
+
+            if (password.length < 6) {
+                showMessage('Kata laluan mestilah sekurang-kurangnya 6 aksara.');
+                return;
+            }
+
+            if (!termsChecked) {
+                showMessage('Sila bersetuju dengan syarat dan ketentuan pendaftaran.');
+                return;
+            }
+
+            // Get status ahli
+            const statusAhli = [];
+            document.querySelectorAll('input[name="status_ahli"]:checked').forEach(cb => {
+                statusAhli.push(cb.value);
+            });
+
+            showLoading(true);
+
+            // Register user with Firebase
+            const userData = {
+                nama: nama,
+                kp: kp,
+                bangsa: bangsa,
+                alamat: {
+                    noRumah: noRumah,
+                    jalanPuteri: jalanPuteri
+                },
+                hp: hp,
+                statusAhli: statusAhli,
+                isirumah: getIsirumahData(),
+                kenderaan: getKenderaanData(),
+                status: 'pending', // Pending approval
+                verified: false
+            };
+
+            const result = await registerUser(email, password, userData);
+
+            showLoading(false);
+
+            if (result.success) {
+                successModal.style.display = 'flex';
+            } else {
+                showMessage(result.error);
+            }
+        });
+
+        // OK button - redirect to login
+        okBtn.addEventListener('click', () => {
+            window.location.href = '../login/login.html';
+        });
+
+        // Close modals on outside click
+        window.addEventListener('click', (e) => {
+            if (e.target === termsModal) {
+                termsModal.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 
 </html>

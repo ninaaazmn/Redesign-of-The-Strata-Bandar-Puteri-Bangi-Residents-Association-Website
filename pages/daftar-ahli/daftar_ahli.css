@@ -116,7 +116,7 @@ main {
     letter-spacing: 0.5px;
 }
 
-.registration-content > p {
+.registration-content>p {
     color: var(--text-grey);
     font-size: 1rem;
     line-height: 1.6;
@@ -449,6 +449,139 @@ main {
     box-shadow: 0 4px 12px rgba(125, 28, 58, 0.3);
 }
 
+.btn-submit:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Message Box */
+.message-box {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.message-box.error {
+    background: #ffe6e6;
+    color: #c00;
+    border: 1px solid #ffcccc;
+}
+
+.message-box.success {
+    background: #e6ffe6;
+    color: #060;
+    border: 1px solid #ccffcc;
+}
+
+/* Account Section */
+.account-section {
+    background: linear-gradient(135deg, #f8f0f2 0%, #faf8f9 100%);
+    border: 2px solid var(--primary-color);
+}
+
+.account-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Password Wrapper */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input {
+    padding-right: 45px;
+    width: 100%;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: var(--primary-color);
+}
+
+/* Form Hint */
+.form-hint {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 5px;
+}
+
+/* Terms Checkbox */
+.terms-checkbox {
+    margin-top: 10px;
+}
+
+/* Login Link */
+.login-link {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e5e5;
+}
+
+.login-link a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-overlay p {
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
 /* Modal Styles */
 .modal {
     display: none;
@@ -539,7 +672,7 @@ main {
     text-transform: uppercase;
 }
 
-.success-body > p {
+.success-body>p {
     color: var(--text-dark);
     font-size: 0.95rem;
     margin-bottom: 12px;
@@ -594,6 +727,7 @@ main {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
