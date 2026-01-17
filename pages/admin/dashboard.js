@@ -48,6 +48,9 @@ function initDashboard() {
     loadPosts();
     loadDocuments();
     setupEventListeners();
+
+    // Show dashboard section by default
+    switchSection('dashboard');
 }
 
 function setupEventListeners() {

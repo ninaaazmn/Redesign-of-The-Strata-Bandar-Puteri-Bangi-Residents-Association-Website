@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - The Strata</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin_login.css">
+</head>
+
+<body>
+    <main>
+        <!-- Logo Header -->
+        <div class="header-logo">
+            <a href="../../index.html">
+                <img src="../../partial/persatuan-penduduk-the-strata-bandar-puteri-bangi.png" alt="The Strata Logo">
+            </a>
+        </div>
+
+        <!-- Admin Login Section -->
+        <section class="login-section">
+            <div class="container">
+                <div class="login-content">
+                    <div class="admin-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>PANEL PENTADBIR</span>
+                    </div>
+                    <h2>LOG MASUK ADMIN</h2>
+
+                    <!-- Error/Success Message -->
+                    <div id="messageBox" class="message-box" style="display: none;"></div>
+
+                    <form class="login-form" id="loginForm">
+                        <div class="form-group">
+                            <label for="email">E-MAIL</label>
+                            <input type="email" id="email" name="email" placeholder="Masukkan e-mel admin" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">KATA LALUAN</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="password" name="password" placeholder="Masukkan kata laluan"
+                                    required>
+                                <button type="button" class="toggle-password" onclick="togglePassword()">
+                                    <i class="fas fa-eye" id="toggleIcon"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-submit" id="submitBtn">
+                            <i class="fas fa-sign-in-alt"></i> LOG MASUK
+                        </button>
+                    </form>
+
+                    <div class="login-footer">
+                        <p><a href="../login/login.html"><i class="fas fa-arrow-left"></i> Kembali ke log masuk
+                                pengguna</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-body success-body">
+                <div class="success-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2>SELAMAT DATANG</h2>
+                <p>Anda telah log masuk sebagai Pentadbir</p>
+                <p id="adminName" style="font-weight: 600; color: #7D1C3A;"></p>
+                <button class="btn-submit" id="okBtn">MASUK KE DASHBOARD</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p>Mengesahkan...</p>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase Config -->
+    <script src="../../js/firebase-config.js"></script>
+
+    <!-- Admin Login Script -->
+    <script>
+        // DOM Elements
+        const loginForm = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const submitBtn = document.getElementById('submitBtn');
+        const messageBox = document.getElementById('messageBox');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const successModal = document.getElementById('successModal');
+        const okBtn = document.getElementById('okBtn');
+
+        // Check if already logged in as admin
+        onAuthStateChange(async (user) => {
+            if (user) {
+                const userData = await getUserData(user.uid);
+                if (userData.success && userData.data.role === 'admin') {
+                    window.location.href = 'dashboard.html';
+                }
+            }
+        });
+
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Show message
+        function showMessage(message, isError = true) {
+            messageBox.textContent = message;
+            messageBox.className = 'message-box ' + (isError ? 'error' : 'success');
+            messageBox.style.display = 'block';
+        }
+
+        // Show/hide loading
+        function showLoading(show) {
+            loadingOverlay.style.display = show ? 'flex' : 'none';
+            submitBtn.disabled = show;
+        }
+
+        // Login form submission
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+
+            if (!email || !password) {
+                showMessage('Sila masukkan e-mel dan kata laluan.');
+                return;
+            }
+
+            showLoading(true);
+
+            try {
+                // Login user
+                const result = await loginUser(email, password);
+
+                if (result.success) {
+                    // Check if user is admin
+                    const userData = await getUserData(result.user.uid);
+
+                    if (userData.success && userData.data.role === 'admin') {
+                        showLoading(false);
+                        document.getElementById('adminName').textContent = userData.data.nama || 'Admin';
+                        successModal.style.display = 'flex';
+                    } else {
+                        // Not an admin, logout and show error
+                        await logoutUser();
+                        showLoading(false);
+                        showMessage('Akses ditolak. Anda bukan pentadbir.');
+                    }
+                } else {
+                    showLoading(false);
+                    showMessage(result.error);
+                }
+            } catch (error) {
+                showLoading(false);
+                showMessage('Ralat berlaku. Sila cuba lagi.');
+            }
+        });
+
+        // OK button - redirect to dashboard
+        okBtn.addEventListener('click', () => {
+            window.location.href = 'dashboard.html';
+        });
+
+        // Close modal on outside click
+        window.addEventListener('click', (e) => {
+            if (e.target === successModal) {
+                // Don't close success modal by clicking outside
+            }
+        });
+    </script>
+</body>
+
+</html>
