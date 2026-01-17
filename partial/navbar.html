@@ -11,8 +11,8 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="../Utama/utama.html">Utama</a></li>
             <li class="dropdown-item">
-                <a href="../tentang-kami/tentang_kami.html" class="active">Tentang Kami<i
-                        class="fa-solid fa-chevron-down" style="font-size: 0.7em;"></i></a>
+                <a href="../tentang-kami/tentang_kami.html">Tentang Kami<i class="fa-solid fa-chevron-down"
+                        style="font-size: 0.7em;"></i></a>
                 <ul class="dropdown-menu">
                     <li><a href="../tentang-kami/tentang_kami.html#maklumat">Maklumat Persatuan</a></li>
                     <li><a href="../tentang-kami/tentang_kami.html#objektif">Objektif Kami</a></li>
@@ -38,10 +38,11 @@
             <li><a href="../hubungi kami/hubungi_kami.html">Hubungi Kami</a></li>
             <li><a href="../faq/faq.html">FAQ</a></li>
 
-            <!-- Login Link (shown when NOT logged in) -->
-            <li id="loginLink"><a href="../login/login.html">Log Masuk</a></li>
-
+            <!-- Search Button (Always Visible) -->
             <li><button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button></li>
+
+            <!-- Login Link (shown when NOT logged in) -->
+            <li id="loginLink"><a href="../login/login.html" class="btn-login">Log Masuk</a></li>
 
             <!-- User Profile Dropdown (shown when logged in) -->
             <li class="user-profile-dropdown" id="userProfileDropdown" style="display: none;">
@@ -50,12 +51,11 @@
                 </button>
                 <ul class="user-dropdown-menu" id="userDropdownMenu">
                     <li class="user-dropdown-header">
-                        <span class="header-label">JagaApp 2.0</span>
                         <span id="userDisplayName">Profile</span>
                     </li>
-                    <li><a href="../pembayaran/pembayaran.html"><i class="fa-regular fa-shield"></i> Pembayaran
+                    <li><a href="../kutipan sekuriti/kutipan_sekuriti.html"><i class="fa-solid fa-shield-halved"></i>
+                            Kutipan
                             Sekuriti</a></li>
-                    <li><a href="#"><i class="fa-solid fa-globe"></i> Bahasa</a></li>
                     <li class="divider"></li>
                     <li><a href="#" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Log Keluar</a></li>
                 </ul>
@@ -63,77 +63,3 @@
         </ul>
     </div>
 </nav>
-
-<script>
-    // Navbar Show/Hide on Scroll
-    let lastScrollTop = 0;
-    const navbar = document.querySelector('.navbar');
-    const topBar = document.querySelector('.top-bar');
-
-    window.addEventListener('scroll', () => {
-        let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-        // Show navbar if at top of page (within 100px) or scrolling up
-        if (currentScroll <= 100) {
-            navbar.style.transform = 'translateY(0)';
-            if (topBar) topBar.style.transform = 'translateY(0)';
-        } else if (currentScroll < lastScrollTop) {
-            // Scrolling UP - show navbar
-            navbar.style.transform = 'translateY(0)';
-        } else {
-            // Scrolling DOWN - hide navbar
-            navbar.style.transform = 'translateY(-100%)';
-        }
-
-        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-    });
-
-    // =========================================
-    // USER AUTHENTICATION STATE
-    // =========================================
-    // Check if Firebase is loaded (some pages may not have it)
-    document.addEventListener('DOMContentLoaded', () => {
-        // Wait for Firebase to be ready
-        if (typeof firebase !== 'undefined' && typeof onAuthStateChange === 'function') {
-            initAuthUI();
-        }
-    });
-
-    function initAuthUI() {
-        const loginLink = document.getElementById('loginLink');
-        const userProfileDropdown = document.getElementById('userProfileDropdown');
-        const userDisplayName = document.getElementById('userDisplayName');
-        const logoutBtn = document.getElementById('logoutBtn');
-
-        onAuthStateChange(async (user) => {
-            if (user) {
-                // User is logged in - show profile dropdown, hide login link
-                if (loginLink) loginLink.style.display = 'none';
-                if (userProfileDropdown) userProfileDropdown.style.display = 'block';
-
-                // Get user data and display name
-                if (typeof getUserData === 'function') {
-                    const userData = await getUserData(user.uid);
-                    if (userData.success && userDisplayName) {
-                        userDisplayName.textContent = userData.data.nama || user.email || 'Pengguna';
-                    }
-                }
-            } else {
-                // User is NOT logged in - show login link, hide profile dropdown
-                if (loginLink) loginLink.style.display = 'block';
-                if (userProfileDropdown) userProfileDropdown.style.display = 'none';
-            }
-        });
-
-        // Logout button handler
-        if (logoutBtn) {
-            logoutBtn.addEventListener('click', async (e) => {
-                e.preventDefault();
-                if (typeof logoutUser === 'function') {
-                    await logoutUser();
-                    window.location.href = '../login/login.html';
-                }
-            });
-        }
-    }
-</script>

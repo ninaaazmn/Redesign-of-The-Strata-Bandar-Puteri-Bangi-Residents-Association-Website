@@ -26,6 +26,14 @@
             background-color: #f8f9fa;
             color: #333;
             line-height: 1.6;
+            padding-top: 90px;
+            /* Space for fixed navbar */
+            overflow-x: hidden;
+        }
+
+        html {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         .container {
@@ -698,49 +706,8 @@
 
 <body data-active-page="sistem_aduan">
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="../../index.html" class="logo">
-                <img src="../../partial/persatuan-penduduk-the-strata-bandar-puteri-bangi.png" alt="The Strata Logo"
-                    style="max-height: 60px; width: auto;">
-            </a>
-            <div class="mobile-menu-btn">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="../Utama/utama.html">Utama</a></li>
-                <li class="dropdown-item">
-                    <a href="../tentang-kami/tentang_kami.html">Tentang Kami <i class="fa-solid fa-chevron-down"
-                            style="font-size: 0.7em;"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="../tentang-kami/tentang_kami.html#maklumat">Maklumat Persatuan</a></li>
-                        <li><a href="../tentang-kami/tentang_kami.html#objektif">Objektif Kami</a></li>
-                        <li><a href="../tentang-kami/tentang_kami.html#ahli-jk">Ahli Jawatankuasa 24/26</a></li>
-                        <li><a href="../tentang-kami/tentang_kami.html#mengapa-penting">Mengapa Persatuan Penduduk
-                                Penting?</a></li>
-                        <li><a href="../tentang-kami/tentang_kami.html#daftar-ahli">Mengapa Perlu Mendaftar Sebagai
-                                Ahli?</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown-item">
-                    <a href="#" class="active">Panduan Penduduk <i class="fa-solid fa-chevron-down"
-                            style="font-size: 0.7em;"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="panduan_majlis.html">Panduan Majlis</a></li>
-                        <li><a href="permohonan_kad_akses & rfid.html">Permohonan Kad Akses & RFID</a></li>
-                        <li><a href="direktori_kecemasan.html">Direktori Kecemasan</a></li>
-                        <li><a href="sistem_aduan.html" class="active" style="font-weight: 700; color: #8B1538;">Sistem
-                                Aduan</a></li>
-                    </ul>
-                </li>
-                <li><a href="../Pengumuman/pengumuman.html">Pengumuman</a></li>
-                <li><a href="../hubungi kami/hubungi_kami.html">Hubungi Kami</a></li>
-                <li><a href="../faq/faq.html">FAQ</a></li>
-                <li><a href="../login/login.html">Log Masuk</a></li>
-                <li><button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
 
     <!-- Hero Section -->
     <header class="hero">
@@ -789,10 +756,10 @@
                         <li>Masalah kebersihan kawasan awam</li>
                     </ul>
                     <div class="card-footer">
-                        <a href="#hantar" class="category-action">
-                            Hantar Aduan <i class="fa-solid fa-arrow-right"></i>
+                        <a href="#hantar" class="category-action" style="width: 100%; justify-content: center;">
+                            <i class="fa-solid fa-user-tie"></i> Lapor ke Pengurusan <i
+                                class="fa-solid fa-arrow-right"></i>
                         </a>
-                        <span class="action-label"><i class="fa-solid fa-user-tie"></i> Pengurusan</span>
                     </div>
                 </div>
 
@@ -809,10 +776,10 @@
                         <li>Pintu / tingkap bermasalah</li>
                     </ul>
                     <div class="card-footer">
-                        <a href="#hantar" class="category-action">
-                            Hantar Aduan <i class="fa-solid fa-arrow-right"></i>
+                        <a href="#hantar" class="category-action" style="width: 100%; justify-content: center;">
+                            <i class="fa-solid fa-house-user"></i> Lapor ke Pemilik/Pemaju <i
+                                class="fa-solid fa-arrow-right"></i>
                         </a>
-                        <span class="action-label"><i class="fa-solid fa-house-user"></i> Pemilik/Pemaju</span>
                     </div>
                 </div>
 
@@ -829,10 +796,10 @@
                         <li>Masalah merokok / bau busuk</li>
                     </ul>
                     <div class="card-footer">
-                        <a href="#hantar" class="category-action">
-                            Hantar Aduan <i class="fa-solid fa-arrow-right"></i>
+                        <a href="#hantar" class="category-action" style="width: 100%; justify-content: center;">
+                            <i class="fa-solid fa-shield-halved"></i> Lapor ke Polis / Pengurusan <i
+                                class="fa-solid fa-arrow-right"></i>
                         </a>
-                        <span class="action-label"><i class="fa-solid fa-shield-halved"></i> Polis/Pengurusan</span>
                     </div>
                 </div>
 
@@ -849,10 +816,9 @@
                         <li>Bahaya keselamatan struktur</li>
                     </ul>
                     <div class="card-footer">
-                        <a href="#hantar" class="category-action">
-                            Hantar Aduan <i class="fa-solid fa-arrow-right"></i>
+                        <a href="#hantar" class="category-action" style="width: 100%; justify-content: center;">
+                            <i class="fa-solid fa-hard-hat"></i> Lapor ke Pemaju <i class="fa-solid fa-arrow-right"></i>
                         </a>
-                        <span class="action-label"><i class="fa-solid fa-hard-hat"></i> Pemaju</span>
                     </div>
                 </div>
 
@@ -909,7 +875,7 @@
                 <h2 class="cta-title">Hantar Aduan Anda</h2>
                 <p class="cta-subtitle">Pilih cara yang paling mudah untuk anda</p>
                 <div class="cta-links">
-                    <a href="https://forms.google.com" target="_blank" class="cta-link primary">
+                    <a href="../hubungi kami/hubungi_kami.html" class="cta-link primary">
                         <i class="fa-solid fa-file-lines"></i>
                         Isi Borang Online
                         <i class="fa-solid fa-arrow-right"></i>
@@ -925,32 +891,18 @@
     </section>
 
     <!-- ==================== FOOTER ==================== -->
-    <footer class="footer">
-        <div class="container footer-grid">
-            <div class="footer-item">
-                <i class="icon fa-regular fa-envelope"></i>
-                <h3>EMAIL KAMI</h3>
-                <p>pptsbpbangi@gmail.com</p>
-            </div>
-            <div class="footer-separator"></div>
-            <div class="footer-item">
-                <i class="icon fa-solid fa-phone-volume"></i>
-                <h3>HUBUNGI KAMI</h3>
-                <p>03 - 4567 8980</p>
-            </div>
-            <div class="footer-separator"></div>
-            <div class="footer-item">
-                <i class="icon fa-solid fa-globe"></i>
-                <h3>LAMAN SESAWANG KAMI</h3>
-                <p>https://thestrata.com.my</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <p>&copy; 2026 Sofeah, Rai, Nina, Maya. Hak Cipta Terpelihara.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+
+    <!-- Components Script -->
+    <script src="../../partial/components.js"></script>
 
     <!-- Scroll to Top Button -->
     <button id="scrollToTopBtn" class="scroll-to-top">
@@ -958,11 +910,7 @@
     </button>
 
     <script>
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function () {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('show');
-        });
+
 
         // Scroll to Top
         const scrollToTopBtn = document.getElementById('scrollToTopBtn');
