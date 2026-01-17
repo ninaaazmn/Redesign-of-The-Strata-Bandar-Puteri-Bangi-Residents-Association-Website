@@ -275,6 +275,15 @@ body {
     color: var(--info-color);
 }
 
+.stat-card.messages {
+    border-left-color: #9b59b6;
+}
+
+.stat-card.messages .stat-icon {
+    background: rgba(155, 89, 182, 0.15);
+    color: #9b59b6;
+}
+
 .stat-info h3 {
     font-size: 2rem;
     font-weight: 700;
@@ -602,6 +611,7 @@ body {
     margin-bottom: 15px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -1284,4 +1294,24 @@ body {
     .content-section {
         padding: 20px 15px;
     }
+}
+
+/* Dashboard Widgets */
+.dashboard-widgets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .dashboard-widgets {
+        grid-template-columns: 1fr;
+    }
+}
+
+.truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

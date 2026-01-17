@@ -27,7 +27,8 @@ onAuthStateChange(async (user) => {
     if (user) {
         const userData = await getUserData(user.uid);
         if (userData.success && userData.data.role === 'admin') {
-            currentAdmin = { ...user, ...userData.data };
+            // Explicitly set uid because spreading firebase user object doesn't copy it
+            currentAdmin = { ...userData.data, uid: user.uid };
             document.getElementById('adminName').textContent = userData.data.nama || 'Admin';
             initDashboard();
         } else {
@@ -127,6 +128,9 @@ async function loadStats() {
     try {
         const usersSnapshot = await db.collection('users').get();
         const postsSnapshot = await db.collection('posts').get();
+        const messagesSnapshot = await db.collection('contact_messages')
+            .where('status', '==', 'unread')
+            .get();
 
         let pending = 0, approved = 0, rejected = 0;
 
@@ -143,6 +147,7 @@ async function loadStats() {
         document.getElementById('approvedCount').textContent = approved;
         document.getElementById('rejectedCount').textContent = rejected;
         document.getElementById('postsCount').textContent = postsSnapshot.size;
+        document.getElementById('messagesCount').textContent = messagesSnapshot.size;
     } catch (error) {
         console.error('Error loading stats:', error);
     }
@@ -295,7 +300,7 @@ async function approveUser(userId) {
                 loadStats();
                 loadUsers();
             } catch (error) {
-                showToast('Ralat berlaku', true);
+                showToast('Ralat: ' + error.message, true);
                 console.error(error);
             }
             showLoading(false);
@@ -321,7 +326,7 @@ async function rejectUser(userId) {
                 loadStats();
                 loadUsers();
             } catch (error) {
-                showToast('Ralat berlaku', true);
+                showToast('Ralat: ' + error.message, true);
                 console.error(error);
             }
             showLoading(false);
@@ -566,7 +571,7 @@ async function handlePostSubmit(e) {
         loadPosts();
         loadStats();
     } catch (error) {
-        showToast('Ralat berlaku', true);
+        showToast('Ralat: ' + error.message, true);
         console.error(error);
     }
 
@@ -586,7 +591,7 @@ async function deletePost(postId) {
                 loadPosts();
                 loadStats();
             } catch (error) {
-                showToast('Ralat berlaku', true);
+                showToast('Ralat: ' + error.message, true);
                 console.error(error);
             }
             showLoading(false);
@@ -733,6 +738,7 @@ async function loadMessages() {
         }));
 
         displayMessages(allMessages);
+        displayRecentMessagesWidget(allMessages.slice(0, 5));
     } catch (error) {
         console.error('Error loading messages:', error);
         const container = document.getElementById('messagesList');
@@ -792,6 +798,42 @@ function displayMessages(messages) {
                     <i class="fas fa-trash"></i> Padam
                 </button>
             </div>
+        </div>
+    `).join('');
+}
+
+function displayRecentMessagesWidget(messages) {
+    const container = document.getElementById('recentMessagesWidget');
+    if (!container) return;
+
+    if (messages.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-inbox"></i>
+                <p>Tiada mesej terkini</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = messages.map(msg => `
+        <div class="recent-item" style="cursor: pointer;" onclick="switchSection('messages')">
+            <div class="recent-item-info">
+                <div class="recent-item-avatar" style="background: ${msg.status === 'read' ? 'var(--primary-color)' : 'var(--warning-color)'}">
+                    <i class="fas fa-${msg.status === 'read' ? 'envelope-open' : 'envelope'}"></i>
+                </div>
+                <div class="recent-item-details">
+                    <h4>${msg.nama || 'Pengunjung'}</h4>
+                    <div class="truncate-text" style="max-width: 250px; font-size: 0.8rem; color: var(--text-muted);">
+                        <span style="font-weight: 600; color: var(--text-dark);">${msg.subjek || 'Tiada Subjek'}</span>
+                        <span style="margin: 0 5px;">-</span>
+                        <span>${msg.mesej ? msg.mesej.substring(0, 50) + (msg.mesej.length > 50 ? '...' : '') : ''}</span>
+                    </div>
+                </div>
+            </div>
+            <span class="recent-item-status status-${msg.status || 'unread'}">
+                ${msg.status === 'read' ? 'Dibaca' : 'Baru'}
+            </span>
         </div>
     `).join('');
 }
