@@ -712,6 +712,175 @@ body {
     background: var(--primary-dark);
 }
 
+/* Messages List Styles */
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--info-color);
+    transition: all 0.3s ease;
+}
+
+.message-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.message-card.unread {
+    border-left-color: var(--warning-color);
+    background: #fffef8;
+}
+
+.message-card.read {
+    border-left-color: var(--success-color);
+    opacity: 0.9;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.message-sender {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.message-sender h4 {
+    font-size: 1rem;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.message-sender a {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.message-sender a:hover {
+    text-decoration: underline;
+}
+
+.message-sender .phone {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.message-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+.message-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.message-status {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.message-status.unread {
+    background: rgba(255, 193, 7, 0.15);
+    color: #b58900;
+}
+
+.message-status.read {
+    background: rgba(40, 167, 69, 0.15);
+    color: var(--success-color);
+}
+
+.message-subject {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.message-content {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.message-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-mark-read {
+    padding: 8px 15px;
+    background: rgba(40, 167, 69, 0.15);
+    color: var(--success-color);
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-mark-read:hover {
+    background: var(--success-color);
+    color: #fff;
+}
+
+.btn-delete-message {
+    padding: 8px 15px;
+    background: rgba(220, 53, 69, 0.15);
+    color: var(--danger-color);
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-delete-message:hover {
+    background: var(--danger-color);
+    color: #fff;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.3;
+}
+
+.empty-state p {
+    font-size: 1rem;
+}
+
 /* Buttons */
 .btn-primary {
     padding: 12px 24px;

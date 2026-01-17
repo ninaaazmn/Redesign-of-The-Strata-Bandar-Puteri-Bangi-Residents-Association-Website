@@ -37,6 +37,10 @@
                 <i class="fas fa-file-alt"></i>
                 <span>Dokumen</span>
             </a>
+            <a href="#" class="nav-item" data-section="messages">
+                <i class="fas fa-envelope"></i>
+                <span>Mesej</span>
+            </a>
         </nav>
 
         <div class="sidebar-footer">
@@ -170,6 +174,24 @@
             </div>
 
             <div class="documents-grid" id="documentsGrid">
+                <!-- Filled by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Messages Section -->
+        <section class="content-section" id="section-messages">
+            <div class="section-header">
+                <h2><i class="fas fa-envelope"></i> Mesej Hubungi Kami</h2>
+                <div class="filter-group">
+                    <select id="messageStatusFilter">
+                        <option value="all">Semua</option>
+                        <option value="unread">Belum Dibaca</option>
+                        <option value="read">Sudah Dibaca</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="messages-list" id="messagesList">
                 <!-- Filled by JavaScript -->
             </div>
         </section>

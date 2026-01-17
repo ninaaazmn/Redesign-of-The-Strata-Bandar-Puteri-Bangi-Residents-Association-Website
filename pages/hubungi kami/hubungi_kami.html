@@ -60,7 +60,8 @@
 
                             <div class="form-group">
                                 <label for="message">Mesej</label>
-                                <textarea id="message" name="message" required rows="5" placeholder="Masukkan mesej anda di sini..."></textarea>
+                                <textarea id="message" name="message" required rows="5"
+                                    placeholder="Masukkan mesej anda di sini..."></textarea>
                             </div>
 
                             <button type="submit" class="btn-submit">HANTAR</button>
@@ -70,7 +71,7 @@
                     <!-- Contact Information -->
                     <div class="contact-info-box">
                         <h2>Maklumat Hubungan</h2>
-                        
+
                         <div class="info-item">
                             <div class="info-icon">
                                 <i class="fa-solid fa-globe"></i>
@@ -107,7 +108,8 @@
                             </div>
                             <div class="info-content">
                                 <h3>Alamat</h3>
-                                <p>Pejabat Pengurusan JMB,<br>The Strata Bandar Puteri Bangi,<br>43650 Bandar Puteri Bangi,<br>Selangor, Malaysia</p>
+                                <p>Pejabat Pengurusan JMB,<br>The Strata Bandar Puteri Bangi,<br>43650 Bandar Puteri
+                                    Bangi,<br>Selangor, Malaysia</p>
                             </div>
                         </div>
 
@@ -126,16 +128,20 @@
         <section class="feedback-section">
             <div class="container">
                 <h2 class="section-title">Borang Aduan / Cadangan / Penghargaan</h2>
-                <p class="feedback-subtitle">Kami mengalu-alukan setiap aduan, cadangan, dan penghargaan daripada anda untuk meningkatkan perkhidmatan kami.</p>
-                
+                <p class="feedback-subtitle">Kami mengalu-alukan setiap aduan, cadangan, dan penghargaan daripada anda
+                    untuk meningkatkan perkhidmatan kami.</p>
+
                 <div class="feedback-content">
                     <div class="feedback-text">
                         <h3>Hantar Maklum Balas Anda</h3>
-                        <p>Jika anda mempunyai sebarang aduan mengenai pengurusan, cadangan untuk penambahbaikan, atau ingin memberikan penghargaan kepada pasukan pengurusan kami, sila imbas kod QR di sebelah atau klik butang di bawah untuk mengisi borang.</p>
-                        <p>Maklum balas anda adalah berharga dan akan membantu kami memberikan perkhidmatan yang lebih baik kepada semua penduduk.</p>
+                        <p>Jika anda mempunyai sebarang aduan mengenai pengurusan, cadangan untuk penambahbaikan, atau
+                            ingin memberikan penghargaan kepada pasukan pengurusan kami, sila imbas kod QR di sebelah
+                            atau klik butang di bawah untuk mengisi borang.</p>
+                        <p>Maklum balas anda adalah berharga dan akan membantu kami memberikan perkhidmatan yang lebih
+                            baik kepada semua penduduk.</p>
                         <a href="#" class="btn-feedback">BUKA BORANG ADUAN</a>
                     </div>
-                    
+
                     <div class="feedback-qr">
                         <div class="qr-box">
                             <a href="#" class="qr-link" id="qrLink">
@@ -152,7 +158,10 @@
             <div class="container">
                 <h2 class="section-title">Lokasi Kami</h2>
                 <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3985.0242517597436!2d101.60315!3d2.71756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cdca5b3d0d0001%3A0x0!2sThe%20Strata%20Bandar%20Puteri%20Bangi!5e0!3m2!1sen!2smy!4v1234567890" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3985.0242517597436!2d101.60315!3d2.71756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cdca5b3d0d0001%3A0x0!2sThe%20Strata%20Bandar%20Puteri%20Bangi!5e0!3m2!1sen!2smy!4v1234567890"
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </section>
@@ -160,6 +169,12 @@
 
     <!-- Footer Placeholder -->
     <div id="footer-placeholder"></div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
 
     <script src="../../partial/components.js"></script>
     <script src="hubungi_kami.js"></script>

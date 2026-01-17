@@ -47,6 +47,7 @@ function initDashboard() {
     loadUsers();
     loadPosts();
     loadDocuments();
+    loadMessages();
     setupEventListeners();
 
     // Show dashboard section by default
@@ -86,6 +87,12 @@ function setupEventListeners() {
 
     // Post form
     document.getElementById('postForm').addEventListener('submit', handlePostSubmit);
+
+    // Message filter
+    const messageFilter = document.getElementById('messageStatusFilter');
+    if (messageFilter) {
+        messageFilter.addEventListener('change', filterMessages);
+    }
 }
 
 function switchSection(sectionName) {
@@ -107,7 +114,8 @@ function switchSection(sectionName) {
         'dashboard': 'Dashboard',
         'users': 'Pengurusan Ahli',
         'posts': 'Pengumuman',
-        'documents': 'Dokumen'
+        'documents': 'Dokumen',
+        'messages': 'Mesej Hubungi Kami'
     };
     pageTitle.textContent = titles[sectionName] || 'Dashboard';
 }
@@ -706,6 +714,129 @@ function getFileIcon(fileType) {
     if (fileType.includes('pdf')) return 'file-pdf';
     if (fileType.includes('image')) return 'file-image';
     return 'file-alt';
+}
+
+// ============================================
+// MESSAGES MANAGEMENT
+// ============================================
+let allMessages = [];
+
+async function loadMessages() {
+    try {
+        const snapshot = await db.collection('contact_messages')
+            .orderBy('submittedAt', 'desc')
+            .get();
+
+        allMessages = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+
+        displayMessages(allMessages);
+    } catch (error) {
+        console.error('Error loading messages:', error);
+        const container = document.getElementById('messagesList');
+        if (container) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Ralat memuatkan mesej</p>
+                </div>
+            `;
+        }
+    }
+}
+
+function displayMessages(messages) {
+    const container = document.getElementById('messagesList');
+    if (!container) return;
+
+    if (messages.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-envelope-open"></i>
+                <p>Tiada mesej</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = messages.map(msg => `
+        <div class="message-card ${msg.status || 'unread'}" data-id="${msg.id}">
+            <div class="message-header">
+                <div class="message-sender">
+                    <h4>${msg.nama || 'Tiada Nama'}</h4>
+                    <a href="mailto:${msg.email}">${msg.email}</a>
+                    ${msg.telefon ? `<span class="phone"><i class="fas fa-phone"></i> ${msg.telefon}</span>` : ''}
+                </div>
+                <div class="message-meta">
+                    <span class="message-date">${formatDate(msg.submittedAt || msg.createdAt)}</span>
+                    <span class="message-status ${msg.status || 'unread'}">
+                        ${msg.status === 'read' ? 'Dibaca' : 'Belum Dibaca'}
+                    </span>
+                </div>
+            </div>
+            <div class="message-subject">
+                <i class="fas fa-tag"></i> ${msg.subjek || 'Tiada Subjek'}
+            </div>
+            <div class="message-content">
+                ${msg.mesej || ''}
+            </div>
+            <div class="message-actions">
+                ${msg.status !== 'read'
+            ? `<button class="btn-mark-read" onclick="markMessageAsRead('${msg.id}')">
+                        <i class="fas fa-check"></i> Tandai Dibaca
+                       </button>`
+            : ''}
+                <button class="btn-delete-message" onclick="deleteMessage('${msg.id}')">
+                    <i class="fas fa-trash"></i> Padam
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function filterMessages() {
+    const status = document.getElementById('messageStatusFilter').value;
+
+    let filtered = allMessages;
+    if (status !== 'all') {
+        filtered = allMessages.filter(msg => msg.status === status);
+    }
+
+    displayMessages(filtered);
+}
+
+async function markMessageAsRead(messageId) {
+    try {
+        await db.collection('contact_messages').doc(messageId).update({
+            status: 'read',
+            readAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        showToast('Mesej ditandai sebagai dibaca');
+        loadMessages();
+    } catch (error) {
+        console.error('Error marking message as read:', error);
+        showToast('Ralat berlaku', true);
+    }
+}
+
+async function deleteMessage(messageId) {
+    showConfirm(
+        'Padam Mesej?',
+        'Adakah anda pasti mahu memadam mesej ini?',
+        'danger',
+        async () => {
+            try {
+                await db.collection('contact_messages').doc(messageId).delete();
+                showToast('Mesej berjaya dipadam');
+                loadMessages();
+            } catch (error) {
+                console.error('Error deleting message:', error);
+                showToast('Ralat berlaku', true);
+            }
+        }
+    );
 }
 
 // Close modals on outside click
