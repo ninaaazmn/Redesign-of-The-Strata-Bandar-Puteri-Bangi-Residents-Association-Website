@@ -37,8 +37,28 @@
             <li><a href="../Pengumuman/pengumuman.html">Pengumuman</a></li>
             <li><a href="../hubungi kami/hubungi_kami.html">Hubungi Kami</a></li>
             <li><a href="../faq/faq.html">FAQ</a></li>
-            <li><a href="../login/login.html">Log Masuk</a></li>
+
+            <!-- Login Link (shown when NOT logged in) -->
+            <li id="loginLink"><a href="../login/login.html">Log Masuk</a></li>
+
             <li><button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button></li>
+
+            <!-- User Profile Dropdown (shown when logged in) -->
+            <li class="user-profile-dropdown" id="userProfileDropdown" style="display: none;">
+                <button class="user-icon-btn" id="userIconBtn">
+                    <i class="fa-solid fa-user"></i>
+                </button>
+                <ul class="user-dropdown-menu" id="userDropdownMenu">
+                    <li class="user-dropdown-header">
+                        <span id="userDisplayName">Pengguna</span>
+                    </li>
+                    <li><a href="../profile/profile.html"><i class="fa-solid fa-user-circle"></i> Profile</a></li>
+                    <li><a href="../pembayaran/pembayaran.html"><i class="fa-solid fa-shield-halved"></i> Pembayaran
+                            Sekuriti</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Log Keluar</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </nav>
@@ -55,7 +75,7 @@
         // Show navbar if at top of page (within 100px) or scrolling up
         if (currentScroll <= 100) {
             navbar.style.transform = 'translateY(0)';
-            topBar.style.transform = 'translateY(0)';
+            if (topBar) topBar.style.transform = 'translateY(0)';
         } else if (currentScroll < lastScrollTop) {
             // Scrolling UP - show navbar
             navbar.style.transform = 'translateY(0)';
@@ -66,5 +86,53 @@
 
         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
     });
-</script>
 
+    // =========================================
+    // USER AUTHENTICATION STATE
+    // =========================================
+    // Check if Firebase is loaded (some pages may not have it)
+    document.addEventListener('DOMContentLoaded', () => {
+        // Wait for Firebase to be ready
+        if (typeof firebase !== 'undefined' && typeof onAuthStateChange === 'function') {
+            initAuthUI();
+        }
+    });
+
+    function initAuthUI() {
+        const loginLink = document.getElementById('loginLink');
+        const userProfileDropdown = document.getElementById('userProfileDropdown');
+        const userDisplayName = document.getElementById('userDisplayName');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        onAuthStateChange(async (user) => {
+            if (user) {
+                // User is logged in - show profile dropdown, hide login link
+                if (loginLink) loginLink.style.display = 'none';
+                if (userProfileDropdown) userProfileDropdown.style.display = 'block';
+
+                // Get user data and display name
+                if (typeof getUserData === 'function') {
+                    const userData = await getUserData(user.uid);
+                    if (userData.success && userDisplayName) {
+                        userDisplayName.textContent = userData.data.nama || user.email || 'Pengguna';
+                    }
+                }
+            } else {
+                // User is NOT logged in - show login link, hide profile dropdown
+                if (loginLink) loginLink.style.display = 'block';
+                if (userProfileDropdown) userProfileDropdown.style.display = 'none';
+            }
+        });
+
+        // Logout button handler
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                if (typeof logoutUser === 'function') {
+                    await logoutUser();
+                    window.location.href = '../login/login.html';
+                }
+            });
+        }
+    }
+</script>
