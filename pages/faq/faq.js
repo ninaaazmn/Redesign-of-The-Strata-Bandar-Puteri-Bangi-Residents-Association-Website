@@ -1,7 +1,11 @@
 // Mobile menu toggle
-document.querySelector('.mobile-menu-btn').addEventListener('click', function () {
-    document.getElementById('navLinks').classList.toggle('show');
-});
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const navLinks = document.getElementById('navLinks');
+if (mobileMenuBtn && navLinks) {
+    mobileMenuBtn.addEventListener('click', function () {
+        navLinks.classList.toggle('show');
+    });
+}
 
 // FAQ Accordion functionality
 const faqQuestions = document.querySelectorAll('.faq-question');
@@ -26,73 +30,72 @@ faqQuestions.forEach(question => {
     });
 });
 
-// Category filtering
-categoryBtns.forEach(btn => {
-    btn.addEventListener('click', function () {
-        // Update active button
-        categoryBtns.forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        
-        // Filter FAQ items
-        const category = this.getAttribute('data-category');
+// Category filtering (only if category buttons exist)
+if (categoryBtns.length > 0) {
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            // Update active button
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filter FAQ items
+            const category = this.getAttribute('data-category');
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                if (category === 'all') {
+                    item.classList.remove('hidden');
+                } else {
+                    const itemCategories = item.getAttribute('data-category').split(' ');
+                    if (itemCategories.includes(category)) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                }
+            });
+            
+            // Clear search
+            if (searchInput) {
+                searchInput.value = '';
+            }
+        });
+    });
+}
+
+// Search functionality
+if (searchInput) {
+    searchInput.addEventListener('input', function () {
+        const searchTerm = this.value.toLowerCase();
         const faqItems = document.querySelectorAll('.faq-item');
         
         faqItems.forEach(item => {
-            if (category === 'all') {
+            const questionText = item.querySelector('.question-text').textContent.toLowerCase();
+            const answerText = item.querySelector('.faq-answer p').textContent.toLowerCase();
+            
+            if (searchTerm === '' || questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
                 item.classList.remove('hidden');
             } else {
-                const itemCategories = item.getAttribute('data-category').split(' ');
-                if (itemCategories.includes(category)) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
+                item.classList.add('hidden');
             }
         });
-        
-        // Clear search
-        searchInput.value = '';
     });
-});
-
-// Search functionality
-searchInput.addEventListener('input', function () {
-    const searchTerm = this.value.toLowerCase();
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-        const questionText = item.querySelector('.question-text').textContent.toLowerCase();
-        const answerText = item.querySelector('.faq-answer p').textContent.toLowerCase();
-        
-        if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
-            item.classList.remove('hidden');
-        } else {
-            item.classList.add('hidden');
-        }
-    });
-});
+}
 
 // Scroll to Top Button
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        scrollToTopBtn.classList.add('show');
-    } else {
-        scrollToTopBtn.classList.remove('show');
-    }
-});
-
-scrollToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+if (scrollToTopBtn) {
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.classList.add('show');
+        } else {
+            scrollToTopBtn.classList.remove('show');
+        }
     });
-});
 
-// Close accordion when category is clicked
-categoryBtns.forEach(btn => {
-    btn.addEventListener('click', function () {
-        faqQuestions.forEach(q => {
-            q.closest('.faq-item').classList.remove('active');
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
     });
-});
+}

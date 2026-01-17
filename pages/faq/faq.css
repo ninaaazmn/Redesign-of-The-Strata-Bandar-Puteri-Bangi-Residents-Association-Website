@@ -96,7 +96,7 @@ body {
     margin-top: -30px;
     position: relative;
     z-index: 2;
-    border-radius: 30px 30px 0 0;
+    border-radius: 0;
 }
 
 /* ===== Search Bar ===== */
@@ -135,23 +135,23 @@ body {
 .category-tabs {
     display: flex;
     justify-content: center;
-    gap: 12px;
-    margin-bottom: 50px;
+    gap: 15px;
     flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto 50px;
 }
 
 .category-btn {
-    padding: 12px 25px;
-    background: transparent;
+    padding: 12px 24px;
     border: 2px solid #e8e0e2;
-    border-radius: 25px;
+    background: white;
     color: var(--text-dark);
-    font-weight: 600;
-    font-size: 0.9rem;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    font-family: inherit;
     cursor: pointer;
     transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
 .category-btn:hover {
@@ -160,10 +160,9 @@ body {
 }
 
 .category-btn.active {
-    background: var(--gradient-maroon);
-    border-color: transparent;
+    background: var(--maroon-primary);
     color: white;
-    box-shadow: 0 8px 20px rgba(139, 21, 56, 0.3);
+    border-color: var(--maroon-primary);
 }
 
 /* ===== FAQ Items ===== */
