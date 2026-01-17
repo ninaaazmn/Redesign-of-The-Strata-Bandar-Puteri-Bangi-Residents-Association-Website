@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Strata - Persatuan Penduduk</title>
-    
+
     <!-- Link to shared navbar/footer CSS -->
     <link rel="stylesheet" href="../../partial/navbar-footer.css">
-    
+
     <!-- Font Awesome and Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -26,8 +29,8 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                        url('./images/strata1.jpg');
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('./images/strata1.jpg');
             background-size: cover;
             background-position: center;
             height: 400px;
@@ -237,7 +240,8 @@
 
         .gallery-image {
             width: 100%;
-            padding-bottom: 100%; /* Makes it a perfect square */
+            padding-bottom: 100%;
+            /* Makes it a perfect square */
             position: relative;
             overflow: hidden;
         }
@@ -354,6 +358,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar will load here automatically -->
     <div id="navbar-placeholder"></div>
@@ -372,7 +377,9 @@
     <section class="info-section">
         <h3>JAGA APP 2.0 KINI DI THE STRATA!</h3>
         <h2>APLIKASI PENGURUSAN PELAWAT DAN SEKURITI</h2>
-        <p>Selaras dengan usaha berterusan kami untuk meningkatkan komuniti kami, kami dengan sukacitanya mengumumkan bahawa kami melaksanakan JaGaApp 2.0 yang bertujuan untuk meningkatkan keselamatan, komunikasi, dan kemudahan dalam komuniti.</p>
+        <p>Selaras dengan usaha berterusan kami untuk meningkatkan komuniti kami, kami dengan sukacitanya mengumumkan
+            bahawa kami melaksanakan JaGaApp 2.0 yang bertujuan untuk meningkatkan keselamatan, komunikasi, dan
+            kemudahan dalam komuniti.</p>
         <button class="info-btn">KETAHUI LEBIH LANJUT</button>
     </section>
 
@@ -384,7 +391,8 @@
                 <img src="./images/pt1.png" alt="Strata Family Day" width="100%">
                 <div class="card-content">
                     <h3>Strata Family Day 2025</h3>
-                    <p>Strata Family Day ini diadakan sebagai ikatan asli untuk mengeratkan lagi silaturahim antara penduduk setempat.</p>
+                    <p>Strata Family Day ini diadakan sebagai ikatan asli untuk mengeratkan lagi silaturahim antara
+                        penduduk setempat.</p>
                     <button class="card-btn">BACA LEBIH LANJUT ➜</button>
                 </div>
             </div>
@@ -392,7 +400,8 @@
                 <img src="./images/pt2.png" alt="Strata Family Day" width="100%">
                 <div class="card-content">
                     <h3>Dah Bayar Ke?</h3>
-                    <p>Penduduk Strata perlu membuat bayaran di JagaApp 2.0 untuk keselamatan and kesejahteraan persekitaran</p>
+                    <p>Penduduk Strata perlu membuat bayaran di JagaApp 2.0 untuk keselamatan and kesejahteraan
+                        persekitaran</p>
                     <button class="card-btn">BACA LEBIH LANJUT ➜</button>
                 </div>
             </div>
@@ -400,7 +409,8 @@
                 <img src="./images/pt3.png" alt="Strata Family Day" width="100%">
                 <div class="card-content">
                     <h3>Strata AGM 2025</h3>
-                    <p>Mesyuarat Agung Tahunan penduduk The Strata Bandar Puteri Bangi akan dilaksanakan pada 31 Disember 2025</p>
+                    <p>Mesyuarat Agung Tahunan penduduk The Strata Bandar Puteri Bangi akan dilaksanakan pada 31
+                        Disember 2025</p>
                     <button class="card-btn">BACA LEBIH LANJUT ➜</button>
                 </div>
             </div>
@@ -476,9 +486,15 @@
     <!-- Footer will load here automatically -->
     <div id="footer-placeholder"></div>
 
+    <!-- Firebase SDK for auth state detection -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+
     <!-- Load components from partial folder -->
     <script src="../../partial/components.js"></script>
-    
+
     <script>
         // Carousel functionality
         const dots = document.querySelectorAll('.dot');
@@ -501,7 +517,7 @@
         });
 
         // Smooth scroll for navigation (works after navbar loads)
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (e.target.matches('nav a[href^="#"]')) {
                 e.preventDefault();
                 const href = e.target.getAttribute('href');
@@ -537,4 +553,5 @@
         });
     </script>
 </body>
+
 </html>
