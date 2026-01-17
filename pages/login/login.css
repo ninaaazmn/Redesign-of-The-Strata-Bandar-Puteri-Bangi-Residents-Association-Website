@@ -264,6 +264,31 @@ main {
     color: #5d0d2a;
 }
 
+/* Admin Login Link */
+.admin-login-link {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #e5e5e5;
+}
+
+.admin-login-link a {
+    color: #666 !important;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.admin-login-link a:hover {
+    color: var(--primary-color) !important;
+}
+
+.admin-login-link a i {
+    font-size: 0.9rem;
+}
+
 /* Modal Styles */
 .modal {
     position: fixed;
