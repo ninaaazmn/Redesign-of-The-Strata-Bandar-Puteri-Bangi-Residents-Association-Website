@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cipta Akuan - The Strata</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="cipta_akuan.css">
+</head>
+
+<body>
+    <main>
+        <!-- Logo Header -->
+        <div class="header-logo">
+            <img src="../../partial/persatuan-penduduk-the-strata-bandar-puteri-bangi.png" alt="The Strata Logo">
+        </div>
+
+        <!-- Account Creation Section -->
+        <section class="payment-section">
+            <div class="container">
+                <div class="payment-content">
+                    
+                    <!-- Step 1: Email Verification -->
+                    <div class="step-content active" id="step1">
+                        <h2 class="step-title">Cipta Akaun</h2>
+                        <p class="step-subtitle">Masukkan alamat e-mel yang anda gunakan untuk mendaftar sebagai ahli.</p>
+                        <div class="step-body">
+                            <form id="emailForm" class="email-form">
+                                <div class="form-group">
+                                    <label for="email">E-mel <span class="required">*</span></label>
+                                    <input type="email" id="email" name="email" placeholder="Contoh: ali@example.com" required>
+                                </div>
+
+                                <div id="verifyMessage" class="message"></div>
+
+                                <div class="form-buttons">
+                                    <button type="button" class="btn-cancel" id="cancelBtn">
+                                        <i class="fas fa-chevron-left"></i> BATAL
+                                    </button>
+                                    <button type="button" class="btn-next" id="verifyBtn">
+                                        SETERUSNYA <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Create Password -->
+                    <div class="step-content" id="step2">
+                        <h2 class="step-title">Buat Kata Laluan</h2>
+                        
+                        <div class="step-body">
+                            <form class="account-form" id="accountForm">
+                                <div class="form-group">
+                                    <label for="email-display">Alamat E-mel</label>
+                                    <input type="email" id="email-display" disabled>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password">Kata Laluan <span class="required">*</span></label>
+                                    <input type="password" id="password" name="password" placeholder="Masukkan kata laluan yang kuat" required>
+                                    <small class="help-text">Sekurang-kurangnya 8 aksara</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="confirm_password">Sahkan Kata Laluan <span class="required">*</span></label>
+                                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Sahkan kata laluan anda" required>
+                                </div>
+
+                                <div class="form-buttons">
+                                    <button type="button" class="btn-cancel" id="backBtn">
+                                        <i class="fas fa-chevron-left"></i> KEMBALI
+                                    </button>
+                                    <button type="submit" class="btn-next">
+                                        CIPTA AKUAN <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-body error-body">
+                <div class="error-icon">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <h2 id="errorTitle">RALAT</h2>
+                <p id="errorMessage"></p>
+                <button class="btn-submit" id="errorOkBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-body success-body">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>AKUAN BERJAYA DIBUAT</h2>
+                <p>Akaun anda telah berjaya dibuat.</p>
+                <div class="success-message">
+                    <p><strong>Anda kini boleh log masuk dan melihat rekod bayaran sekuriti anda.</strong></p>
+                    <p>Terima kasih telah menyertai kami!</p>
+                </div>
+                <button class="btn-submit" id="okBtn">OK</button>
+            </div>
+        </div>
+    </div>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="cipta_akuan.js"></script>
+</body>
+
+</html>
