@@ -47,6 +47,11 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="email">ALAMAT E-MEL *</label>
+                                <input type="email" id="email" name="email" placeholder="Contoh: ali@example.com">
+                            </div>
+
+                            <div class="form-group">
                                 <label for="kp">NO. K/P *</label>
                                 <input type="text" id="kp" name="kp" placeholder="Contoh: 123456-12-1234">
                             </div>
@@ -213,14 +218,14 @@
                 <div class="success-icon">
                     <i class="fas fa-check-circle"></i>
                 </div>
-                <h2>PENDAFTARAN BERJAYA</h2>
-                <p>Terima kasih telah mendaftar sebagai ahli Persatuan Penduduk The Strata Bandar Puteri Bangi.</p>
+                <h2>PERMOHONAN DITERIMA</h2>
+                <p>Terima kasih telah menghantar borang pendaftaran ahli Persatuan Penduduk The Strata Bandar Puteri
+                    Bangi.</p>
                 <div class="success-message">
-                    <p><strong>Akaun anda telah berjaya dicipta!</strong></p>
-                    <p>Sila tunggu selama 5 hari bekerja untuk pengesahan permohonan anda.</p>
-                    <p>Pautan pembayaran yuran pendaftaran dan tahunan akan dihantar ke alamat e-mel anda.</p>
+                    <p><strong>Permohonan anda sedang diproses.</strong></p>
+                    <p>Sila tunggu pengesahan daripada pihak Admin.</p>
                 </div>
-                <button class="btn-submit" id="okBtn">LOG MASUK SEKARANG</button>
+                <button class="btn-submit" id="okBtn">KEMBALI KE LAMAN UTAMA</button>
             </div>
         </div>
     </div>
@@ -492,6 +497,7 @@
 
             // Get form values
             const nama = document.getElementById('nama').value.trim();
+            const email = document.getElementById('email').value.trim();
             const kp = document.getElementById('kp').value.trim();
             const bangsa = document.getElementById('bangsa').value.trim();
             const noRumah = document.getElementById('no_rumah').value.trim();
@@ -501,7 +507,7 @@
             const buktiFile = document.getElementById('bukti_kelayakan').files[0];
 
             // Validation - only check required fields that exist
-            if (!nama || !kp) {
+            if (!nama || !email || !kp || !noRumah || !jalanPuteri || !hp) {
                 showMessage('Sila lengkapkan semua ruangan yang diperlukan.');
                 return;
             }
@@ -536,25 +542,22 @@
             showLoading(true);
 
             try {
-                // First, create the user account
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                const user = userCredential.user;
+                // Generate a new reference in 'registrations' to get an ID
+                const docRef = db.collection('registrations').doc();
+                const tempId = docRef.id;
 
-                // Upload document if provided
+                // Upload document placeholder (Storage disabled)
                 let buktiKelayakan = null;
                 if (buktiFile) {
-                    try {
-                        buktiKelayakan = await uploadDocument(buktiFile, user.uid);
-                    } catch (uploadError) {
-                        console.error('Document upload failed:', uploadError);
-                        // Continue without document if upload fails
-                    }
+                    // We are skipping the actual upload to Firebase Storage as per request.
+                    // The file is selected in UI but not saved.
+                    console.log("File selected but upload skipped:", buktiFile.name);
                 }
 
                 // Prepare user data
                 const userData = {
-                    email: email,
                     nama: nama,
+                    email: email,
                     kp: kp,
                     bangsa: bangsa,
                     alamat: {
@@ -566,27 +569,30 @@
                     isirumah: getIsirumahData(),
                     kenderaan: getKenderaanData(),
                     buktiKelayakan: buktiKelayakan,
-                    status: 'pending',
-                    verified: false,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                    role: 'member'
+                    status: 'pending_approval',
+                    submittedAt: firebase.firestore.FieldValue.serverTimestamp(),
                 };
 
-                // Save user data to Firestore
-                await db.collection('users').doc(user.uid).set(userData);
+                // Save data to Firestore (registrations collection)
+                await docRef.set(userData);
 
                 showLoading(false);
                 successModal.style.display = 'flex';
 
             } catch (error) {
+                console.error("Submission Error:", error);
                 showLoading(false);
-                showMessage(getErrorMessage(error.code) || 'Ralat berlaku. Sila cuba lagi.');
+                let msg = 'Ralat berlaku. Sila pastikan sambungan internet anda baik.';
+                if (error.code === 'permission-denied') {
+                    msg = 'Tiada kebenaran untuk menghantar borang. Sila hubungi admin.';
+                }
+                showMessage(msg + ` (${error.message})`);
             }
         });
 
-        // OK button - redirect to login
+        // OK button - redirect to Home
         okBtn.addEventListener('click', () => {
-            window.location.href = '../login/login.html';
+            window.location.href = '../Utama/utama.html';
         });
 
         // Close modals on outside click
