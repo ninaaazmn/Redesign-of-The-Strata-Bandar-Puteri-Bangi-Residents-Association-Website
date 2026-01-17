@@ -211,16 +211,16 @@
                                 Sewaan (yang mana berkaitan) sebagai bukti kelayakan menyertai persatuan.</p>
 
                             <div class="form-group">
-                                <label for="bukti_kelayakan">MUAT NAIK DOKUMEN *</label>
+                                <label>MUAT NAIK DOKUMEN *</label>
                                 <div class="file-upload-wrapper">
                                     <input type="file" id="bukti_kelayakan" name="bukti_kelayakan"
                                         accept=".pdf,.jpg,.jpeg,.png">
-                                    <div class="file-upload-label">
+                                    <label for="bukti_kelayakan" class="file-upload-label">
                                         <i class="fa-solid fa-cloud-arrow-up"></i>
                                         <p>Klik untuk memilih fail atau tarik dan lepas</p>
                                         <span class="file-types">Format yang dibenarkan: PDF, JPG, PNG (Maksimum
                                             5MB)</span>
-                                    </div>
+                                    </label>
                                     <div class="file-name-display"></div>
                                 </div>
                             </div>
@@ -310,6 +310,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
 
     <!-- Firebase Config -->
     <script src="../../js/firebase-config.js"></script>
@@ -462,6 +463,37 @@
             return data;
         }
 
+        // Initialize Firebase Storage
+        const storage = firebase.storage();
+
+        // Upload document to Firebase Storage
+        async function uploadDocument(file, userId) {
+            if (!file) return null;
+
+            try {
+                // Create a unique file name
+                const timestamp = Date.now();
+                const fileExtension = file.name.split('.').pop();
+                const fileName = `bukti_kelayakan/${userId}/${timestamp}.${fileExtension}`;
+
+                // Upload file to Firebase Storage
+                const storageRef = storage.ref(fileName);
+                const uploadTask = await storageRef.put(file);
+
+                // Get download URL
+                const downloadURL = await uploadTask.ref.getDownloadURL();
+                return {
+                    url: downloadURL,
+                    fileName: file.name,
+                    fileType: file.type,
+                    uploadedAt: new Date().toISOString()
+                };
+            } catch (error) {
+                console.error('Error uploading document:', error);
+                throw error;
+            }
+        }
+
         // Form submission
         registrationForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -477,6 +509,7 @@
             const jalanPuteri = document.getElementById('jalan_puteri').value.trim();
             const hp = document.getElementById('hp').value.trim();
             const termsChecked = document.getElementById('termsCheckbox').checked;
+            const buktiFile = document.getElementById('bukti_kelayakan').files[0];
 
             // Validation
             if (!email || !password || !nama || !kp) {
@@ -499,6 +532,22 @@
                 return;
             }
 
+            // Validate file if uploaded
+            if (buktiFile) {
+                const allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+                const maxSize = 5 * 1024 * 1024; // 5MB
+
+                if (!allowedTypes.includes(buktiFile.type)) {
+                    showMessage('Format fail tidak dibenarkan. Sila muat naik PDF, JPG, atau PNG sahaja.');
+                    return;
+                }
+
+                if (buktiFile.size > maxSize) {
+                    showMessage('Saiz fail terlalu besar. Maksimum 5MB dibenarkan.');
+                    return;
+                }
+            }
+
             // Get status ahli
             const statusAhli = [];
             document.querySelectorAll('input[name="status_ahli"]:checked').forEach(cb => {
@@ -507,31 +556,52 @@
 
             showLoading(true);
 
-            // Register user with Firebase
-            const userData = {
-                nama: nama,
-                kp: kp,
-                bangsa: bangsa,
-                alamat: {
-                    noRumah: noRumah,
-                    jalanPuteri: jalanPuteri
-                },
-                hp: hp,
-                statusAhli: statusAhli,
-                isirumah: getIsirumahData(),
-                kenderaan: getKenderaanData(),
-                status: 'pending', // Pending approval
-                verified: false
-            };
+            try {
+                // First, create the user account
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
 
-            const result = await registerUser(email, password, userData);
+                // Upload document if provided
+                let buktiKelayakan = null;
+                if (buktiFile) {
+                    try {
+                        buktiKelayakan = await uploadDocument(buktiFile, user.uid);
+                    } catch (uploadError) {
+                        console.error('Document upload failed:', uploadError);
+                        // Continue without document if upload fails
+                    }
+                }
 
-            showLoading(false);
+                // Prepare user data
+                const userData = {
+                    email: email,
+                    nama: nama,
+                    kp: kp,
+                    bangsa: bangsa,
+                    alamat: {
+                        noRumah: noRumah,
+                        jalanPuteri: jalanPuteri
+                    },
+                    hp: hp,
+                    statusAhli: statusAhli,
+                    isirumah: getIsirumahData(),
+                    kenderaan: getKenderaanData(),
+                    buktiKelayakan: buktiKelayakan,
+                    status: 'pending',
+                    verified: false,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    role: 'member'
+                };
 
-            if (result.success) {
+                // Save user data to Firestore
+                await db.collection('users').doc(user.uid).set(userData);
+
+                showLoading(false);
                 successModal.style.display = 'flex';
-            } else {
-                showMessage(result.error);
+
+            } catch (error) {
+                showLoading(false);
+                showMessage(getErrorMessage(error.code) || 'Ralat berlaku. Sila cuba lagi.');
             }
         });
 

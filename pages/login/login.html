@@ -194,17 +194,29 @@
                 // Get user data
                 const userData = await getUserData(result.user.uid);
                 const userName = userData.success ? (userData.data.nama || userData.data.email) : email;
+                const isAdmin = userData.success && userData.data.role === 'admin';
 
                 document.getElementById('userName').textContent = userName;
+
+                // Store redirect destination based on role
+                if (isAdmin) {
+                    okBtn.dataset.redirect = '../admin/dashboard.html';
+                    document.querySelector('.success-body p').innerHTML =
+                        `Selamat datang, <span id="userName">${userName}</span>!<br><small style="color: #7D1C3A; font-weight: 600;">🛡️ Mode Pentadbir</small>`;
+                } else {
+                    okBtn.dataset.redirect = '../Utama/utama.html';
+                }
+
                 successModal.style.display = 'flex';
             } else {
                 showMessage(result.error);
             }
         });
 
-        // OK button - redirect to home
+        // OK button - redirect based on role
         okBtn.addEventListener('click', () => {
-            window.location.href = '../Utama/utama.html';
+            const redirect = okBtn.dataset.redirect || '../Utama/utama.html';
+            window.location.href = redirect;
         });
 
         // Forgot password modal

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - The Strata</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="../../partial/persatuan-penduduk-the-strata-bandar-puteri-bangi.png" alt="Logo">
+            <h3>ADMIN PANEL</h3>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-section="dashboard">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item" data-section="users">
+                <i class="fas fa-users"></i>
+                <span>Pengurusan Ahli</span>
+            </a>
+            <a href="#" class="nav-item" data-section="posts">
+                <i class="fas fa-bullhorn"></i>
+                <span>Pengumuman</span>
+            </a>
+            <a href="#" class="nav-item" data-section="documents">
+                <i class="fas fa-file-alt"></i>
+                <span>Dokumen</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Log Keluar</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="topbar">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="topbar-title">
+                <h1 id="pageTitle">Dashboard</h1>
+            </div>
+            <div class="admin-info">
+                <span id="adminName">Admin</span>
+                <div class="admin-avatar">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section class="content-section active" id="section-dashboard">
+            <div class="stats-grid">
+                <div class="stat-card pending">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="pendingCount">0</h3>
+                        <p>Menunggu Pengesahan</p>
+                    </div>
+                </div>
+                <div class="stat-card approved">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="approvedCount">0</h3>
+                        <p>Ahli Disahkan</p>
+                    </div>
+                </div>
+                <div class="stat-card rejected">
+                    <div class="stat-icon">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="rejectedCount">0</h3>
+                        <p>Ditolak</p>
+                    </div>
+                </div>
+                <div class="stat-card posts">
+                    <div class="stat-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="postsCount">0</h3>
+                        <p>Pengumuman</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent-section">
+                <h2><i class="fas fa-clock"></i> Pendaftaran Terkini</h2>
+                <div class="recent-list" id="recentRegistrations">
+                    <!-- Filled by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Users Management Section -->
+        <section class="content-section" id="section-users">
+            <div class="section-header">
+                <h2><i class="fas fa-users"></i> Pengurusan Ahli</h2>
+                <div class="filter-group">
+                    <select id="statusFilter">
+                        <option value="all">Semua Status</option>
+                        <option value="pending">Menunggu</option>
+                        <option value="approved">Disahkan</option>
+                        <option value="rejected">Ditolak</option>
+                    </select>
+                    <input type="text" id="searchUser" placeholder="Cari nama atau e-mel...">
+                </div>
+            </div>
+
+            <div class="users-table-wrapper">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>E-mel</th>
+                            <th>No. Rumah</th>
+                            <th>No. H/P</th>
+                            <th>Dokumen</th>
+                            <th>Status</th>
+                            <th>Tindakan</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Filled by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Posts Management Section -->
+        <section class="content-section" id="section-posts">
+            <div class="section-header">
+                <h2><i class="fas fa-bullhorn"></i> Pengumuman</h2>
+                <button class="btn-primary" id="newPostBtn">
+                    <i class="fas fa-plus"></i> Tambah Pengumuman
+                </button>
+            </div>
+
+            <div class="posts-grid" id="postsGrid">
+                <!-- Filled by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Documents Section -->
+        <section class="content-section" id="section-documents">
+            <div class="section-header">
+                <h2><i class="fas fa-file-alt"></i> Dokumen Pengguna</h2>
+            </div>
+
+            <div class="documents-grid" id="documentsGrid">
+                <!-- Filled by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- User Details Modal -->
+    <div class="modal" id="userModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>Maklumat Ahli</h2>
+                <button class="modal-close" onclick="closeModal('userModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="userModalBody">
+                <!-- Filled by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Post Modal -->
+    <div class="modal" id="postModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="postModalTitle">Tambah Pengumuman</h2>
+                <button class="modal-close" onclick="closeModal('postModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="postForm">
+                    <input type="hidden" id="postId">
+                    <div class="form-group">
+                        <label for="postTitle">Tajuk *</label>
+                        <input type="text" id="postTitle" placeholder="Masukkan tajuk pengumuman" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="postCategory">Kategori</label>
+                        <select id="postCategory">
+                            <option value="umum">Umum</option>
+                            <option value="penting">Penting</option>
+                            <option value="acara">Acara</option>
+                            <option value="mesyuarat">Mesyuarat</option>
+                            <option value="kewangan">Kewangan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="postContent">Kandungan *</label>
+                        <textarea id="postContent" rows="8" placeholder="Masukkan kandungan pengumuman..."
+                            required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="postImage">Gambar (URL)</label>
+                        <input type="url" id="postImage" placeholder="https://example.com/image.jpg">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('postModal')">Batal</button>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i> Simpan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content modal-small">
+            <div class="modal-body confirm-body">
+                <div class="confirm-icon" id="confirmIcon">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <h3 id="confirmTitle">Pengesahan</h3>
+                <p id="confirmMessage">Adakah anda pasti?</p>
+                <div class="confirm-actions">
+                    <button class="btn-secondary" onclick="closeModal('confirmModal')">Batal</button>
+                    <button class="btn-primary" id="confirmBtn">Ya</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p>Sila tunggu...</p>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="toastMessage">Berjaya!</span>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+
+    <!-- Firebase Config -->
+    <script src="../../js/firebase-config.js"></script>
+
+    <!-- Dashboard Script -->
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

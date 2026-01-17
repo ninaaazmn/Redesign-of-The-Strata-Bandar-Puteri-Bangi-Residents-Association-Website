@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Firestore Test</title>
+</head>
+
+<body>
+
+    <input id="msg" placeholder="Type something..." />
+    <button id="saveBtn">Save to Firestore</button>
+
+    <script type="module">
+        // 1️⃣ IMPORT FIREBASE (WAJIB)
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import {
+            getFirestore,
+            collection,
+            addDoc,
+            serverTimestamp
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // 2️⃣ FIREBASE CONFIG (PASTE CONFIG ANDA)
+        const firebaseConfig = {
+            apiKey: "AIzaSyAzve41UX3p4yjU_MeZg36cR6yuzmxldpc",
+            authDomain: "user-strata.firebaseapp.com",
+            projectId: "user-strata",
+            storageBucket: "user-strata.firebasestorage.app",
+            messagingSenderId: "225363662978",
+            appId: "1:225363662978:web:825fc4e6033b1cc9d03c9b"
+        };
+
+        // 3️⃣ INITIALIZE APP (WAJIB)
+        const app = initializeApp(firebaseConfig);
+
+        // ❗ INI BARIS PALING PENTING
+        const db = getFirestore(app); // ✅ BETUL
+        // const db = getFirestore(); // ❌ SALAH
+
+        // 4️⃣ BUTTON ACTION
+        document.getElementById("saveBtn").addEventListener("click", async () => {
+            try {
+                const text = document.getElementById("msg").value;
+
+                await addDoc(collection(db, "messages"), {
+                    text: text,
+                    createdAt: serverTimestamp()
+                });
+
+                alert("Saved to Firestore!");
+            } catch (e) {
+                console.error("ERROR:", e);
+                alert("FAILED – check console");
+            }
+        });
+    </script>
+
+</body>
+
+</html>
